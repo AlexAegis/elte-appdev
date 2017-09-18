@@ -16,7 +16,7 @@ import java.util.List;
 public class HelloRestController {
 
     @RequestMapping("/hello")
-    public String hello(@RequestParam(value = "id", defaultValue = "Default", required = false) String string) {
-        return "Hello Lorem, id param: " + string;
+    public String hello(@RequestParam(value = "param1", defaultValue = "Default1", required = false) String param1, @RequestParam(value = "param2", defaultValue = "Default", required = false) String param2) {
+        return "Param1: " + param1 + " Param2: " + param2;
     }
 }
