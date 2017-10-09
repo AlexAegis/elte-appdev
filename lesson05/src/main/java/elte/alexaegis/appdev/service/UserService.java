@@ -17,4 +17,14 @@ public class UserService {
         return userRepository.findByUsername(username).filter(user -> user.password.equals(password));
     }
 
+    public Optional<User> register(String username, String password) {
+        Optional<User> existingUser = userRepository.findByUsername(username);
+        if (!existingUser.isPresent()) {
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setPassword(password);
+            userRepository.save(newUser);
+            return Optional.of(newUser);
+        } else return Optional.empty();
+    }
 }
