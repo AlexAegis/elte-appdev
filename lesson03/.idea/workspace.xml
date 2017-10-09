@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b17327be-9ba2-4a8e-843c-9b6d111c32d5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/App.java" afterPath="$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/App.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/repository/UserRepository.java" afterPath="$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/repository/UserRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/data.sql" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,8 +46,8 @@
       <file leaf-file-name="UserController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+            <state relative-caret-position="102">
+              <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#616#617#0" expanded="true" />
@@ -64,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/data.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="71" lean-forward="false" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
+              <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -74,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+              <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -83,7 +80,7 @@
       <file leaf-file-name="UserRepository.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/repository/UserRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="51">
               <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -95,7 +92,7 @@
       <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/model/User.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="289">
               <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -203,7 +200,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -432,16 +429,248 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lesson05" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.idea/elte-appdev.iml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.idea/misc.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.idea/modules.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.idea/vcs.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/.gitignore</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/.mvn/wrapper/maven-wrapper.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/.mvn/wrapper/maven-wrapper.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/mvnw</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/mvnw.cmd</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/pom.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/src/main/java/elte/appdev/alexaegis/hellospring/HelloController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/src/main/java/elte/appdev/alexaegis/hellospring/HelloRestController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/src/main/java/elte/appdev/alexaegis/hellospring/HellospringApplication.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/src/main/resources/application.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/src/main/resources/templates/hello.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson02/src/test/java/elte/appdev/alexaegis/hellospring/HellospringApplicationTests.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/compiler.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/encodings.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__antlr_antlr_2_7_7.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_1_11.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__ch_qos_logback_logback_core_1_1_11.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__com_fasterxml_classmate_1_3_4.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_8_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_10.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_8_10.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__com_h2database_h2_1_4_196.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__com_jayway_jsonpath_json_path_2_2_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__com_vaadin_external_google_android_json_0_0_20131108_vaadin1.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__javax_transaction_javax_transaction_api_1_2.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__javax_validation_validation_api_1_1_0_Final.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__junit_junit_4_12.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__net_minidev_accessors_smart_1_1.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__net_minidev_json_smart_2_2_1.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__nz_net_ultraq_thymeleaf_thymeleaf_layout_dialect_1_4_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__ognl_ognl_3_0_8.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_8_5_20.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_8_5_20.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_websocket_8_5_20.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_apache_tomcat_tomcat_jdbc_8_5_20.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_apache_tomcat_tomcat_juli_8_5_20.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_10.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_assertj_assertj_core_2_6_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_codehaus_groovy_groovy_2_4_12.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_hamcrest_hamcrest_library_1_3.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_0_1_Final.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_hibernate_hibernate_core_5_0_12_Final.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_hibernate_hibernate_entitymanager_5_0_12_Final.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_hibernate_hibernate_validator_5_3_5_Final.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_hibernate_javax_persistence_hibernate_jpa_2_1_api_1_0_0_Final.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_javassist_javassist_3_21_0_GA.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_jboss_jandex_2_0_0_Final.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_3_1_Final.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_mockito_mockito_core_1_10_19.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_objenesis_objenesis_2_1.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_ow2_asm_asm_5_0_3.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_projectlombok_lombok_1_16_18.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_skyscreamer_jsonassert_1_4_0.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_slf4j_jcl_over_slf4j_1_7_25.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_25.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_slf4j_log4j_over_slf4j_1_7_25.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_aop_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_1_5_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_data_spring_data_commons_1_13_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_data_spring_data_jpa_1_11_7_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_aop_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_aspects_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_beans_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_context_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_core_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_expression_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_jdbc_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_orm_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_test_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_tx_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_web_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_springframework_spring_webmvc_4_3_11_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_thymeleaf_thymeleaf_2_1_5_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring4_2_1_5_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_unbescape_unbescape_1_1_0_RELEASE.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/libraries/Maven__org_yaml_snakeyaml_1_17.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/misc.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/modules.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/vcs.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/README.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/lesson03.iml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/pom.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/src/main/java/elte/alexaegis/appdev/App.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/src/main/java/elte/alexaegis/appdev/controller/UserController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/src/main/java/elte/alexaegis/appdev/model/User.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/src/main/java/elte/alexaegis/appdev/repository/UserRepository.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/src/main/java/elte/alexaegis/appdev/service/UserService.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/src/main/resources/application.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/src/main/resources/data.sql</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/src/test/java/elte/alexaegis/appdev/AppTest.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../lesson04/target/classes/application.properties</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/.gitignore</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/.mvn/wrapper/maven-wrapper.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/.mvn/wrapper/maven-wrapper.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/mvnw</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/mvnw.cmd</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/pom.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/src/main/java/elte/appdev/alexaegis/hellospring/HelloController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/src/main/java/elte/appdev/alexaegis/hellospring/HelloRestController.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/src/main/java/elte/appdev/alexaegis/hellospring/HellospringApplication.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/src/main/resources/application.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/src/main/resources/templates/hello.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/../hellospring/src/test/java/elte/appdev/alexaegis/hellospring/HellospringApplicationTests.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="Application.App">
     <configuration default="false" name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -716,7 +945,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506324046231</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="data sql added">
+      <created>1506324669011</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1506324669011</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -726,20 +962,18 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21015424" sideWeight="0.49298596" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21015424" sideWeight="0.50701404" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21015424" sideWeight="0.49528936" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2281491" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23136246" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -750,7 +984,9 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21015424" sideWeight="0.5047106" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -776,6 +1012,70 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="32" lean-forward="false" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#616#617#0" expanded="true" />
+            <element signature="e#684#685#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/data.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/repository/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
@@ -908,8 +1208,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        <state relative-caret-position="102">
+          <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#616#617#0" expanded="true" />
@@ -920,7 +1220,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="289">
           <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -930,7 +1230,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/elte/alexaegis/appdev/repository/UserRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="51">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -949,7 +1249,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -957,7 +1257,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/data.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="71" lean-forward="false" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
+          <caret line="2" column="12" lean-forward="true" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
           <folding />
         </state>
       </provider>
