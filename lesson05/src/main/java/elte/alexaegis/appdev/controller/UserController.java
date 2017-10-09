@@ -18,14 +18,14 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(method = RequestMethod.POST, value = "/login")
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public Response<User> login(@RequestParam("username") String username, @RequestParam("password") String password) {
         Optional<User> user = userService.login(username, password);
-        return user.map(User::toString).orElse("UserNotFound!");
+        return user.map(Response::ok).orElse(Response.error("Login failed", null));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/register")
-    public String register(String username, String password) {
+    public Response<User> register(String username, String password) {
         Optional<User> newUser = userService.register(username, password);
-        return newUser.map(user -> login(username, password)).orElse("Registration failed");
+        return newUser.map(user -> login(username, password)).orElse(Response.error("Registration failed", null));
     }
 }
