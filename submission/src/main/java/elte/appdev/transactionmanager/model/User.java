@@ -27,10 +27,8 @@ public class User extends ArchEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-
     @Column(nullable = false)
     private Role role;
-
 
     @Column(nullable = false)
     private Person person;
