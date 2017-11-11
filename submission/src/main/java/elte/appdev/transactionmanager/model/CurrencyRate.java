@@ -8,18 +8,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "CURRENCYRATE")
+@Table(name = "CURRENCY_RATE")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class CurrencyRate extends ArchEntity {
 
-    @JoinColumn
+    @JoinColumn(name = "CURRENCY_FROM")
     @ManyToOne
     private Currency from;
 
-    @JoinColumn
+    @JoinColumn(name = "CURRENCY_TO")
     @ManyToOne
     private Currency to;
 
