@@ -11,7 +11,7 @@ class ArchEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    private Integer id;
 
     @Version
     private Integer version = 1;
