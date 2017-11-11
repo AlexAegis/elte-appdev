@@ -16,7 +16,10 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class Account extends ArchEntity {
 
-    @Column(nullable = false)
+    public static final String ACCOUNT = "account";
+
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Person person;
 
     @JoinColumn

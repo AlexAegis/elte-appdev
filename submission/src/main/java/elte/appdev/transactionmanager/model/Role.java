@@ -15,6 +15,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 public class Role extends ArchEntity {
 
-    @Column(nullable = false, unique = true)
-    private User name;
+    @JoinColumn(nullable = false, unique = true)
+    @OneToOne
+    private User user;
 }

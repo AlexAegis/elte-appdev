@@ -15,6 +15,8 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 public class User extends ArchEntity {
 
+    public static final String USER = "user";
+
     @Column(nullable = false, unique = true)
     private String username;
 
@@ -27,10 +29,12 @@ public class User extends ArchEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
+    @OneToOne(mappedBy = USER)
     private Role role;
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
+    @OneToOne(mappedBy = USER)
     private Person person;
 
 }

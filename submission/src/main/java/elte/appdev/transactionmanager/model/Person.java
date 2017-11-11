@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
         import lombok.NoArgsConstructor;
 
         import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "PERSON")
@@ -15,8 +16,13 @@ import lombok.AllArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class Person extends ArchEntity {
 
-    @Column(nullable = false, unique = true)
+    @JoinColumn(nullable = false, unique = true)
+    @OneToOne
     private User user;
+
+    @JoinColumn
+    @OneToMany
+    private List<Account> accounts;
 
     @Column(nullable = false)
     private String firstName;
