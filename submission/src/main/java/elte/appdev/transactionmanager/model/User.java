@@ -1,30 +1,38 @@
 package elte.appdev.transactionmanager.model;
 
-import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-public class User {
+@Table(name = "USER")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class User extends ArchEntity {
+
+    @Column(nullable = false, unique = true)
+    private String username;
 
     /**
-     *
-     */
-    @Id
-    public Integer id;
+     * SHA-256
+      */
+    @Column(nullable = false)
+    private String password;
 
-    public String username;
+    @Column(nullable = false, unique = true)
+    private String email;
 
-    public String password;
+    /*
+    @Column(nullable = false)
+    private Role role
+    */
 
-    @Override
-    public String toString() {
-        return username;
-    }
+    @Column(nullable = false)
+    private int person;
+
 }
