@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -18,16 +16,19 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class Transaction extends ArchEntity {
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Person from;
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Person to;
 
     @Column(nullable = false)
     private Integer amount;
 
-    @Column(nullable = false)
+    @JoinColumn(nullable = false)
+    @ManyToOne
     private Currency currency;
 
     @Column(nullable = false)
