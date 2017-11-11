@@ -25,7 +25,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/register")
     public Response<User> register(String username, String password) {
-        Optional<User> newUser = userService.register(username, password);
+        Optional<User> newUser = userService.register(username, password, null);
         return newUser.map(user -> login(username, password)).orElse(Response.error("Registration failed", null));
     }
 }
