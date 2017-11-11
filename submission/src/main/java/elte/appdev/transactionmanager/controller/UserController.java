@@ -1,7 +1,7 @@
-package elte.alexaegis.appdev.controller;
+package elte.appdev.transactionmanager.controller;
 
-import elte.alexaegis.appdev.model.User;
-import elte.alexaegis.appdev.service.UserService;
+import elte.appdev.transactionmanager.model.User;
+import elte.appdev.transactionmanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

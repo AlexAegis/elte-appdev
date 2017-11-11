@@ -1,4 +1,4 @@
-package elte.alexaegis.appdev.controller;
+package elte.appdev.transactionmanager.controller;
 
 import lombok.AllArgsConstructor;
 

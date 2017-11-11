@@ -1,6 +1,6 @@
-package elte.alexaegis.appdev.repository;
+package elte.appdev.transactionmanager.repository;
 
-import elte.alexaegis.appdev.model.User;
+import elte.appdev.transactionmanager.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

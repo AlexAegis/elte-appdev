@@ -1,4 +1,4 @@
-package elte.alexaegis.appdev.model;
+package elte.appdev.transactionmanager.model;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -13,6 +13,9 @@ import javax.persistence.Id;
 @Entity
 public class User {
 
+    /**
+     *
+     */
     @Id
     public Integer id;
 

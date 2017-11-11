@@ -1,4 +1,4 @@
-package elte.alexaegis.appdev;
+package elte.appdev.transactionmanager;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

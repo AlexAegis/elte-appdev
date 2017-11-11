@@ -1,7 +1,7 @@
-package elte.alexaegis.appdev.service;
+package elte.appdev.transactionmanager.service;
 
-import elte.alexaegis.appdev.model.User;
-import elte.alexaegis.appdev.repository.UserRepository;
+import elte.appdev.transactionmanager.model.User;
+import elte.appdev.transactionmanager.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

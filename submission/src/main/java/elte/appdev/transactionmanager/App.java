@@ -1,4 +1,4 @@
-package elte.alexaegis.appdev;
+package elte.appdev.transactionmanager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
