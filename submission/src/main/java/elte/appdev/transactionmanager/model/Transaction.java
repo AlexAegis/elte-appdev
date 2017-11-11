@@ -18,11 +18,11 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class Transaction extends ArchEntity {
 
-    //@Column(nullable = false)
-    //private Person from;
+    @Column(nullable = false)
+    private Person from;
 
-    //@Column(nullable = false)
-    //private Person to;
+    @Column(nullable = false)
+    private Person to;
 
     @Column(nullable = false)
     private Integer amount;
