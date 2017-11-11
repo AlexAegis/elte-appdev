@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @MappedSuperclass
-public class ArchEntity {
+class ArchEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

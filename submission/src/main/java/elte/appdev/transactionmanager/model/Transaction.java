@@ -27,8 +27,8 @@ public class Transaction extends ArchEntity {
     @Column(nullable = false)
     private Integer amount;
 
-    //@Column(nullable = false)
-    //private Currency currency
+    @Column(nullable = false)
+    private Currency currency;
 
     @Column(nullable = false)
     private Date date;
