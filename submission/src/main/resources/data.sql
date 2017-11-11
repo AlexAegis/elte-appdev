@@ -1,3 +1,5 @@
-INSERT INTO USER (id, username, password) VALUES (1, 'admin', 'adminPw');
-INSERT INTO USER (id, username, password) VALUES (2, 'root', 'rootPw');
-INSERT INTO USER (id, username, password) VALUES (3, 'user', 'userPw');
+INSERT INTO CURRENCY (code, name) VALUES ('HUF', 'Hungarian Forint');
+INSERT INTO CURRENCY (code, name, symbol) VALUES ('EUR', 'Euro', '€');
+INSERT INTO CURRENCY (code, name, symbol) VALUES ('GBP', 'Pound sterling', '£');
+INSERT INTO CURRENCY (code, name, symbol) VALUES ('USD', 'United States dollar', '$');
+INSERT INTO CURRENCY (code, name, symbol) VALUES ('ZWR', 'Zimbabwean dollar', 'Z$');

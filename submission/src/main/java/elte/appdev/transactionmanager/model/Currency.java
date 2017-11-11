@@ -24,6 +24,6 @@ public class Currency extends ArchEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(length = 1, unique = true)
+    @Column(length = 2, unique = true)
     private String symbol;
 }
