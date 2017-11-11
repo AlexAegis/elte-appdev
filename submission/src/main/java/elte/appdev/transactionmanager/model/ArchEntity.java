@@ -3,10 +3,11 @@ package elte.appdev.transactionmanager.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @MappedSuperclass
-class ArchEntity {
+class ArchEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -17,6 +17,7 @@ import java.util.List;
 public class Account extends ArchEntity {
 
     public static final String ACCOUNT = "account";
+    private static final long serialVersionUID = -4773474633988833106L;
 
     @JoinColumn(nullable = false)
     @ManyToOne
