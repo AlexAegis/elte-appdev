@@ -5,9 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ACCOUNT")
@@ -17,10 +16,11 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = true)
 public class Account extends ArchEntity {
 
-    /*
+    @Column(nullable = false)
     private Person person;
 
+    @JoinColumn
+    @OneToMany
     private List<Transaction> transactions;
-    */
 
 }

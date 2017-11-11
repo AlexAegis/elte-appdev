@@ -20,7 +20,7 @@ public class User extends ArchEntity {
 
     /**
      * SHA-256
-      */
+     */
     @Column(nullable = false)
     private String password;
 
