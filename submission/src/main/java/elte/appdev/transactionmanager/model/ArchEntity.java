@@ -9,10 +9,10 @@ import javax.persistence.*;
 class ArchEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     @Version
-    private int version;
+    private Integer version = 1;
 
 }
