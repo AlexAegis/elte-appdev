@@ -5,8 +5,6 @@ INSERT INTO CURRENCY (code, name, symbol) VALUES ('GBP', 'Pound sterling', '£')
 INSERT INTO CURRENCY (code, name, symbol) VALUES ('USD', 'United States dollar', '$');
 INSERT INTO CURRENCY (code, name, symbol) VALUES ('ZWR', 'Zimbabwean dollar', 'Z$');
 
-
-
 --CurrencyRate table
 INSERT INTO CURRENCY_RATE (CURRENCY_FROM, CURRENCY_TO, rate) VALUES ( (SELECT ID FROM CURRENCY WHERE CODE = 'HUF'), (SELECT ID FROM CURRENCY WHERE CODE = 'HUF'), 1.0);
 
