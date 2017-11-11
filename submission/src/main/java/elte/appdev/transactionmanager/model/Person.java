@@ -1,11 +1,11 @@
 package elte.appdev.transactionmanager.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+        import lombok.AllArgsConstructor;
+        import lombok.Data;
+        import lombok.EqualsAndHashCode;
+        import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+        import javax.persistence.*;
 
 @Entity
 @Table(name = "PERSON")
