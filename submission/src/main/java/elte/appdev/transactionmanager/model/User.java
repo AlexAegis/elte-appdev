@@ -33,6 +33,6 @@ public class User extends ArchEntity {
     */
 
     @Column(nullable = false)
-    private int person;
+    private Person person;
 
 }
