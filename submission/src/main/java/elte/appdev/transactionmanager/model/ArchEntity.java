@@ -15,5 +15,4 @@ public class ArchEntity {
     @Version
     private int version;
 
-
 }
