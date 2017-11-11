@@ -16,5 +16,5 @@ import javax.persistence.*;
 public class Feature extends ArchEntity {
 
     @Column(nullable = false, unique = true)
-    private User name;
+    private String name;
 }

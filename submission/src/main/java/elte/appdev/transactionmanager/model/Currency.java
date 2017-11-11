@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * HUF, EUR, GBP, USD, ZWR
@@ -26,4 +27,9 @@ public class Currency extends ArchEntity {
 
     @Column(length = 2, unique = true)
     private String symbol;
+
+    @JoinColumn
+    @OneToMany
+    private List<CurrencyRate> ratesTo;
+
 }

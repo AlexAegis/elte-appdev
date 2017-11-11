@@ -15,9 +15,10 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 public class Permission extends ArchEntity {
 
-    @Column(nullable = false, unique = true)
+    @JoinColumn(nullable = false, unique = true)
+    @ManyToOne
     private Feature name;
 
     @Column(nullable = false)
-    private boolean enabled;
+    private Boolean enabled;
 }
