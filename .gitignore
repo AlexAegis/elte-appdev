@@ -1,6 +1,10 @@
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
+### Hot Reload Jars ###
+
+!.hotswap/*
+
 ### STS ###
 .apt_generated
 .classpath
@@ -23,3 +27,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### Compiled Files ###
+
+*.jar
