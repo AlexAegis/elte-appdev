@@ -3,7 +3,8 @@
 ## Recommendations
 
 ### [SonarLint](https://www.sonarlint.org/intellij/)
-> **Linting** in IDEA for java
+> **Linting** in IDEA for java. 
+Install [this plugin](https://plugins.jetbrains.com/plugin/7973-sonarlint) if you're using IntelliJ 
 
 ### [DCENV](https://dcevm.github.io/)
 > **Hot Reload** capable alternative JVM.
@@ -28,3 +29,7 @@ you can do this by opening up the 'Environment' panel and putting this in the VM
 
 ### [LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei) 
 > **Reload the Page** for Chrome when the server changes
+
+### [Lombok](https://projectlombok.org/)
+> **Compile time magic** before compile time. 
+Install [this plugin](https://plugins.jetbrains.com/plugin/6317-lombok-plugin) if you're using IntelliJ. 

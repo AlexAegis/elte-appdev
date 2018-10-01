@@ -1,6 +1,12 @@
 {
     "recommendations": [
         "vscjava.vscode-java-pack",
-        "vscjava.vscode-maven"
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
+        "redhat.java",
+        "jasonlhy.hungry-delete",
+        "karyfoundation.theme-karyfoundation-themes",
+        "gabrielbb.vscode-lombok"
     ]
 }
