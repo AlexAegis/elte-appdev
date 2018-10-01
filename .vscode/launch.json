@@ -1,15 +1,16 @@
 {
     "configurations": [
-        
         {
             "type": "java",
-            "name": "CodeLens (Launch) - Main",
+            "name": "Launch - Backend",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
-            "mainClass": "Main",
-            "args": ""
+            "mainClass": "hu.elte.assignment.AssignmentApplication",
+            "vmArgs": "-XXaltjvm=dcevm -javaagent:./.hotswap/hotswap-agent-1.3.0.jar=autoHotswap=true",
+            "args": "",
+            "projectName": "assignment"
         }
     ]
 }
