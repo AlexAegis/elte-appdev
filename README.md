@@ -1,5 +1,32 @@
 # elte-appdev assignment
 
+If you're not running this project from a recommended environment (IntelliJ or VS Code) You can still run it using the
+command line:
+
+Windows
+```cmd
+mvnw.cmd spring-boot:run
+```
+
+Linux
+```bash
+mvnw spring-boot:run
+```
+
+If you want to use hot reload (and your JVM is capable) just pass the *-P dev* profile parameter and it will use the
+necessary JVM arguments.
+
+Windows
+```cmd
+mvnw.cmd -P dev spring-boot:run
+```
+
+Linux
+```bash
+mvnw -P dev spring-boot:run
+```
+
+
 ## Recommendations
 
 ### [SonarLint](https://www.sonarlint.org/intellij/)

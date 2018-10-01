@@ -72,12 +72,30 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<jvmArguments>
-						-Xdebug -XXaltjvm=dcevm -javaagent:./.hotswap/hotswap-agent-1.3.0.jar=autoHotswap=true
+						${hot-reload}
 					</jvmArguments>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<hot-reload>-Xdebug -XXaltjvm=dcevm -javaagent:./.hotswap/hotswap-agent-1.3.0.jar=autoHotswap=true</hot-reload>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<hot-reload/>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
