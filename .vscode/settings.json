@@ -1,4 +1,5 @@
 {
     "maven.executable.path": "./mvnw.cmd",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.completion.enabled": true
 }
