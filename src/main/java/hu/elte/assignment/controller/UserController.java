@@ -1,12 +1,13 @@
 package hu.elte.assignment.controller;
 
-import hu.elte.assignment.model.User;
-import hu.elte.assignment.repository.UserRepository;
+import hu.elte.assignment.data.model.User;
+import hu.elte.assignment.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/")
 public class UserController {
 
 	private final UserRepository userRepository;
@@ -20,4 +21,6 @@ public class UserController {
 	public Iterable<User> getAllUser() {
 		return userRepository.findAll();
 	}
+
+
 }

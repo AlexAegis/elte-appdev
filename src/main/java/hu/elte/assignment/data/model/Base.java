@@ -1,6 +1,7 @@
-package hu.elte.assignment.model;
+package hu.elte.assignment.data.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,7 @@ import javax.persistence.MappedSuperclass;
 
 @Data
 @MappedSuperclass
+@EqualsAndHashCode
 public class Base {
 
 	@Id
