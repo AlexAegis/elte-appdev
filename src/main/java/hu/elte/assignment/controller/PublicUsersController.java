@@ -25,7 +25,7 @@ final class PublicUsersController {
   UserCrudService users;
 
   @PostMapping("/register")
-  Integer register(
+  String register(
     @RequestParam("username") final String username,
     @RequestParam("password") final String password) {
     System.out.println("ASD");
@@ -43,7 +43,7 @@ final class PublicUsersController {
   }
 
   @PostMapping("/login")
-  Integer login(
+  String login(
     @RequestParam("username") final String username,
     @RequestParam("password") final String password) {
     return authentication

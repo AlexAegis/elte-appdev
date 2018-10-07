@@ -1,14 +1,14 @@
-/*package hu.elte.assignment.service;
+package hu.elte.assignment.service;
 
-
+import com.google.common.collect.ImmutableMap;
 import hu.elte.assignment.data.model.User;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 
 import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
@@ -16,31 +16,31 @@ import static lombok.AccessLevel.PRIVATE;
 @Service
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-final class UUIDAuthenticationService implements UserAuthenticationService {
+final class TokenAuthenticationService implements UserAuthenticationService {
+  @NonNull
+  TokenService tokens;
   @NonNull
   UserCrudService users;
 
   @Override
   public Optional<String> login(final String username, final String password) {
-
-    final User user = User
-      .builder()
-      .id(1)
-      .username(username)
-      .password(password)
-      .build();
-
-    users.save(user);
-    return Optional.of(username);
+    return users
+      .findByUsername(username)
+      .filter(user -> Objects.equals(password, user.getPassword()))
+      .map(user -> tokens.expiring(ImmutableMap.of("username", username)));
   }
 
   @Override
   public Optional<User> findByToken(final String token) {
-    return users.find(Integer.parseInt(token));
+    return Optional
+      .of(tokens.verify(token))
+      .map(map -> map.get("username"))
+      .flatMap(users::findByUsername);
   }
 
   @Override
   public void logout(final User user) {
-
+    System.out.println("Logging out");
+    // Nothing to do
   }
-}*/
+}
