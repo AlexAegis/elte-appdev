@@ -17,31 +17,31 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 final class TokenAuthenticationService implements UserAuthenticationService {
-  @NonNull
-  TokenService tokens;
-  @NonNull
-  UserCrudService users;
+	@NonNull
+	TokenService tokens;
+	@NonNull
+	UserCrudService users;
 
-  @Override
-  public Optional<String> login(final String username, final String password) {
-    return users
-      .findByUsername(username)
-      .filter(user -> Objects.equals(password, user.getPassword()))
-      .map(user -> tokens.expiring(ImmutableMap.of("username", username)));
-  }
+	@Override
+	public Optional<String> login(final String username, final String password) {
+		return users
+				.findByUsername(username)
+				.filter(user -> Objects.equals(password, user.getPassword()))
+				.map(user -> tokens.expiring(ImmutableMap.of("username", username)));
+	}
 
-  @Override
-  public Optional<User> findByToken(final String token) {
-    return Optional
-      .of(tokens.verify(token))
-      .map(map -> map.get("username"))
-      .flatMap(users::findByUsername);
-  }
+	@Override
+	public Optional<User> findByToken(final String token) {
+		return Optional
+				.of(tokens.verify(token))
+				.map(map -> map.get("username"))
+				.flatMap(users::findByUsername);
+	}
 
-  @Override
-  public void logout(final User user) {
-    users.remove(user.getId());
-    System.out.println("Logging out");
-    // Nothing to do
-  }
+	@Override
+	public void logout(final User user) {
+		users.remove(user.getId());
+		System.out.println("Logging out");
+		// Nothing to do
+	}
 }

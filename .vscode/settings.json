@@ -1,5 +1,9 @@
 {
-    "maven.executable.path": "./mvnw.cmd",
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "java.completion.enabled": true
+	"maven.executable.path": "./mvnw.cmd",
+	"java.configuration.updateBuildConfiguration": "automatic",
+	"java.completion.enabled": true,
+	"editor.formatOnSave": true,
+	"editor.autoIndent": true,
+	"editor.tabSize": 4,
+	"prettier.useTabs": true
 }

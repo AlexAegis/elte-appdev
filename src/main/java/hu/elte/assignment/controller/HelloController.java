@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
-	@RequestMapping("/hello")
+	@RequestMapping("/public/hello")
 	public String index() {
-		return "Greetings from Sn!";
+		return "Greetings from Public Hello!";
 	}
 
-	@RequestMapping("/hello2")
+	@RequestMapping("/hello")
 	public String hello() {
-		return "Greetings!";
+		return "Greetings from private hello!";
 	}
 }

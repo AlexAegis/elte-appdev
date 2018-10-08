@@ -17,7 +17,6 @@ import static java.util.Objects.requireNonNull;
 
 @Entity
 @Value
-
 @EqualsAndHashCode(callSuper = true)
 public class User extends Base implements UserDetails, Serializable {
 

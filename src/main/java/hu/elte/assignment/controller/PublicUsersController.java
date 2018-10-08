@@ -19,35 +19,22 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = PACKAGE)
 final class PublicUsersController {
-  @NonNull
-  UserAuthenticationService authentication;
-  @NonNull
-  UserCrudService users;
+	@NonNull
+	UserAuthenticationService authentication;
+	@NonNull
+	UserCrudService users;
 
-  @PostMapping("/register")
-  String register(
-    @RequestParam("username") final String username,
-    @RequestParam("password") final String password) {
-    System.out.println("ASD");
-    users
-      .save(
-        User
-          .builder()
-                .id(1)
-          .username(username)
-          .password(password)
-          .build()
-      );
+	@PostMapping("/register")
+	String register(@RequestParam("username") final String username, @RequestParam("password") final String password) {
+		System.out.println("ASD");
+		users.save(User.builder().id(1).username(username).password(password).build());
 
-    return login(username, password);
-  }
+		return login(username, password);
+	}
 
-  @PostMapping("/login")
-  String login(
-    @RequestParam("username") final String username,
-    @RequestParam("password") final String password) {
-    return authentication
-      .login(username, password)
-      .orElseThrow(() -> new RuntimeException("invalid login and/or password"));
-  }
+	@PostMapping("/login")
+	String login(@RequestParam("username") final String username, @RequestParam("password") final String password) {
+		return authentication.login(username, password)
+				.orElseThrow(() -> new RuntimeException("invalid login and/or password"));
+	}
 }
