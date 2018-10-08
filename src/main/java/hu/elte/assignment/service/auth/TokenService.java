@@ -1,4 +1,4 @@
-package hu.elte.assignment.service;
+package hu.elte.assignment.service.auth;
 
 import java.util.Map;
 

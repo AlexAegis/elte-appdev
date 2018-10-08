@@ -19,7 +19,7 @@ public class UserService {
     }
 
     /**
-     * TODO: create and save a person for the user
+     * TODO: create and store a person for the user
      * @param username for the new user
      * @param password for the new user
      * @return the optional new user
