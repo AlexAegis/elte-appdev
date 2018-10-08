@@ -40,6 +40,7 @@ final class TokenAuthenticationService implements UserAuthenticationService {
 
   @Override
   public void logout(final User user) {
+    users.remove(user.getId());
     System.out.println("Logging out");
     // Nothing to do
   }
