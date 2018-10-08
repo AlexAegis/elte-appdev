@@ -60,3 +60,5 @@ you can do this by opening up the 'Environment' panel and putting this in the VM
 ### [Lombok](https://projectlombok.org/)
 > **Compile time magic** before compile time. 
 Install [this plugin](https://plugins.jetbrains.com/plugin/6317-lombok-plugin) if you're using IntelliJ. 
+
+Based on: https://octoperf.com/blog/2018/03/08/securing-rest-api-spring-security/

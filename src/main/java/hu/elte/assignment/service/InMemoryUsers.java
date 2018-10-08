@@ -33,4 +33,10 @@ final class InMemoryUsers implements UserCrudService {
 				.filter(u -> Objects.equals(username, u.getUsername()))
 				.findFirst();
 	}
+
+	@Override
+	public Optional<User> remove(final Integer id) {
+		return ofNullable(users.remove(id));
+	}
+
 }

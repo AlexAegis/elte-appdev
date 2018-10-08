@@ -18,4 +18,6 @@ public interface UserCrudService {
 	Optional<User> find(Integer id);
 
 	Optional<User> findByUsername(String username);
+
+	Optional<User> remove(Integer id);
 }
