@@ -19,21 +19,21 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 final class TokenAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
-  @NonNull
-  UserAuthenticationService auth;
+	@NonNull
+	UserAuthenticationService auth;
 
-  @Override
-  protected void additionalAuthenticationChecks(final UserDetails d, final UsernamePasswordAuthenticationToken auth) {
-    // Nothing to do
-  }
+	@Override
+	protected void additionalAuthenticationChecks(final UserDetails d, final UsernamePasswordAuthenticationToken auth) {
+		// Nothing to do
+	}
 
-  @Override
-  protected UserDetails retrieveUser(final String username, final UsernamePasswordAuthenticationToken authentication) {
-    final Object token = authentication.getCredentials();
-    return Optional
-      .ofNullable(token)
-      .map(String::valueOf)
-      .flatMap(auth::findByToken)
-      .orElseThrow(() -> new UsernameNotFoundException("Cannot find user with authentication token=" + token));
-  }
+	@Override
+	protected UserDetails retrieveUser(final String username, final UsernamePasswordAuthenticationToken authentication) {
+		final Object token = authentication.getCredentials();
+		return Optional
+				.ofNullable(token)
+				.map(String::valueOf)
+				.flatMap(auth::findByToken)
+				.orElseThrow(() -> new UsernameNotFoundException("Cannot find user with authentication token=" + token));
+	}
 }

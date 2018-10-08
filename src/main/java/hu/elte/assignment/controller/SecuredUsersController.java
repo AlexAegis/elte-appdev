@@ -18,17 +18,17 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = PACKAGE)
 final class SecuredUsersController {
-  @NonNull
-  UserAuthenticationService authentication;
+	@NonNull
+	UserAuthenticationService authentication;
 
-  @GetMapping("/current")
-  User getCurrent(@AuthenticationPrincipal final User user) {
-    return user;
-  }
+	@GetMapping("/current")
+	User getCurrent(@AuthenticationPrincipal final User user) {
+		return user;
+	}
 
-  @GetMapping("/logout")
-  boolean logout(@AuthenticationPrincipal final User user) {
-    authentication.logout(user);
-    return true;
-  }
+	@GetMapping("/logout")
+	boolean logout(@AuthenticationPrincipal final User user) {
+		authentication.logout(user);
+		return true;
+	}
 }
