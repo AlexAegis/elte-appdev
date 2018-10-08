@@ -1,7 +1,7 @@
 package hu.elte.assignment.controller;
 
 import hu.elte.assignment.data.model.User;
-import hu.elte.assignment.service.UserAuthenticationService;
+import hu.elte.assignment.service.auth.UserAuthenticationService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;

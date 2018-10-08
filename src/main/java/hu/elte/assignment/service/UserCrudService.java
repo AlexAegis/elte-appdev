@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 public interface UserCrudService {
 
-	User save(User user);
+	User store(User user);
 
 	Optional<User> find(Integer id);
 

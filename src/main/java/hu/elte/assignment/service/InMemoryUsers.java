@@ -13,10 +13,10 @@ import static java.util.Optional.ofNullable;
 @Service
 final class InMemoryUsers implements UserCrudService {
 
-	Map<Integer, User> users = new HashMap<>();
+	private Map<Integer, User> users = new HashMap<>();
 
 	@Override
-	public User save(final User user) {
+	public User store(final User user) {
 		return users.put(user.getId(), user);
 	}
 

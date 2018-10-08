@@ -1,6 +1,7 @@
-package hu.elte.assignment.service;
+package hu.elte.assignment.service.auth;
 
 import com.google.common.collect.ImmutableMap;
+import hu.elte.assignment.service.DateService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.compression.GzipCompressionCodec;
 import lombok.experimental.FieldDefaults;
@@ -31,7 +32,7 @@ public class JWTTokenService implements Clock, TokenService {
   String secretKey;
 
   JWTTokenService(final DateService dates,
-                  @Value("${jwt.issuer:octoperf}") final String issuer,
+                  @Value("${jwt.issuer:elte}") final String issuer,
                   @Value("${jwt.expiration-sec:600}") final int expirationSec,
                   @Value("${jwt.clock-skew-sec:300}") final int clockSkewSec,
                   @Value("${jwt.secret:secret}") final String secret) {

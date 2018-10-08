@@ -17,6 +17,7 @@ import static java.util.Objects.requireNonNull;
 
 @Entity
 @Value
+@Builder
 @EqualsAndHashCode(callSuper = true)
 public class User extends Base implements UserDetails, Serializable {
 
@@ -29,6 +30,7 @@ public class User extends Base implements UserDetails, Serializable {
 	private Boolean active = true;
 
 	@JsonCreator
+
 	User(@JsonProperty("username") final String username,
 	     @JsonProperty("password") final String password) {
 		super();
@@ -38,7 +40,6 @@ public class User extends Base implements UserDetails, Serializable {
 
 
 	@JsonCreator
-	@Builder
 	User(@JsonProperty("id") final Integer id,
 	     @JsonProperty("username") final String username,
 	     @JsonProperty("password") final String password) {
