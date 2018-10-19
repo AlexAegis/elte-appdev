@@ -8,10 +8,7 @@ import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import hu.elte.assignment.data.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
 
@@ -53,6 +50,15 @@ final class PublicUsersController {
 	@PostMapping("/login")
 	String login(@RequestParam("username") final String username, @RequestParam("password") final String password) {
 		return authentication.login(username, Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString())
-				.orElseThrow(() -> new RuntimeException("invalid login and/or password"));
+				.orElse("invalid login and/or password");
+	}
+
+	/**
+	 *
+	 * @return
+	 */
+	@GetMapping("/")
+	Iterable<User> test() {
+		return userRepository.findAll();
 	}
 }

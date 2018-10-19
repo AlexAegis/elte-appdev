@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,8 +16,11 @@ import java.util.Collection;
 import static java.util.Objects.requireNonNull;
 
 @Entity
-@Value
-@Builder
+//@Data
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class User extends Base implements UserDetails, Serializable {
 
@@ -29,15 +33,15 @@ public class User extends Base implements UserDetails, Serializable {
 	private Boolean active = true;
 
 	@JsonCreator
-
-	User(@JsonProperty("username") final String username, @JsonProperty("password") final String password) {
+	public User(@JsonProperty("username") final String username, @JsonProperty("password") final String password) {
 		super();
 		this.username = requireNonNull(username);
 		this.password = requireNonNull(password);
 	}
 
+	@Builder
 	@JsonCreator
-	User(@JsonProperty("id") final Integer id, @JsonProperty("username") final String username,
+	public User(@JsonProperty("id") final Integer id, @JsonProperty("username") final String username,
 			@JsonProperty("password") final String password) {
 		super();
 		this.id = requireNonNull(id);
@@ -51,7 +55,7 @@ public class User extends Base implements UserDetails, Serializable {
 		return new ArrayList<>();
 	}
 
-	@JsonIgnore
+//	@JsonIgnore
 	@Override
 	public String getPassword() {
 		return password;
@@ -77,6 +81,7 @@ public class User extends Base implements UserDetails, Serializable {
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		return active;
 	}
+
 }
