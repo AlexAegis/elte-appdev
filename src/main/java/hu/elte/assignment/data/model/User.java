@@ -32,6 +32,7 @@ public class User extends Base implements UserDetails, Serializable {
 
 	private Boolean active = true;
 
+	@Builder
 	@JsonCreator
 	public User(@JsonProperty("username") final String username, @JsonProperty("password") final String password) {
 		super();
@@ -39,7 +40,6 @@ public class User extends Base implements UserDetails, Serializable {
 		this.password = requireNonNull(password);
 	}
 
-	@Builder
 	@JsonCreator
 	public User(@JsonProperty("id") final Integer id, @JsonProperty("username") final String username,
 			@JsonProperty("password") final String password) {
@@ -55,7 +55,7 @@ public class User extends Base implements UserDetails, Serializable {
 		return new ArrayList<>();
 	}
 
-//	@JsonIgnore
+	@JsonIgnore
 	@Override
 	public String getPassword() {
 		return password;
