@@ -27,7 +27,8 @@ final class InMemoryUsers implements UserCrudService {
 
 	@Override
 	public Optional<User> findByUsername(final String username) {
-		return users.values().stream().filter(u -> Objects.equals(username, u.getUsername())).findFirst();
+		return users.values().stream().filter(Objects::nonNull).filter(u -> Objects.equals(username, u.getUsername()))
+				.findFirst();
 	}
 
 	@Override

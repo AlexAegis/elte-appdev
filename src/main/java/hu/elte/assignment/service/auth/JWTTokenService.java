@@ -21,7 +21,7 @@ import static org.apache.commons.lang3.StringUtils.substringBeforeLast;
 
 @Service
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-public class JWTTokenService implements Clock, TokenService {
+public class JWTTokenService implements TokenService, Clock {
   private static final String DOT = ".";
   private static final GzipCompressionCodec COMPRESSION_CODEC = new GzipCompressionCodec();
 
@@ -37,8 +37,8 @@ public class JWTTokenService implements Clock, TokenService {
     super();
     this.dates = requireNonNull(dates);
     this.issuer = requireNonNull(issuer);
-    this.expirationSec = requireNonNull(expirationSec);
-    this.clockSkewSec = requireNonNull(clockSkewSec);
+    this.expirationSec = expirationSec;
+    this.clockSkewSec = clockSkewSec;
     this.secretKey = BASE64.encode(requireNonNull(secret));
   }
 

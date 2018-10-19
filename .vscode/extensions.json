@@ -1,14 +1,14 @@
 {
-    "recommendations": [
-        "vscjava.vscode-java-pack",
-        "vscjava.vscode-maven",
-        "vscjava.vscode-java-debug",
-        "vscjava.vscode-java-test",
-        "redhat.java",
-        "jasonlhy.hungry-delete",
-        "karyfoundation.theme-karyfoundation-themes",
-        "gabrielbb.vscode-lombok",
-        "dbaeumer.vscode-eslint",
+	"recommendations": [
+		"vscjava.vscode-java-pack",
+		"vscjava.vscode-maven",
+		"vscjava.vscode-java-debug",
+		"vscjava.vscode-java-test",
+		"redhat.java",
+		"jasonlhy.hungry-delete",
+		"karyfoundation.theme-karyfoundation-themes",
+		"gabrielbb.vscode-lombok",
+		"dbaeumer.vscode-eslint",
 		"eg2.tslint",
 		"eg2.vscode-npm-script",
 		"esbenp.prettier-vscode",
@@ -24,6 +24,7 @@
 		"daylerees.rainglow",
 		"wix.vscode-import-cost",
 		"angular.ng-template",
-		"eamodio.gitlens"
-    ]
+		"eamodio.gitlens",
+		"npxms.hide-gitignored"
+	]
 }
