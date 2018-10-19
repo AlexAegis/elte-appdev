@@ -24,7 +24,6 @@ import static lombok.AccessLevel.PRIVATE;
 @AllArgsConstructor(access = PACKAGE)
 final class PublicUsersController {
 
-
 	@NonNull
 	UserAuthenticationService authentication;
 	@Autowired
@@ -32,29 +31,28 @@ final class PublicUsersController {
 
 	/**
 	 * Later the hashing will be taken out from here since that's the clients job
+	 * 
 	 * @param username
 	 * @param password
 	 * @return
 	 */
 	@PostMapping("/register")
 	String register(@RequestParam("username") final String username, @RequestParam("password") final String password) {
-		userRepository.save(User.builder().username(username).password(Hashing.sha256()
-				.hashString(password, StandardCharsets.UTF_8)
-				.toString()).build());
+		userRepository.save(User.builder().username(username)
+				.password(Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString()).build());
 		return login(username, password);
 	}
 
 	/**
 	 * Later the hashing will be taken out from here since that's the clients job
+	 * 
 	 * @param username
 	 * @param password
 	 * @return
 	 */
 	@PostMapping("/login")
 	String login(@RequestParam("username") final String username, @RequestParam("password") final String password) {
-		return authentication.login(username, Hashing.sha256()
-				.hashString(password, StandardCharsets.UTF_8)
-				.toString())
+		return authentication.login(username, Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString())
 				.orElseThrow(() -> new RuntimeException("invalid login and/or password"));
 	}
 }

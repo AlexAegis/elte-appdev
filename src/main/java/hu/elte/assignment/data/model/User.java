@@ -14,7 +14,6 @@ import java.util.Collection;
 
 import static java.util.Objects.requireNonNull;
 
-
 @Entity
 @Value
 @Builder
@@ -31,18 +30,15 @@ public class User extends Base implements UserDetails, Serializable {
 
 	@JsonCreator
 
-	User(@JsonProperty("username") final String username,
-	     @JsonProperty("password") final String password) {
+	User(@JsonProperty("username") final String username, @JsonProperty("password") final String password) {
 		super();
 		this.username = requireNonNull(username);
 		this.password = requireNonNull(password);
 	}
 
-
 	@JsonCreator
-	User(@JsonProperty("id") final Integer id,
-	     @JsonProperty("username") final String username,
-	     @JsonProperty("password") final String password) {
+	User(@JsonProperty("id") final Integer id, @JsonProperty("username") final String username,
+			@JsonProperty("password") final String password) {
 		super();
 		this.id = requireNonNull(id);
 		this.username = requireNonNull(username);

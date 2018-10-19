@@ -31,11 +31,9 @@ public class JWTTokenService implements Clock, TokenService {
   int clockSkewSec;
   String secretKey;
 
-  JWTTokenService(final DateService dates,
-                  @Value("${jwt.issuer:elte}") final String issuer,
-                  @Value("${jwt.expiration-sec:600}") final int expirationSec,
-                  @Value("${jwt.clock-skew-sec:300}") final int clockSkewSec,
-                  @Value("${jwt.secret:secret}") final String secret) {
+  JWTTokenService(final DateService dates, @Value("${jwt.issuer:elte}") final String issuer,
+      @Value("${jwt.expiration-sec:600}") final int expirationSec,
+      @Value("${jwt.clock-skew-sec:300}") final int clockSkewSec, @Value("${jwt.secret:secret}") final String secret) {
     super();
     this.dates = requireNonNull(dates);
     this.issuer = requireNonNull(issuer);
@@ -56,10 +54,7 @@ public class JWTTokenService implements Clock, TokenService {
 
   private String newToken(final Map<String, String> attributes, final int expiresInSec) {
     final DateTime now = dates.now();
-    final Claims claims = Jwts
-      .claims()
-      .setIssuer(issuer)
-      .setIssuedAt(now.toDate());
+    final Claims claims = Jwts.claims().setIssuer(issuer).setIssuedAt(now.toDate());
 
     if (expiresInSec > 0) {
       final DateTime expiresAt = now.plusSeconds(expiresInSec);
@@ -67,32 +62,20 @@ public class JWTTokenService implements Clock, TokenService {
     }
     claims.putAll(attributes);
 
-    return Jwts
-      .builder()
-      .setClaims(claims)
-      .signWith(HS256, secretKey)
-      .compressWith(COMPRESSION_CODEC)
-      .compact();
+    return Jwts.builder().setClaims(claims).signWith(HS256, secretKey).compressWith(COMPRESSION_CODEC).compact();
   }
 
   @Override
   public Map<String, String> verify(final String token) {
-    final JwtParser parser = Jwts
-      .parser()
-      .requireIssuer(issuer)
-      .setClock(this)
-      .setAllowedClockSkewSeconds(clockSkewSec)
-      .setSigningKey(secretKey);
+    final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this).setAllowedClockSkewSeconds(clockSkewSec)
+        .setSigningKey(secretKey);
     return parseClaims(() -> parser.parseClaimsJws(token).getBody());
   }
 
   @Override
   public Map<String, String> untrusted(final String token) {
-    final JwtParser parser = Jwts
-      .parser()
-      .requireIssuer(issuer)
-      .setClock(this)
-      .setAllowedClockSkewSeconds(clockSkewSec);
+    final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this)
+        .setAllowedClockSkewSeconds(clockSkewSec);
 
     // See: https://github.com/jwtk/jjwt/issues/135
     final String withoutSignature = substringBeforeLast(token, DOT) + DOT;
@@ -103,7 +86,7 @@ public class JWTTokenService implements Clock, TokenService {
     try {
       final Claims claims = toClaims.get();
       final ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
-      for (final Map.Entry<String, Object> e: claims.entrySet()) {
+      for (final Map.Entry<String, Object> e : claims.entrySet()) {
         builder.put(e.getKey(), String.valueOf(e.getValue()));
       }
       return builder.build();
