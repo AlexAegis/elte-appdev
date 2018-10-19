@@ -24,14 +24,14 @@ import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
+import org.hibernate.annotations.Filter;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
-	private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(
-			new AntPathRequestMatcher("/public/**")
-	);
+	private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(new AntPathRequestMatcher("/public/**"));
 	private static final RequestMatcher PROTECTED_URLS = new NegatedRequestMatcher(PUBLIC_URLS);
 
 	TokenAuthenticationProvider provider;
@@ -53,25 +53,15 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
-		http
-				.sessionManagement()
-				.sessionCreationPolicy(STATELESS)
-				.and()
-				.exceptionHandling()
-				// this entry point handles when you request a protected page and you are not yet
+		http.sessionManagement().sessionCreationPolicy(STATELESS).and().exceptionHandling()
+				// this entry point handles when you request a protected page and you are not
+				// yet
 				// authenticated
-				.defaultAuthenticationEntryPointFor(forbiddenEntryPoint(), PROTECTED_URLS)
-				.and()
+				.defaultAuthenticationEntryPointFor(forbiddenEntryPoint(), PROTECTED_URLS).and()
 				.authenticationProvider(provider)
-				.addFilterBefore(restAuthenticationFilter(), AnonymousAuthenticationFilter.class)
-				.authorizeRequests()
-				.requestMatchers(PROTECTED_URLS)
-				.authenticated()
-				.and()
-				.csrf().disable()
-				.formLogin().disable()
-				.httpBasic().disable()
-				.logout().disable();
+				.addFilterBefore(restAuthenticationFilter(), AnonymousAuthenticationFilter.class).authorizeRequests()
+				.requestMatchers(PROTECTED_URLS).authenticated().and().csrf().disable().formLogin().disable()
+				.httpBasic().disable().logout().disable();
 	}
 
 	@Bean
@@ -93,8 +83,8 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 * Disable Spring boot automatic filter registration.
 	 */
 	@Bean
-	FilterRegistrationBean disableAutoRegistration(final TokenAuthenticationFilter filter) {
-		final FilterRegistrationBean registration = new FilterRegistrationBean<>(filter);
+	FilterRegistrationBean<TokenAuthenticationFilter> disableAutoRegistration(final TokenAuthenticationFilter filter) {
+		final FilterRegistrationBean<TokenAuthenticationFilter> registration = new FilterRegistrationBean<>(filter);
 		registration.setEnabled(false);
 		return registration;
 	}

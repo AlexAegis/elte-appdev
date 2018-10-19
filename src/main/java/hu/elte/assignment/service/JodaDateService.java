@@ -12,9 +12,8 @@ public class JodaDateService implements DateService {
 	private final DateTimeZone timeZone;
 
 	/**
-	 * Force system-wide timezone to ensure consistent
-	 * dates over all servers, independently from the region
-	 * the server is running.
+	 * Force system-wide timezone to ensure consistent dates over all servers,
+	 * independently from the region the server is running.
 	 */
 	public JodaDateService(final DateTimeZone timeZone) {
 		super();

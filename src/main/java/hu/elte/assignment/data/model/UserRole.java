@@ -1,6 +1,5 @@
 package hu.elte.assignment.data.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
