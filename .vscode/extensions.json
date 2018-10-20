@@ -25,6 +25,7 @@
 		"wix.vscode-import-cost",
 		"angular.ng-template",
 		"eamodio.gitlens",
-		"npxms.hide-gitignored"
+		"npxms.hide-gitignored",
+		"cyrilletuzi.angular-schematics"
 	]
 }

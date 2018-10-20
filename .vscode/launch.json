@@ -1,16 +1,26 @@
 {
-    "configurations": [
-        {
-            "type": "java",
-            "name": "Launch - Backend",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "stopOnEntry": false,
-            "mainClass": "hu.elte.assignment.AssignmentApplication",
-            "vmArgs": "-XXaltjvm=dcevm -javaagent:./.hotswap/hotswap-agent-1.3.0.jar=autoHotswap=true",
-            "args": "",
-            "projectName": "assignment"
-        }
-    ]
+	"configurations": [
+		{
+			"type": "node",
+			"request": "launch",
+			"cwd": "${workspaceFolder}\\src\\main\\web\\",
+			"name": "Launch - Client Dev Server",
+			"runtimeExecutable": "npm",
+
+			"runtimeArgs": ["start", "--proxyConfig proxy.conf.json"],
+			"port": 4200
+		},
+		{
+			"type": "java",
+			"name": "Launch - Backend",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"console": "internalConsole",
+			"stopOnEntry": false,
+			"mainClass": "hu.elte.assignment.AssignmentApplication",
+			"vmArgs": "-XXaltjvm=dcevm -javaagent:./.hotswap/hotswap-agent-1.3.0.jar=autoHotswap=true",
+			"args": "",
+			"projectName": "assignment"
+		}
+	]
 }

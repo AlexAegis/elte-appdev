@@ -31,3 +31,5 @@
 ### Compiled Files ###
 
 *.jar
+
+node_modules
