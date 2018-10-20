@@ -1,4 +1,23 @@
-# elte-appdev assignment
+# elte-appdev assignment - Movie Application
+
+## Functional requirements
+
+Ez az applikáció felületet biztosít manager kategóriájú felhasználóknak filmek és vetítések felvételét az adatbázisba
+és egy publikus regisztrációs felületet néző kategóriájú felhasználóknak akik a vetítésekre jelentkezhetnek.
+Amit később értékelhetnek is.
+
+## Non functional requirements
+
+The project supposed to be built into a single java executable which contains both the backend and the frontend.
+The application has to be secured via tokens to not let unauthorized access to non-users.
+The application has to implement multi grouped user categories in which we can distinguish between managers, admins
+and regular users.
+
+### User Groups
+
+-Admin
+-Manager
+-User
 
 If you're not running this project from a recommended environment (IntelliJ or VS Code) You can still run it using the
 command line:
