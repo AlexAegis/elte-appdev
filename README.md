@@ -15,9 +15,9 @@ and regular users.
 
 ### User Groups
 
--Admin
--Manager
--User
+- Admin
+- Manager
+- User
 
 If you're not running this project from a recommended environment (IntelliJ or VS Code) You can still run it using the
 command line:
