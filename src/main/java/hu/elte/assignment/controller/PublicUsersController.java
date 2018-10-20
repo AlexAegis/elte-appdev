@@ -16,7 +16,7 @@ import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
 @RestController
-@RequestMapping("/public/users")
+@RequestMapping("/rest/public/users")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 @AllArgsConstructor(access = PACKAGE)
 final class PublicUsersController {
@@ -37,21 +37,27 @@ final class PublicUsersController {
 	String register(@RequestParam("username") final String username, @RequestParam("password") final String password) {
 		userRepository.save(User.builder().username(username)
 				.password(Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString()).build());
-		return login(username, password);
+		return login(new User(username, password));
 	}
 
 	/**
 	 * Later the hashing will be taken out from here since that's the clients job
 	 * 
-	 * @param username
-	 * @param password
+	 * @param user
 	 * @return
 	 */
 	@PostMapping("/login")
-	String login(@RequestParam("username") final String username, @RequestParam("password") final String password) {
-		return authentication.login(username, Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString())
-				.orElse("invalid login and/or password");
+	String login(@RequestBody() final User user) {
+		return "{ \"authResult\": \"" +authentication.login(user.getUsername(), Hashing.sha256().hashString(user.getPassword(), StandardCharsets.UTF_8).toString())
+				.orElse("invalid login and/or password") + "\"}";
 	}
+
+	@PostMapping("/test")
+	String test(@RequestBody() final Test test) {
+		System.out.println(test);
+		return test.toString();
+	}
+
 
 	/**
 	 *

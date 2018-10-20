@@ -25,4 +25,30 @@ public class MyAppWebMvcConfigurer implements WebMvcConfigurer {
                 }
             });
     }
+
+/* Once Spring Boot adopts 5.1 framework
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        configurer
+                .setUseSuffixPatternMatch(true)
+                .setUseTrailingSlashMatch(false)
+                .setUseRegisteredSuffixPatternMatch(true)
+                .setPathMatcher(antPathMatcher())
+                .setUrlPathHelper(urlPathHelper())
+                .addPathPrefix("/api",
+                        HandlerTypePredicate.forAnnotation(RestController.class));
+    }
+
+    @Bean
+    public UrlPathHelper urlPathHelper() {
+        return new UrlPathHelper();
+        //...
+    }
+
+    @Bean
+    public PathMatcher antPathMatcher() {
+        return new AntPathMatcher("");
+        //...
+    }*/
+
 }
