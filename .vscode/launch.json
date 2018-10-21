@@ -1,14 +1,13 @@
 {
 	"configurations": [
 		{
-			"type": "node",
+			"type": "chrome",
 			"request": "launch",
-			"cwd": "${workspaceFolder}\\src\\main\\web\\",
-			"name": "Launch - Client Dev Server",
-			"runtimeExecutable": "npm",
-
-			"runtimeArgs": ["start", "--proxyConfig proxy.conf.json"],
-			"port": 4200
+			"name": "Launch - Client",
+			"url": "http://localhost:4200",
+			"webRoot": "${workspaceFolder}/src/main/web/",
+			"preLaunchTask": "start",
+			"cwd": "${workspaceFolder}/src/main/web/"
 		},
 		{
 			"type": "java",
