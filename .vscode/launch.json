@@ -2,6 +2,13 @@
 	"configurations": [
 		{
 			"type": "chrome",
+			"request": "attach",
+			"name": "Attach - Client",
+			"url": "http://localhost:4200",
+			"webRoot": "${workspaceFolder}/src/main/web/"
+		},
+		{
+			"type": "chrome",
 			"request": "launch",
 			"name": "Launch - Client",
 			"url": "http://localhost:4200",

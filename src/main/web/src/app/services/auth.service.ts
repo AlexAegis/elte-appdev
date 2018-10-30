@@ -2,6 +2,7 @@ import * as moment from 'moment';
 import { User } from '../model/user';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
 	providedIn: 'root'
@@ -20,6 +21,7 @@ export class AuthService {
 
 	private setSession(authResult) {
 		console.log('setsess called');
+		new JwtHelperService().getTokenExpirationDate();
 		// const expiresAt = moment().add(authResult.expiresIn, 'second');
 
 		localStorage.setItem('access_token', authResult.authResult);

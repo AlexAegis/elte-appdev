@@ -1,7 +1,6 @@
 package hu.elte.assignment.data.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,4 +31,3 @@ public class Base {
 		this.id = id;
 	}
 }
-
