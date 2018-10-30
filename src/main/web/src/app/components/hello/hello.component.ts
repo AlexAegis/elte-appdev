@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../model/user';
-import { UserService } from '../services/user.service';
+import { User } from '../../model/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
 	selector: 'hello',
@@ -13,12 +13,13 @@ export class HelloComponent implements OnInit {
 	constructor(private http: HttpClient, private userService: UserService) {}
 
 	ngOnInit() {
-		this.cu = this.queryUsers();
+		this.cu = this.queryCurrentUser();
 	}
 
-	async queryUsers() {
-		const result = await this.userService.queryUsers();
+	async queryCurrentUser() {
+		const result = await this.userService.queryCurrentUser();
 		console.log(result);
 		console.log(JSON.stringify(result));
+		return result;
 	}
 }

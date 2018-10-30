@@ -8,7 +8,7 @@ import { User } from '../model/user';
 export class UserService {
 	constructor(private http: HttpClient) {}
 
-	async queryUsers() {
-		return this.http.get<User>('rest/users/current');
+	async queryCurrentUser() {
+		return this.http.get<User>('rest/users/current').toPromise();
 	}
 }
