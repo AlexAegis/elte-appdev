@@ -1,8 +1,9 @@
 import * as moment from 'moment';
 import { User } from '../model/user';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
@@ -10,47 +11,57 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthService {
 	constructor(private http: HttpClient, private jwt: JwtHelperService) {}
 
-	login(email: string, password: string) {
-		return this.http
-			.post<User>('rest/public/users/login', { username: email, password: password })
-			.subscribe(res => {
-				console.log(res);
-				this.setSession(res);
-			});
+	// Observable string sources
+	private loggedInSource: BehaviorSubject<User> = new BehaviorSubject<User>(undefined);
+
+	// Observable string streams
+	loggedInAnnounced = this.loggedInSource.asObservable();
+
+	async login(username: string, password: string) {
+		try {
+			console.log('loggin in');
+			const res = await this.http
+				.post<User>('rest/public/users/login', { username: username, password: password })
+				.toPromise();
+			this.setSession(res);
+			console.log('login res: ' + JSON.stringify(res));
+			const u = await this.queryCurrentUser();
+			console.log('user: ' + u);
+			this.loggedInSource.next(await this.queryCurrentUser());
+			// this.loggedInSource.next({ username: 'fuckall', password: 'nono' });
+		} catch {}
 	}
 
 	private setSession(authResult) {
-		console.log('setsess called');
-
-		// const expiresAt = moment().add(authResult.expiresIn, 'second');
-
 		localStorage.setItem('access_token', authResult.authResult);
-
-		const helper = new JwtHelperService();
-		console.log('getTokenExpirationDate called');
-		const expirationDate = helper.getTokenExpirationDate(authResult.authResult);
-
-		// const exp_date = this.jwt.decodeToken();
-		console.log(expirationDate);
-		console.log('expdate called');
-		// localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 	}
 
 	logout() {
 		localStorage.removeItem('access_token');
+		this.loggedInSource.next(undefined);
 	}
 
-	public isLoggedIn() {
-		return moment().isBefore(this.getExpiration());
+	public isLoggedIn(): boolean {
+		console.log('isLoggedIn');
+		try {
+			return moment().isBefore(this.getExpiration());
+		} catch (e) {
+			return false;
+		}
 	}
 
-	isLoggedOut() {
+	isLoggedOut(): boolean {
 		return !this.isLoggedIn();
 	}
 
-	getExpiration() {
-		const expiration = localStorage.getItem('expires_at');
-		const expiresAt = JSON.parse(expiration);
-		return moment(expiresAt);
+	getExpiration(): Date {
+		console.log('asd');
+		return this.jwt.getTokenExpirationDate();
+	}
+
+	async queryCurrentUser() {
+		try {
+			return await this.http.get<User>('rest/users/current').toPromise();
+		} catch {}
 	}
 }

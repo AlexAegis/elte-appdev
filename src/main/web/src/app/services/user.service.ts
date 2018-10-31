@@ -8,10 +8,4 @@ import { log } from 'util';
 })
 export class UserService {
 	constructor(private http: HttpClient) {}
-
-	async queryCurrentUser() {
-		try {
-			return await this.http.get<User>('rest/users/current').toPromise();
-		} catch {}
-	}
 }

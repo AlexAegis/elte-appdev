@@ -5,6 +5,9 @@
   </h1>
 </div>
 <router-outlet></router-outlet>
-<app-user *ngIf="[isLoggedIn()]">a</app-user>
-<app-login *ngIf="[!isLoggedIn()]">b</app-login>
-{{isLoggedIn()}}
+<app-user *ngIf="user !== undefined">a</app-user>
+<app-login *ngIf="user === undefined">b</app-login>
+{{isLogged}}
+USER:
+{{user |json}}
+{{announced}}
