@@ -7,11 +7,7 @@
 <router-outlet></router-outlet>
 
 
-<div *ngIf="loaded else loading;">
+<div *appLoading="!loaded">
   <app-login *ngIf="user === undefined"></app-login>
   <app-user *ngIf="user !== undefined"></app-user>
 </div>
-
-<ng-template #loading>
-  Loading stuff...
-</ng-template>

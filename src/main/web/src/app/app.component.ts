@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
-import { Subscription, of } from 'rxjs';
+import { Subscription, of, Observable, from } from 'rxjs';
 import { User } from './model/user';
 
 @Component({
@@ -12,6 +12,7 @@ import { User } from './model/user';
 export class AppComponent implements OnInit, OnDestroy {
 	title: string = 'client';
 	isLogged: boolean;
+	user$: Observable<User>;
 	user: User = undefined;
 	loaded: boolean = false;
 	announced: string = 'not';
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.loaded = false;
 		this.user = undefined;
+		this.user$ = from(this.authService.queryCurrentUser());
 		this.authService
 			.queryCurrentUser()
 			.then(user => {
