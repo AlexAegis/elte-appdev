@@ -14,27 +14,21 @@ export class AppComponent implements OnInit, OnDestroy {
 	isLogged: boolean;
 	user$: Observable<User>;
 	user: User = undefined;
-	loaded: boolean = false;
 	announced: string = 'not';
 	subscription: Subscription;
 	constructor(private userService: UserService, private authService: AuthService) {}
 
 	ngOnInit(): void {
-		this.loaded = false;
 		this.user = undefined;
 		this.user$ = from(this.authService.queryCurrentUser());
-		this.authService
-			.queryCurrentUser()
-			.then(user => {
+		this.user$.subscribe(
+			user => {
 				this.user = user;
-				this.loaded = true;
-				console.log('loaded! normal ' + this.loaded);
-			})
-			.catch(e => {
+			},
+			e => {
 				this.user = undefined;
-				this.loaded = true;
-				console.log('loaded! failed ' + this.loaded);
-			});
+			}
+		);
 
 		/*
 		this.authService.queryCurrentUser().then(user => {

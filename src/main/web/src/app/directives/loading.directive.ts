@@ -19,10 +19,9 @@ export class LoadingDirective {
 	loadingComponent: ComponentRef<LoadingComponent>;
 
 	@Input()
-	set appLoading(loading: boolean) {
+	set appLoading(loading) {
 		this.vcRef.clear();
-
-		if (loading) {
+		if (loading === null) {
 			// create and embed an instance of the loading component
 			this.loadingComponent = this.vcRef.createComponent(this.loadingFactory);
 		} else {
