@@ -1,5 +1,8 @@
 package hu.elte.assignment.service.auth;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTCreator;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.google.common.collect.ImmutableMap;
 import hu.elte.assignment.service.DateService;
 import io.jsonwebtoken.*;
@@ -22,82 +25,87 @@ import static org.apache.commons.lang3.StringUtils.substringBeforeLast;
 @Service
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public class JWTTokenService implements TokenService, Clock {
-  private static final String DOT = ".";
-  private static final GzipCompressionCodec COMPRESSION_CODEC = new GzipCompressionCodec();
+	private static final String DOT = ".";
 
-  DateService dates;
-  String issuer;
-  int expirationSec;
-  int clockSkewSec;
-  String secretKey;
+	DateService dates;
+	String issuer;
+	int expirationSec;
+	int clockSkewSec;
+	String secretKey;
 
-  JWTTokenService(final DateService dates, @Value("${jwt.issuer:elte}") final String issuer,
-      @Value("${jwt.expiration-sec:600}") final int expirationSec,
-      @Value("${jwt.clock-skew-sec:300}") final int clockSkewSec, @Value("${jwt.secret:secret}") final String secret) {
-    super();
-    this.dates = requireNonNull(dates);
-    this.issuer = requireNonNull(issuer);
-    this.expirationSec = expirationSec;
-    this.clockSkewSec = clockSkewSec;
-    this.secretKey = BASE64.encode(requireNonNull(secret));
-  }
+	JWTTokenService(final DateService dates, @Value("${jwt.issuer:elte}") final String issuer,
+	                @Value("${jwt.expiration-sec:600}") final int expirationSec,
+	                @Value("${jwt.clock-skew-sec:300}") final int clockSkewSec, @Value("${jwt.secret:secret}") final String secret) {
+		super();
+		this.dates = requireNonNull(dates);
+		this.issuer = requireNonNull(issuer);
+		this.expirationSec = expirationSec;
+		this.clockSkewSec = clockSkewSec;
+		this.secretKey = BASE64.encode(requireNonNull(secret));
+	}
 
-  @Override
-  public String permanent(final Map<String, String> attributes) {
-    return newToken(attributes, 0);
-  }
+	@Override
+	public String permanent(final Map<String, String> attributes) {
+		return newToken(attributes, 0);
+	}
 
-  @Override
-  public String expiring(final Map<String, String> attributes) {
-    return newToken(attributes, expirationSec);
-  }
+	@Override
+	public String expiring(final Map<String, String> attributes) {
+		return newToken(attributes, expirationSec);
+	}
 
-  private String newToken(final Map<String, String> attributes, final int expiresInSec) {
-    final DateTime now = dates.now();
-    final Claims claims = Jwts.claims().setIssuer(issuer).setIssuedAt(now.toDate());
+	/**
+	 * Already refactored to the auth0 solution
+	 * @param attributes
+	 * @param expiresInSec
+	 * @return
+	 */
+	private String newToken(final Map<String, String> attributes, final int expiresInSec) {
+		final DateTime now = dates.now();
+		final JWTCreator.Builder b = JWT.create().withIssuer(issuer).withIssuedAt(now.toDate());
+		attributes.forEach(b::withClaim);
+		if (expiresInSec > 0) {
+			final DateTime expiresAt = now.plusSeconds(expiresInSec);
+			b.withExpiresAt(expiresAt.toDate());
+		}
+		return b.sign(Algorithm.HMAC256(secretKey));
+	}
 
-    if (expiresInSec > 0) {
-      final DateTime expiresAt = now.plusSeconds(expiresInSec);
-      claims.setExpiration(expiresAt.toDate());
-    }
-    claims.putAll(attributes);
+	@Override
+	public Map<String, String> verify(final String token) {
 
-    return Jwts.builder().setClaims(claims).signWith(HS256, secretKey).compressWith(COMPRESSION_CODEC).compact();
-  }
+		final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this).setAllowedClockSkewSeconds(clockSkewSec)
+				.setSigningKey(secretKey);
+		return parseClaims(() -> parser.parseClaimsJws(token).getBody());
+	}
 
-  @Override
-  public Map<String, String> verify(final String token) {
-    final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this).setAllowedClockSkewSeconds(clockSkewSec)
-        .setSigningKey(secretKey);
-    return parseClaims(() -> parser.parseClaimsJws(token).getBody());
-  }
+	@Override
+	public Map<String, String> untrusted(final String token) {
+		//JWT.require(Algorithm.HMAC256(secretKey)).withIssuer(issuer)
+		final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this)
+				.setAllowedClockSkewSeconds(clockSkewSec);
 
-  @Override
-  public Map<String, String> untrusted(final String token) {
-    final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this)
-        .setAllowedClockSkewSeconds(clockSkewSec);
+		// See: https://github.com/jwtk/jjwt/issues/135
+		final String withoutSignature = substringBeforeLast(token, DOT) + DOT;
+		return parseClaims(() -> parser.parseClaimsJwt(withoutSignature).getBody());
+	}
 
-    // See: https://github.com/jwtk/jjwt/issues/135
-    final String withoutSignature = substringBeforeLast(token, DOT) + DOT;
-    return parseClaims(() -> parser.parseClaimsJwt(withoutSignature).getBody());
-  }
+	private static Map<String, String> parseClaims(final Supplier<Claims> toClaims) {
+		try {
+			final Claims claims = toClaims.get();
+			final ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
+			for (final Map.Entry<String, Object> e : claims.entrySet()) {
+				builder.put(e.getKey(), String.valueOf(e.getValue()));
+			}
+			return builder.build();
+		} catch (final IllegalArgumentException | JwtException e) {
+			return ImmutableMap.of();
+		}
+	}
 
-  private static Map<String, String> parseClaims(final Supplier<Claims> toClaims) {
-    try {
-      final Claims claims = toClaims.get();
-      final ImmutableMap.Builder<String, String> builder = ImmutableMap.builder();
-      for (final Map.Entry<String, Object> e : claims.entrySet()) {
-        builder.put(e.getKey(), String.valueOf(e.getValue()));
-      }
-      return builder.build();
-    } catch (final IllegalArgumentException | JwtException e) {
-      return ImmutableMap.of();
-    }
-  }
-
-  @Override
-  public Date now() {
-    final DateTime now = dates.now();
-    return now.toDate();
-  }
+	@Override
+	public Date now() {
+		final DateTime now = dates.now();
+		return now.toDate();
+	}
 }
