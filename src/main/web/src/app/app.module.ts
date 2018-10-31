@@ -11,8 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingDirective } from './directives/loading.directive';
 @NgModule({
-	declarations: [AppComponent, HelloComponent, LoginComponent, UserComponent],
+	entryComponents: [LoadingComponent],
+	declarations: [AppComponent, HelloComponent, LoginComponent, UserComponent, LoadingComponent, LoadingDirective],
 	imports: [
 		BrowserModule,
 		FormsModule,
