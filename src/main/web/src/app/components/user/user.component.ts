@@ -11,13 +11,13 @@ import { Subscription } from 'rxjs';
 	styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit, OnDestroy {
-	constructor(private http: HttpClient, private userService: UserService, private authService: AuthService) {}
+	constructor(private http: HttpClient, private userService: UserService, private auth: AuthService) {}
 
 	ngOnInit() {}
 
 	ngOnDestroy() {}
 
 	async logout() {
-		return await this.authService.logout();
+		return await this.auth.logout();
 	}
 }

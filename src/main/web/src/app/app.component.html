@@ -5,9 +5,20 @@
   </h1>
 </div>
 <router-outlet></router-outlet>
-<app-user *ngIf="user !== undefined">a</app-user>
-<app-login *ngIf="user === undefined">b</app-login>
+
+{{loadeded}}
+<div *ngIf="loadeded else loading;">
+  YIPPX
+  <app-login *ngIf="user === undefined">b</app-login>
+  <app-user *ngIf="user !== undefined">a</app-user>
+</div>
+
+<!--
 {{isLogged}}
 USER:
 {{user |json}}
 {{announced}}
+-->
+<ng-template #loading>
+  Loading stuff...
+</ng-template>
