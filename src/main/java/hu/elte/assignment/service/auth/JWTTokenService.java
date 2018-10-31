@@ -62,13 +62,16 @@ public class JWTTokenService implements TokenService, Clock {
 	 */
 	private String newToken(final Map<String, String> attributes, final int expiresInSec) {
 		final DateTime now = dates.now();
-		final JWTCreator.Builder b = JWT.create().withIssuer(issuer).withIssuedAt(now.toDate());
-		attributes.forEach(b::withClaim);
+		final Claims claims = Jwts.claims().setIssuer(issuer).setIssuedAt(now.toDate());
+
 		if (expiresInSec > 0) {
 			final DateTime expiresAt = now.plusSeconds(expiresInSec);
-			b.withExpiresAt(expiresAt.toDate());
+			claims.setExpiration(expiresAt.toDate());
 		}
-		return b.sign(Algorithm.HMAC256(secretKey));
+		claims.putAll(attributes);
+
+		return Jwts.builder().setClaims(claims).signWith(HS256, secretKey).compact();
+
 	}
 
 	@Override
