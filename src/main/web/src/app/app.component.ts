@@ -3,6 +3,7 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { Subscription, of, Observable, from } from 'rxjs';
 import { User } from './model/user';
+import { shareReplay } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.user = undefined;
-		this.user$ = from(this.authService.queryCurrentUser());
+		this.user$ = from(this.authService.queryCurrentUser()).pipe(shareReplay(1));
 		this.user$.subscribe(
 			user => {
 				this.user = user;

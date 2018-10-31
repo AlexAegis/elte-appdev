@@ -7,7 +7,7 @@
 <router-outlet></router-outlet>
 
 
-<div *appLoading="(user$ | async)">
+<div *appLoading="user$ | async">
   <app-login *ngIf="user === undefined"></app-login>
   <app-user *ngIf="user !== undefined"></app-user>
 </div>
