@@ -14,12 +14,7 @@ export class UserComponent implements OnInit {
 	constructor(private http: HttpClient, private userService: UserService, private authService: AuthService) {}
 
 	ngOnInit() {
-		this.cu = this.queryCurrentUser();
-	}
-
-	async queryCurrentUser() {
-		const result = await this.userService.queryCurrentUser();
-		return result;
+		this.cu = this.userService.queryCurrentUser();
 	}
 
 	async logout() {

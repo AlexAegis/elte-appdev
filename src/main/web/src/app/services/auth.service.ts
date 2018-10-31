@@ -8,7 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 	providedIn: 'root'
 })
 export class AuthService {
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient, private jwt: JwtHelperService) {}
 
 	login(email: string, password: string) {
 		return this.http
@@ -21,10 +21,18 @@ export class AuthService {
 
 	private setSession(authResult) {
 		console.log('setsess called');
-		new JwtHelperService().getTokenExpirationDate();
+
 		// const expiresAt = moment().add(authResult.expiresIn, 'second');
 
 		localStorage.setItem('access_token', authResult.authResult);
+
+		const helper = new JwtHelperService();
+		console.log('getTokenExpirationDate called');
+		const expirationDate = helper.getTokenExpirationDate(authResult.authResult);
+
+		// const exp_date = this.jwt.decodeToken();
+		console.log(expirationDate);
+		console.log('expdate called');
 		// localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 	}
 
