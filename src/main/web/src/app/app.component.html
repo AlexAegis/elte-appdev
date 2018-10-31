@@ -6,7 +6,12 @@
 </div>
 <router-outlet></router-outlet>
 
-{{loadeded}}
+
+<div *ngIf="loadeded else loading;">
+
+</div>
+
+
 <div *ngIf="loadeded else loading;">
   YIPPX
   <app-login *ngIf="user === undefined">b</app-login>
