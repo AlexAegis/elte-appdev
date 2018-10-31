@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
 import { User } from './model/user';
 
 @Component({
@@ -12,29 +12,26 @@ import { User } from './model/user';
 export class AppComponent implements OnInit, OnDestroy {
 	title: string = 'client';
 	isLogged: boolean;
-	userProm: Promise<User>;
 	user: User = undefined;
-	loadeded: boolean = false;
+	loaded: boolean = false;
 	announced: string = 'not';
 	subscription: Subscription;
 	constructor(private userService: UserService, private authService: AuthService) {}
 
 	ngOnInit(): void {
-		console.log('loaded? ' + this.loadeded);
-		this.loadeded = false;
+		this.loaded = false;
 		this.user = undefined;
-		this.userProm = this.authService.queryCurrentUser();
 		this.authService
 			.queryCurrentUser()
 			.then(user => {
 				this.user = user;
-				this.loadeded = true;
-				console.log('loaded! normal ' + this.loadeded);
+				this.loaded = true;
+				console.log('loaded! normal ' + this.loaded);
 			})
 			.catch(e => {
 				this.user = undefined;
-				this.loadeded = true;
-				console.log('loaded! vatch ' + this.loadeded);
+				this.loaded = true;
+				console.log('loaded! failed ' + this.loaded);
 			});
 
 		/*

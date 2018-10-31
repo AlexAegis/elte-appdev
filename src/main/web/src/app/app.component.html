@@ -7,23 +7,11 @@
 <router-outlet></router-outlet>
 
 
-<div *ngIf="loadeded else loading;">
-
+<div *ngIf="loaded else loading;">
+  <app-login *ngIf="user === undefined"></app-login>
+  <app-user *ngIf="user !== undefined"></app-user>
 </div>
 
-
-<div *ngIf="loadeded else loading;">
-  YIPPX
-  <app-login *ngIf="user === undefined">b</app-login>
-  <app-user *ngIf="user !== undefined">a</app-user>
-</div>
-
-<!--
-{{isLogged}}
-USER:
-{{user |json}}
-{{announced}}
--->
 <ng-template #loading>
   Loading stuff...
 </ng-template>
