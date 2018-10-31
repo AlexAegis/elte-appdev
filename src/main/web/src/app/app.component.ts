@@ -3,7 +3,6 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { Subscription } from 'rxjs';
 import { User } from './model/user';
-import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
 	selector: 'app-root',
@@ -13,7 +12,7 @@ import { TouchSequence } from 'selenium-webdriver';
 export class AppComponent implements OnInit, OnDestroy {
 	title: string = 'client';
 	isLogged: boolean;
-	userA: Promise<User>;
+	userProm: Promise<User>;
 	user: User = undefined;
 	loadeded: boolean = false;
 	announced: string = 'not';
@@ -24,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		console.log('loaded? ' + this.loadeded);
 		this.loadeded = false;
 		this.user = undefined;
-		this.userA = this.authService.queryCurrentUser();
+		this.userProm = this.authService.queryCurrentUser();
 		this.authService
 			.queryCurrentUser()
 			.then(user => {

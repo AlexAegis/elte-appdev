@@ -60,8 +60,10 @@ export class AuthService {
 	}
 
 	async queryCurrentUser() {
-		try {
-			return await this.http.get<User>('rest/users/current').toPromise();
-		} catch {}
+		if (this.isLoggedIn()) {
+			try {
+				return await this.http.get<User>('rest/users/current').toPromise();
+			} catch {}
+		}
 	}
 }
