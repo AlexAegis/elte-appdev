@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import hu.elte.assignment.data.model.User;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,8 +49,9 @@ final class PublicUsersController {
 	 */
 	@PostMapping("/login")
 	String login(@RequestBody() final User user) {
-		return "{ \"authResult\": \"" +authentication.login(user.getUsername(), Hashing.sha256().hashString(user.getPassword(), StandardCharsets.UTF_8).toString())
-				.orElse("invalid login and/or password") + "\"}";
+		JSONObject result = new JSONObject().put("authResult", authentication.login(user.getUsername(), Hashing.sha256().hashString(user.getPassword(), StandardCharsets.UTF_8).toString())
+				.orElse("invalid login and/or password"));
+		return result.toString();
 	}
 
 	@PostMapping("/test")
