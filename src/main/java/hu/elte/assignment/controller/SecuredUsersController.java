@@ -22,7 +22,8 @@ final class SecuredUsersController {
 	UserAuthenticationService authentication;
 
 	@GetMapping("/current")
-	User getCurrent(@AuthenticationPrincipal final User user) {
+	User getCurrent(@AuthenticationPrincipal final User user) throws Exception {
+		Thread.sleep(500);
 		return user;
 	}
 

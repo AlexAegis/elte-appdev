@@ -2,8 +2,26 @@ import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { User } from '../../model/user';
 import * as moment from 'moment';
 import { AuthService } from '../../services/auth.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+	FormBuilder,
+	FormGroup,
+	FormControl,
+	Validators,
+	FormGroupDirective,
+	NgForm,
+	ValidatorFn,
+	AbstractControl
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { ErrorStateMatcher } from '@angular/material';
+
+/** A hero's name can't match the given regular expression */
+export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+	return (control: AbstractControl): { [key: string]: any } | null => {
+		const forbidden = nameRe.test(control.value);
+		return forbidden ? { forbiddenName: { value: control.value } } : undefined;
+	};
+}
 
 @Component({
 	selector: 'app-login',
@@ -11,9 +29,9 @@ import { Subscription } from 'rxjs';
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-	loginForm = this.formBuilder.group({
-		username: ['', Validators.required],
-		password: ['', Validators.required]
+	loginForm: FormGroup = this.formBuilder.group({
+		username: ['', [Validators.required]],
+		password: ['', [Validators.required]]
 	});
 
 	constructor(private auth: AuthService, private formBuilder: FormBuilder) {}

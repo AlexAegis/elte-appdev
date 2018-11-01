@@ -22,35 +22,21 @@ export class AppComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.user = undefined;
 		this.user$ = from(this.authService.queryCurrentUser()).pipe(shareReplay(1));
-		this.user$.subscribe(
-			user => {
-				this.user = user;
-			},
-			e => {
-				this.user = undefined;
-			}
-		);
+		this.user$.subscribe(user => {
+			this.user = user;
+		});
 
-		/*
-		this.authService.queryCurrentUser().then(user => {
-			this.user = user;
-		});*/
 		this.subscription = this.authService.loggedInAnnounced.subscribe(user => {
-			console.log('login announced: ' + user);
 			this.user = user;
-			this.announced = 'ANNOUNCED';
-			// this.loadeded = true; // dont enable this because this runs immediatley
 		});
 	}
 
 	ngOnDestroy() {
-		console.log('deleted app');
 		// prevent memory leak when component destroyed
 		this.subscription.unsubscribe();
 	}
 
 	public isLoggedIn(): boolean {
-		console.log('yikes');
 		return this.authService.isLoggedIn();
 	}
 }

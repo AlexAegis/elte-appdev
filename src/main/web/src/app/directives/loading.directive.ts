@@ -7,7 +7,8 @@ import {
 	ViewContainerRef,
 	ComponentFactory,
 	ComponentRef,
-	ComponentFactoryResolver
+	ComponentFactoryResolver,
+	ViewChild
 } from '@angular/core';
 import { LoadingComponent } from '../components/loading/loading.component';
 
@@ -20,10 +21,14 @@ export class LoadingDirective {
 
 	@Input()
 	set appLoading(loading) {
+		console.log('lel: ' + JSON.stringify(this.vcRef.element));
 		this.vcRef.clear();
+
 		if (loading === null) {
 			// create and embed an instance of the loading component
 			this.loadingComponent = this.vcRef.createComponent(this.loadingFactory);
+
+			// this.vcRef.element.nativeElement.setAttribute('class', 'test');
 		} else {
 			// embed the contents of the host template
 			this.vcRef.createEmbeddedView(this.templateRef);

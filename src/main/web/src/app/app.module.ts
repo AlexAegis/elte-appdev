@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingDirective } from './directives/loading.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './modules/material.module';
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [AppComponent, HelloComponent, LoginComponent, UserComponent, LoadingComponent, LoadingDirective],
@@ -25,15 +27,13 @@ import { LoadingDirective } from './directives/loading.directive';
 		JwtModule.forRoot({
 			config: {
 				headerName: 'Authorization',
-				tokenGetter: () => {
-					const token = localStorage.getItem('access_token');
-					console.log('token ' + token);
-					return token;
-				},
+				tokenGetter: () => localStorage.getItem('access_token'),
 				whitelistedDomains: ['localhost:4200', 'http://localhost:4200/rest/users'],
 				blacklistedRoutes: ['www.google.com']
 			}
-		})
+		}),
+		BrowserAnimationsModule,
+		MaterialModule
 	],
 	providers: [AuthService],
 	bootstrap: [AppComponent]

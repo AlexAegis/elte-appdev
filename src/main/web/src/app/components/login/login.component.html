@@ -1,14 +1,17 @@
 <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
-  <label id="username">
-    Username:
-    <input id="usernameField" type="text" formControlName="username" required>
-  </label>
 
-  <label id="password">
-    Password:
-    <input id="passwortdField" type="text" formControlName="password" required>
-  </label>
+  <mat-form-field hideRequiredMarker>
+    <input id="username" matInput formControlName="username" placeholder="Username">
+    <mat-error *ngIf="loginForm.controls['username'].errors">
+      Required
+    </mat-error>
+  </mat-form-field>
 
-  <button id="loginButton" type="submit" [disabled]="!loginForm.valid">Submit</button>
+
+  <mat-form-field hideRequiredMarker>
+    <input id="password" matInput formControlName="password" placeholder="Password">
+  </mat-form-field>
+
+  <button id="loginButton" mat-flat-button type="submit" [disabled]="!loginForm.valid">Login</button>
   <ng-content></ng-content>
 </form>
