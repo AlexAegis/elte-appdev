@@ -1,12 +1,8 @@
 package hu.elte.assignment.service.auth;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTCreator;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.google.common.collect.ImmutableMap;
 import hu.elte.assignment.service.DateService;
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.impl.compression.GzipCompressionCodec;
 import lombok.experimental.FieldDefaults;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,8 +30,9 @@ public class JWTTokenService implements TokenService, Clock {
 	String secretKey;
 
 	JWTTokenService(final DateService dates, @Value("${jwt.issuer:elte}") final String issuer,
-	                @Value("${jwt.expiration-sec:600}") final int expirationSec,
-	                @Value("${jwt.clock-skew-sec:300}") final int clockSkewSec, @Value("${jwt.secret:secret}") final String secret) {
+			@Value("${jwt.expiration-sec:600}") final int expirationSec,
+			@Value("${jwt.clock-skew-sec:300}") final int clockSkewSec,
+			@Value("${jwt.secret:secret}") final String secret) {
 		super();
 		this.dates = requireNonNull(dates);
 		this.issuer = requireNonNull(issuer);
@@ -56,6 +53,7 @@ public class JWTTokenService implements TokenService, Clock {
 
 	/**
 	 * Already refactored to the auth0 solution
+	 * 
 	 * @param attributes
 	 * @param expiresInSec
 	 * @return
@@ -77,14 +75,14 @@ public class JWTTokenService implements TokenService, Clock {
 	@Override
 	public Map<String, String> verify(final String token) {
 
-		final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this).setAllowedClockSkewSeconds(clockSkewSec)
-				.setSigningKey(secretKey);
+		final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this)
+				.setAllowedClockSkewSeconds(clockSkewSec).setSigningKey(secretKey);
 		return parseClaims(() -> parser.parseClaimsJws(token).getBody());
 	}
 
 	@Override
 	public Map<String, String> untrusted(final String token) {
-		//JWT.require(Algorithm.HMAC256(secretKey)).withIssuer(issuer)
+		// JWT.require(Algorithm.HMAC256(secretKey)).withIssuer(issuer)
 		final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this)
 				.setAllowedClockSkewSeconds(clockSkewSec);
 
