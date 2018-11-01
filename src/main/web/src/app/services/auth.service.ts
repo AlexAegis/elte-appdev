@@ -42,7 +42,6 @@ export class AuthService {
 	}
 
 	public isLoggedIn(): boolean {
-		console.log('isLoggedIn');
 		try {
 			return moment().isBefore(this.getExpiration());
 		} catch (e) {
@@ -55,7 +54,6 @@ export class AuthService {
 	}
 
 	getExpiration(): Date {
-		console.log('asd');
 		return this.jwt.getTokenExpirationDate();
 	}
 

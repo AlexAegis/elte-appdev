@@ -1,13 +1,16 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  <span>
+    <h1>{{ title }}</h1>
+  </span>
+  <div id="user">
+    <div id="usr" *appLoading="user$ | async">
+      <app-login *ngIf="user === undefined"></app-login>
+      <app-user [user]="user" *ngIf="user !== undefined"></app-user>
+    </div>
+  </div>
 
+</mat-toolbar>
 
-<div *appLoading="user$ | async">
-  <app-login *ngIf="user === undefined"></app-login>
-  <app-user *ngIf="user !== undefined"></app-user>
-</div>
+<router-outlet>
+  Welcome
+</router-outlet>
