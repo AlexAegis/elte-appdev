@@ -25,8 +25,6 @@ export class AuthService {
 				.toPromise();
 			this.setSession(res);
 			console.log('login res: ' + JSON.stringify(res));
-			const u = await this.queryCurrentUser();
-			console.log('user: ' + u);
 			this.loggedInSource.next(await this.queryCurrentUser());
 			// this.loggedInSource.next({ username: 'fuckall', password: 'nono' });
 		} catch {}

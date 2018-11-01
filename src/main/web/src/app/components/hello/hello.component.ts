@@ -16,10 +16,4 @@ export class HelloComponent implements OnInit {
 		console.log('log hello');
 	}
 
-	async queryCurrentUser() {
-		console.log('log hello');
-		const result = await this.authService.queryCurrentUser();
-		console.log(JSON.stringify(result));
-		return result;
-	}
 }

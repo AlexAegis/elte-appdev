@@ -27,4 +27,8 @@
 
 *.jar
 
+### Logs ###
+
+*.log
+
 node_modules
