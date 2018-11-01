@@ -7,8 +7,7 @@ import {
 	ViewContainerRef,
 	ComponentFactory,
 	ComponentRef,
-	ComponentFactoryResolver,
-	ViewChild
+	ComponentFactoryResolver
 } from '@angular/core';
 import { LoadingComponent } from '../components/loading/loading.component';
 
@@ -21,7 +20,6 @@ export class LoadingDirective {
 
 	@Input()
 	set appLoading(loading) {
-		console.log('lel: ' + JSON.stringify(this.vcRef.element));
 		this.vcRef.clear();
 
 		if (loading === null) {

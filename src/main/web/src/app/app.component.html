@@ -3,9 +3,11 @@
     <h1>{{ title }}</h1>
   </span>
 
-  <div id="user" *appLoading="user$ | async">
-    <app-login *ngIf="user === undefined"></app-login>
-    <app-user [user]="user" *ngIf="user !== undefined"></app-user>
+  <div id="user">
+    <ng-template [appLoading]="user$ | async">
+      <app-login *ngIf="user === undefined"></app-login>
+      <app-user [user]="user" *ngIf="user !== undefined"></app-user>
+    </ng-template>
   </div>
 
 </mat-toolbar>
