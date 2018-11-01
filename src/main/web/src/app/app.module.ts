@@ -16,6 +16,8 @@ import { LoadingDirective } from './directives/loading.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { MomentModule } from 'ngx-moment';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [AppComponent, HelloComponent, LoginComponent, UserComponent, LoadingComponent, LoadingDirective],
@@ -34,6 +36,8 @@ import { MomentModule } from 'ngx-moment';
 			}
 		}),
 		MomentModule,
+		NgProgressModule.forRoot(),
+		NgProgressHttpModule.forRoot(),
 		BrowserAnimationsModule,
 		MaterialModule
 	],
