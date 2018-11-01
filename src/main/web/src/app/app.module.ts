@@ -15,6 +15,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingDirective } from './directives/loading.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
+import { MomentModule } from 'ngx-moment';
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [AppComponent, HelloComponent, LoginComponent, UserComponent, LoadingComponent, LoadingDirective],
@@ -32,6 +33,7 @@ import { MaterialModule } from './modules/material.module';
 				blacklistedRoutes: ['www.google.com']
 			}
 		}),
+		MomentModule,
 		BrowserAnimationsModule,
 		MaterialModule
 	],

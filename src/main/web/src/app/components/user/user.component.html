@@ -1,3 +1,5 @@
 Welcome, {{ user.username }}
-<button id="logoutButton" mat-flat-button (click)="logout()">Logout</button>
+Expiration: {{expiration| amDifference: (time$ | async) | amDateFormat: 'm:ss'}}
+
+<br /><button id="logoutButton" mat-flat-button (click)="logout()">Logout</button>
 <ng-content></ng-content>
