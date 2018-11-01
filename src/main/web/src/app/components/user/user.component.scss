@@ -1,11 +1,28 @@
 :host {
-	background-color: blueviolet;
-	color: red;
 	height: 100%;
-	width: 50em;
-	border: 1px solid black;
+	display: grid;
+	align-items: center;
+	align-self: center;
 
-	button {
+	grid-template-columns: 1fr 1fr 1fr;
+
+	#timer {
+		grid-column: 1;
+	}
+
+	#person {
+		grid-column: 2;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		#avatar {
+			grid-column: 1;
+		}
+		#name {
+			grid-column: 2;
+		}
+	}
+
+	#logout {
 		margin-left: auto;
 		margin-right: 0;
 	}

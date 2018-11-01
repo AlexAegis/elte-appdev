@@ -11,8 +11,6 @@ import {
 	ViewChild
 } from '@angular/core';
 import { LoadingComponent } from '../components/loading/loading.component';
-import { interval } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Directive({
 	selector: '[appLoading]'
