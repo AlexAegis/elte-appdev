@@ -52,7 +52,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
-		http.sessionManagement().sessionCreationPolicy(STATELESS).and().exceptionHandling()
+		http.headers().frameOptions().disable().and().sessionManagement().sessionCreationPolicy(STATELESS).and().exceptionHandling()
 				// this entry point handles when you request a protected page and you are not
 				// yet
 				// authenticated

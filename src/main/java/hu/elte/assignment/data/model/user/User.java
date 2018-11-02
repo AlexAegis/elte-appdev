@@ -1,24 +1,25 @@
-package hu.elte.assignment.data.model;
+package hu.elte.assignment.data.model.user;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import hu.elte.assignment.data.model.Base;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.requireNonNull;
 
 @Entity
-// @Data
 @Getter
 @Setter
 @ToString
@@ -35,6 +36,9 @@ public class User extends Base implements UserDetails, Serializable {
 
 	private Boolean active = true;
 
+	@ManyToMany(mappedBy = "user")
+	private Collection<AuthorityGroup> groups = new ArrayList<>();
+
 	@Builder
 	@JsonCreator
 	public User(@JsonProperty("username") final String username, @JsonProperty("password") final String password) {
@@ -45,7 +49,8 @@ public class User extends Base implements UserDetails, Serializable {
 
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
-		return Arrays.asList(() -> "admin", () -> "pirate");
+		return groups.stream().flatMap(group -> group.getAuthorities().stream())
+				.collect(Collectors.toList());
 	}
 
 	@JsonIgnore

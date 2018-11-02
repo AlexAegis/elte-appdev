@@ -1,6 +1,6 @@
 package hu.elte.assignment.service;
 
-import hu.elte.assignment.data.model.User;
+import hu.elte.assignment.data.model.user.User;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
