@@ -29,6 +29,40 @@ Keep every asset of the project fresh and updated.
 
 ![ER Diagram](./.doc/er-diagram.png 'Logo Title Text 1')
 
+## Folder Structure
+
+- **[/](.)** - Readme, License, Backend POM
+  - **[/.doc](./.doc)** - documentation related files
+  - **[/.hotswap](./.hotswap)** - bundled jars to enable JVM hot-swap
+  - **[/.mvn](./.mvn)** - maven wrapper
+  - **[/.postman](./.postman)** - postman profiles for rest endpoint manual testing
+  - **[/.vscode](./.vscode)** - VS Code settings
+  - **[/src](./src)** - Project source
+    - **[/main](./src/main)** - Project source
+      - **[/java](./src/main/java)** - Project source
+        - **[/hu/elte/assignment](./src/main/java/hu/elte/assignment)** - Backend Sources
+          - **[/config](./src/main/java/hu/elte/assignment/config)** - Spring Configurations (Non Security)
+          - **[/controller](./src/main/java/hu/elte/assignment/controller)** - REST Endpoints
+          - **[/data](./src/main/java/hu/elte/assignment/data)** - ORM descriptions
+            - **[/model](./src/main/java/hu/elte/assignment/data/model)** - Entities
+            - **[/repository](./src/main/java/hu/elte/assignment/data/repository)** - Spring Repositories
+          - **[/security](./src/main/java/hu/elte/assignment/security)** - Security Config and Token provider
+          - **[/service](./src/main/java/hu/elte/assignment/service)** - Services
+            - **[/auth](./src/main/java/hu/elte/assignment/service/auth)** - Authentication Services
+      - **[/resources](./src/main/resources)** - Backend project resources, application config, initial data sql
+        - **[/static](./src/main/resources/static)** - The frontend project will be stored here after building
+      - **[/web](./src/main/web)** - Fronted project root. Angular, npm, ts, tslint and proxy settings
+        - **[/e2e](./src/main/web/e2e)** - End to end testing
+        - **[/src](./src/main/web/src)** - Frontend sources, main.ts, index.html, styles.scss
+          - **[/app](./src/main/web/src/app)** - Angular sources, routing, main app module
+            - **[/components](./src/main/web/src/app/components)** - Components
+            - **[/directives](./src/main/web/src/app/directives)** - Directives
+            - **[/model](./src/main/web/src/app/model)** - Rest API object models
+            - **[/modules](./src/main/web/src/app/modules)** - Modules
+            - **[/services](./src/main/web/src/app/services)** - Services
+          - **[/environments](./src/main/web/src/environments)** - App Configs
+    - **[/test](./src/test)** - Backend testing
+
 ## Security
 
 The backend security solution is based on this [article](https://octoperf.com/blog/2018/03/08/securing-rest-api-spring-security/) and a few tweaks here and there to support my use case.
@@ -101,6 +135,10 @@ mvnw -P dev spring-boot:run
 ### [Maven](https://maven.apache.org/)
 
 > **Build tool** for the whole project. Can build and package the frontend too for static hosting.
+
+### [Sass](https://sass-lang.com/)
+
+> **CSS** extension
 
 ## Recommendations
 
