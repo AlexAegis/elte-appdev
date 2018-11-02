@@ -25,6 +25,10 @@ and regular users.
 
 Keep every asset of the project fresh and updated.
 
+## Entity Relation
+
+![ER Diagram](./.doc/er-diagram.png 'Logo Title Text 1')
+
 ## Security
 
 The backend security solution is based on this [article](https://octoperf.com/blog/2018/03/08/securing-rest-api-spring-security/) and a few tweaks here and there to support my use case.
