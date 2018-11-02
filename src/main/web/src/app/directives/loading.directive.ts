@@ -1,7 +1,5 @@
 import {
 	Directive,
-	ElementRef,
-	HostListener,
 	Input,
 	TemplateRef,
 	ViewContainerRef,

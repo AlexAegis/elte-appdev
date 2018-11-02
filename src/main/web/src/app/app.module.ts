@@ -36,7 +36,13 @@ import { NgProgressHttpModule } from '@ngx-progressbar/http';
 			}
 		}),
 		MomentModule,
-		NgProgressModule.forRoot(),
+		NgProgressModule.forRoot({
+			trickleSpeed: 200,
+			min: 20,
+			debounceTime: 500,
+			color: '#84f8ff',
+			spinner: false
+		}),
 		NgProgressHttpModule.forRoot(),
 		BrowserAnimationsModule,
 		MaterialModule

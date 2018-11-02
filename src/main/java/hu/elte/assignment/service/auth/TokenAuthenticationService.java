@@ -39,6 +39,11 @@ final class TokenAuthenticationService implements UserAuthenticationService {
 	 */
 	@Override
 	public Optional<String> login(final String username, final String password) {
+		try {
+			// Thread.sleep(5000);
+		} catch (Exception e) {
+
+		}
 		Optional.ofNullable(userRepository.findByUsernameAndPassword(username, password)).ifPresent(users::store);
 		return users.findByUsername(username).filter(user -> Objects.equals(password, user.getPassword()))
 				.map(user -> jwtTokenService.expiring(ImmutableMap.of("user", user)));

@@ -10,6 +10,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 	constructor(private authorizationService: AuthService, private jwtInterceptor: JwtInterceptor) {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+		console.log('INTERCEPTED!!');
 		if (this.jwtInterceptor.isWhitelistedDomain(req) && !this.jwtInterceptor.isBlacklistedRoute(req)) {
 			return next.handle(req).pipe(
 				catchError(err => {
