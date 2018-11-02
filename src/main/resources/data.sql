@@ -19,3 +19,6 @@ insert into authority (authority, group_id) values ('USER.READ:SELF', select id 
 insert into authority (authority, group_id) values ('USER.UPDATE:SELF', select id from authority_group where name = 'user');
 insert into authority (authority, group_id) values ('USER.DELETE:SELF', select id from authority_group where name = 'user');
 insert into authority (authority, group_id) values ('ROUTE.DASHBOARD', select id from authority_group where name = 'user');
+
+
+insert into movie (name, release) values('Lord of the Rings', date'2002-01-01');

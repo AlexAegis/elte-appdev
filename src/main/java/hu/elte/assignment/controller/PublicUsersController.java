@@ -41,10 +41,10 @@ final class PublicUsersController {
 	 * @return response for the login
 	 */
 	@PostMapping("/register")
-	ResponseEntity<String> register(@RequestParam("username") final String username, @RequestParam("password") final String password) {
-		userRepository.save(User.builder().username(username)
-				.password(Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString()).build());
-		return login(new User(username, password));
+	ResponseEntity<String> register(@RequestBody() final User user) {
+		user.setPassword(Hashing.sha256().hashString(user.getPassword(), StandardCharsets.UTF_8).toString());
+		userRepository.save(user);
+		return login(user);
 	}
 
 	/**
