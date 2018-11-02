@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
-import { User } from '../../model/user';
+import { User } from '../../model/user.interface';
 import * as moment from 'moment';
 import { AuthService } from '../../services/auth.service';
 import {
@@ -29,10 +29,15 @@ export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-	loginForm: FormGroup = this.formBuilder.group({
-		username: ['', [Validators.required]],
-		password: ['', [Validators.required]]
-	});
+	loginForm: FormGroup = this.formBuilder.group(
+		{
+			username: ['', [Validators.required]],
+			password: ['', [Validators.required]]
+		},
+		{
+			validator: forbiddenNameValidator(/asd/)
+		}
+	);
 
 	constructor(private auth: AuthService, private formBuilder: FormBuilder) {}
 
