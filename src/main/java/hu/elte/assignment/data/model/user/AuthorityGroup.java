@@ -1,22 +1,19 @@
 package hu.elte.assignment.data.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.elte.assignment.data.model.Base;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @XmlRootElement
 @EqualsAndHashCode(callSuper = true)
 public class AuthorityGroup extends Base implements Serializable {
@@ -27,9 +24,10 @@ public class AuthorityGroup extends Base implements Serializable {
 	private String name;
 
 	@ManyToMany()
-	private Collection<User> user;
+	@JsonIgnore
+	private List<User> users;
 
 	@OneToMany(mappedBy = "group")
-	private Collection<Authority> authorities = new ArrayList<>();
+	private List<Authority> authorities = new ArrayList<>();
 
 }
