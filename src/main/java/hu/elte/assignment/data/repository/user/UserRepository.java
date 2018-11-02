@@ -1,4 +1,4 @@
-package hu.elte.assignment.data.repository;
+package hu.elte.assignment.data.repository.user;
 
 import hu.elte.assignment.data.model.user.User;
 import org.springframework.data.repository.CrudRepository;
