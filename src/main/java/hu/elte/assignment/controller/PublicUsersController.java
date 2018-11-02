@@ -6,12 +6,11 @@ import hu.elte.assignment.service.auth.UserAuthenticationService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
-import hu.elte.assignment.data.model.User;
+import hu.elte.assignment.data.model.user.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
@@ -55,7 +54,7 @@ final class PublicUsersController {
 		try{
 			Thread.sleep(2000);
 		} catch (Exception e) {
-			
+
 		}
 
 

@@ -1,6 +1,6 @@
 package hu.elte.assignment.controller;
 
-import hu.elte.assignment.data.model.User;
+import hu.elte.assignment.data.model.user.User;
 import hu.elte.assignment.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

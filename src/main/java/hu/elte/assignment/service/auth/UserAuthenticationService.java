@@ -1,6 +1,6 @@
 package hu.elte.assignment.service.auth;
 
-import hu.elte.assignment.data.model.User;
+import hu.elte.assignment.data.model.user.User;
 
 import java.util.Optional;
 
