@@ -16,8 +16,6 @@ export class AuthService {
 	loginCheckUrl = `${environment.apiBaseURL}/login-check`;
 	refreshTokenUrl = `${environment.apiBaseURL}/refresh-token`;
 
-	// Observable string sources
-	// private subject: BehaviorSubject<LoginResponse> = new BehaviorSubject<LoginResponse>(undefined);
 	private subject: BehaviorSubject<LoginResponse> = new BehaviorSubject<LoginResponse>(
 		this.getPayload() ? { token: this.getAccessToken(), refresh_token: undefined } : undefined
 	);
@@ -46,19 +44,16 @@ export class AuthService {
 	}
 
 	login(username: string, password: string): Observable<LoginResponse> {
-		console.log('loggin in');
 		this.http
 			.post<LoginResponse>(`${environment.apiBaseURL}/public/users/login`, {
 				username: username,
 				password: password
 			})
-			.subscribe(res => this.subject.next(res));
-
+			.subscribe(res => this.subject.next(res), err => this.logout());
 		return this.subject;
 	}
 
 	logout() {
-		console.log('LOGOUT');
 		this.setAccessToken(undefined);
 		this.setRefreshToken(undefined);
 		this.subject.next(undefined);

@@ -9,6 +9,9 @@ import lombok.experimental.FieldDefaults;
 import hu.elte.assignment.data.model.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
@@ -35,7 +38,7 @@ final class PublicUsersController {
 	 * @return
 	 */
 	@PostMapping("/register")
-	String register(@RequestParam("username") final String username, @RequestParam("password") final String password) {
+	ResponseEntity<String> register(@RequestParam("username") final String username, @RequestParam("password") final String password) {
 		userRepository.save(User.builder().username(username)
 				.password(Hashing.sha256().hashString(password, StandardCharsets.UTF_8).toString()).build());
 		return login(new User(username, password));
@@ -48,14 +51,25 @@ final class PublicUsersController {
 	 * @return
 	 */
 	@PostMapping("/login")
-	String login(@RequestBody() final User user) {
+	ResponseEntity<String> login(@RequestBody() final User user) {
+		try{
+			Thread.sleep(2000);
+		} catch (Exception e) {
+			
+		}
+
+
 		String token = authentication.login(user.getUsername(), Hashing.sha256().hashString(user.getPassword(), StandardCharsets.UTF_8).toString())
 				.orElse(null);
+		if(token == null) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+		} else {
+			JSONObject result = new JSONObject()
+					.put("token", token)
+					.put("refreshToken", token);
+			return ResponseEntity.ok(result.toString());
+		}
 
-		JSONObject result = new JSONObject()
-				.put("token", token)
-				.put("refreshToken", token);
-		return result.toString();
 	}
 
 	@PostMapping("/test")
