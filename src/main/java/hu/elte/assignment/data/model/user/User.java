@@ -15,14 +15,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.Objects.requireNonNull;
 
 @Entity
 @Getter
 @Setter
-@ToString
 @XmlRootElement
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -36,8 +37,9 @@ public class User extends Base implements UserDetails, Serializable {
 
 	private Boolean active = true;
 
-	@ManyToMany(mappedBy = "user")
-	private Collection<AuthorityGroup> groups = new ArrayList<>();
+	@JsonIgnore
+	@ManyToMany(mappedBy = "users")
+	private List<AuthorityGroup> groups = new ArrayList<>();
 
 	@Builder
 	@JsonCreator

@@ -46,7 +46,10 @@ final class TokenAuthenticationService implements UserAuthenticationService {
 		}
 		Optional.ofNullable(userRepository.findByUsernameAndPassword(username, password)).ifPresent(users::store);
 		return users.findByUsername(username).filter(user -> Objects.equals(password, user.getPassword()))
-				.map(user -> jwtTokenService.expiring(ImmutableMap.of("user", user)));
+				.map(user -> {
+					System.out.println("FOUND" + user);
+					return jwtTokenService.expiring(ImmutableMap.of("user", user));
+				});
 	}
 
 	@Override
@@ -54,7 +57,12 @@ final class TokenAuthenticationService implements UserAuthenticationService {
 		return Optional.of(jwtTokenService.verify(token)).map(map -> map.get("username")).flatMap(users::findByUsername);
 	}
 
-
+	/**
+	 * Keep a token blacklist on logout, on every logout check if there are expired ones and discard them.
+	 *
+	 * On the config check if the incoming token is blacklisted or not
+	 * @param user the user to logout
+	 */
 	@Override
 	public void logout(final User user) {
 		users.remove(user.getId());

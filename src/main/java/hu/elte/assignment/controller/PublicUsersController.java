@@ -52,7 +52,7 @@ final class PublicUsersController {
 	@PostMapping("/login")
 	ResponseEntity<String> login(@RequestBody() final User user) {
 		try{
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 		} catch (Exception e) {
 
 		}
@@ -60,6 +60,7 @@ final class PublicUsersController {
 
 		String token = authentication.login(user.getUsername(), Hashing.sha256().hashString(user.getPassword(), StandardCharsets.UTF_8).toString())
 				.orElse(null);
+		System.out.println(token);
 		if(token == null) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		} else {
