@@ -63,6 +63,23 @@ Keep every asset of the project fresh and updated.
           - **[/environments](./src/main/web/src/environments)** - App Configs
     - **[/test](./src/test)** - Backend testing
 
+## REST
+
+- [/](http://localhost:8080/) - The root redirects you to the angular application
+- [/rest/](http://localhost:8080/rest/) - Every endpoint in the backend is under the rest keyword
+- [/rest/public/](http://localhost:8080/rest/public/) - Non Secured endpoints
+- [/rest/public/users/](http://localhost:8080/rest/public/users/) - Non secured user endpoint
+- **[/rest/public/users/register POST](http://localhost:8080/rest/public/users/register)** Registers a user based on the body of the request
+- **[/rest/public/users/login POST](http://localhost:8080/rest/public/users/login)** Creates a token for the user based on the user credentials in the body
+- [/rest/users](http://localhost:8080/rest/users/) - Secured user endpoints
+- **[/rest/users/current GET](http://localhost:8080/rest/users/current)** - Queries the current user. Testing purposes only as the user is described in the token and gets injected from that already
+- **[/rest/users/logout POST](http://localhost:8080/rest/users/logout)** - Not necessary on server side with token based authentication but I provide a way to blacklist your token with this endpoint
+- [/rest/cinema/](http://localhost:8080/rest/cinema/) - Secured cinema actions
+- **[/rest/cinema/movie POST](http://localhost:8080/rest/cinema/movie)** - Create a movie
+- **[/rest/cinema/movie PUT](http://localhost:8080/rest/cinema/movie)** - Update a movie (Has an ID)
+- **[/rest/cinema/movie/:id DELETE](http://localhost:8080/rest/cinema/movie/1)** - Deletes a movie
+- **[/rest/cinema/movie/:id GET](http://localhost:8080/rest/cinema/movie/1)** - Reads a movie
+
 ## Security
 
 The backend security solution is based on this [article](https://octoperf.com/blog/2018/03/08/securing-rest-api-spring-security/) and a few tweaks here and there to support my use case.
