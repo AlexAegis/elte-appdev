@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../model/user';
-import { UserService } from '../../services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,5 +13,4 @@ export class HelloComponent implements OnInit {
 	ngOnInit() {
 		console.log('log hello');
 	}
-
 }

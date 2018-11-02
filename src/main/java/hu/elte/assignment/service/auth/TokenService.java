@@ -7,9 +7,9 @@ import java.util.Map;
  */
 public interface TokenService {
 
-	String permanent(Map<String, String> attributes);
+	String permanent(Map<String, ?> attributes);
 
-	String expiring(Map<String, String> attributes);
+	String expiring(Map<String, ?> attributes);
 
 	/**
 	 * Checks the validity of the given credentials.

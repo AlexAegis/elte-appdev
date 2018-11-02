@@ -10,9 +10,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
@@ -30,17 +28,20 @@ final class TokenAuthenticationService implements UserAuthenticationService {
 	@Autowired
 	UserRepository userRepository;
 
+	/**
+	 * Right now we store the logged in users in a service but this is an antipattern
+	 * as the tokens purpose is to eliminate these session like services on the server
+	 * storing the state in the token. Right now the only purpose of this is invalidating tokens.
+	 *
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	@Override
 	public Optional<String> login(final String username, final String password) {
-		System.out.println(username + " " + password);
-
-		System.out.println("list all users from db: " + Arrays.asList(userRepository.findAll()).size());
-		userRepository.findAll().forEach(u -> System.out.println("user: " + u));
-
 		Optional.ofNullable(userRepository.findByUsernameAndPassword(username, password)).ifPresent(users::store);
-
 		return users.findByUsername(username).filter(user -> Objects.equals(password, user.getPassword()))
-				.map(user -> jwtTokenService.expiring(ImmutableMap.of("username", username)));
+				.map(user -> jwtTokenService.expiring(ImmutableMap.of("user", user)));
 	}
 
 	@Override

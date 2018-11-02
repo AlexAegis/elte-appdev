@@ -33,6 +33,7 @@
 		"ngx-moment": "^3.2.0",
 		"placeholder-loading": "^0.1.5",
 		"rxjs": "~6.3.3",
+		"three": "^0.98.0",
 		"zone.js": "~0.8.26"
 	},
 	"devDependencies": {

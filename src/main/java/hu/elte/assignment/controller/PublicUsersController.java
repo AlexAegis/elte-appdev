@@ -49,8 +49,12 @@ final class PublicUsersController {
 	 */
 	@PostMapping("/login")
 	String login(@RequestBody() final User user) {
-		JSONObject result = new JSONObject().put("authResult", authentication.login(user.getUsername(), Hashing.sha256().hashString(user.getPassword(), StandardCharsets.UTF_8).toString())
-				.orElse("invalid login and/or password"));
+		String token = authentication.login(user.getUsername(), Hashing.sha256().hashString(user.getPassword(), StandardCharsets.UTF_8).toString())
+				.orElse(null);
+
+		JSONObject result = new JSONObject()
+				.put("token", token)
+				.put("refreshToken", token);
 		return result.toString();
 	}
 

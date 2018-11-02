@@ -42,12 +42,12 @@ public class JWTTokenService implements TokenService, Clock {
 	}
 
 	@Override
-	public String permanent(final Map<String, String> attributes) {
+	public String permanent(final Map<String, ?> attributes) {
 		return newToken(attributes, 0);
 	}
 
 	@Override
-	public String expiring(final Map<String, String> attributes) {
+	public String expiring(final Map<String, ?> attributes) {
 		return newToken(attributes, expirationSec);
 	}
 
@@ -58,7 +58,7 @@ public class JWTTokenService implements TokenService, Clock {
 	 * @param expiresInSec
 	 * @return
 	 */
-	private String newToken(final Map<String, String> attributes, final int expiresInSec) {
+	private String newToken(final Map<String, ?> attributes, final int expiresInSec) {
 		final DateTime now = dates.now();
 		final Claims claims = Jwts.claims().setIssuer(issuer).setIssuedAt(now.toDate());
 

@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { Subscription, of, Observable, from } from 'rxjs';
-import { User } from './model/user';
+import { User } from './model/user.interface';
 import { shareReplay } from 'rxjs/operators';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoginResponse } from './model/login-response.interface';
+import { TokenPayload } from './model/token-payload.interface';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
@@ -13,22 +14,38 @@ import { shareReplay } from 'rxjs/operators';
 export class AppComponent implements OnInit, OnDestroy {
 	title: string = 'client';
 	isLogged: boolean;
-	user$: Observable<User>;
-	user: User = undefined;
+
 	announced: string = 'not';
 	subscription: Subscription;
-	constructor(private userService: UserService, private authService: AuthService) {}
+	constructor(public authService: AuthService) {}
 
 	ngOnInit(): void {
-		this.user = undefined;
-		this.user$ = from(this.authService.queryCurrentUser()).pipe(shareReplay(1));
-		this.user$.subscribe(user => {
-			this.user = user;
+		/*
+		const pl: TokenPayload = this.authService.getPayload();
+		if (pl) {
+			this.user = pl.user;
+		} else {
+		}
+
+		this.subscription = this.authService.login$.subscribe(loginResponse => {
+			if (loginResponse) {
+				console.log('loginRes2: ' + JSON.stringify(loginResponse));
+				this.authService.
+				const pl: TokenPayload = this.authService.getPayload();
+				if (pl) {
+					this.user = pl.user;
+				} else {
+					this.user = undefined;
+				}
+				console.log('user' + this.user);
+				console.log('and dis happend' + JSON.stringify(this.authService.getPayload()));
+			} else {
+				console.log('no loginresponse, user undef!!');
+				this.user = undefined;
+			}
 		});
 
-		this.subscription = this.authService.loggedInAnnounced.subscribe(user => {
-			this.user = user;
-		});
+		console.log('user at init: ' + JSON.stringify(this.user));*/
 	}
 
 	ngOnDestroy() {
