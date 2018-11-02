@@ -18,6 +18,10 @@ import { MaterialModule } from './modules/material.module';
 import { MomentModule } from 'ngx-moment';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
+
+export function jwtTokenGetter(): string {
+	return localStorage.getItem('access_token');
+}
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [AppComponent, HelloComponent, LoginComponent, UserComponent, LoadingComponent, LoadingDirective],
@@ -30,7 +34,7 @@ import { NgProgressHttpModule } from '@ngx-progressbar/http';
 		JwtModule.forRoot({
 			config: {
 				headerName: 'Authorization',
-				tokenGetter: () => localStorage.getItem('access_token'),
+				tokenGetter: jwtTokenGetter,
 				whitelistedDomains: ['localhost:4200', 'http://localhost:4200/rest/users'],
 				blacklistedRoutes: ['www.google.com']
 			}
