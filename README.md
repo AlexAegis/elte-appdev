@@ -31,7 +31,7 @@ Keep every asset of the project fresh and updated.
 
 ## Folder Structure
 
-- **[/](.)** - Readme, License, Backend POM
+- **[/](./)** - Readme, License, Backend POM
   - **[/.doc](./.doc)** - documentation related files
   - **[/.hotswap](./.hotswap)** - bundled jars to enable JVM hot-swap
   - **[/.mvn](./.mvn)** - maven wrapper
