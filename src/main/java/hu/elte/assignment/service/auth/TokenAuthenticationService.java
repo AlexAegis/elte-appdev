@@ -2,7 +2,7 @@ package hu.elte.assignment.service.auth;
 
 import com.google.common.collect.ImmutableMap;
 import hu.elte.assignment.data.model.user.User;
-import hu.elte.assignment.data.repository.UserRepository;
+import hu.elte.assignment.data.repository.user.UserRepository;
 import hu.elte.assignment.service.UserCrudService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;

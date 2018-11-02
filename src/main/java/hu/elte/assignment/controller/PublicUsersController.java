@@ -1,7 +1,7 @@
 package hu.elte.assignment.controller;
 
 import com.google.common.hash.Hashing;
-import hu.elte.assignment.data.repository.UserRepository;
+import hu.elte.assignment.data.repository.user.UserRepository;
 import hu.elte.assignment.service.auth.UserAuthenticationService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -26,15 +26,19 @@ final class PublicUsersController {
 
 	@NonNull
 	UserAuthenticationService authentication;
-	@Autowired
+
 	UserRepository userRepository;
+
+	@Autowired
+	public PublicUsersController(UserRepository userRepository, UserAuthenticationService authentication) {
+		this.userRepository = userRepository;
+		this.authentication = authentication;
+	}
 
 	/**
 	 * Later the hashing will be taken out from here since that's the clients job
-	 * 
-	 * @param username
-	 * @param password
-	 * @return
+	 *
+	 * @return response for the login
 	 */
 	@PostMapping("/register")
 	ResponseEntity<String> register(@RequestParam("username") final String username, @RequestParam("password") final String password) {
@@ -51,13 +55,6 @@ final class PublicUsersController {
 	 */
 	@PostMapping("/login")
 	ResponseEntity<String> login(@RequestBody() final User user) {
-		try{
-			//Thread.sleep(2000);
-		} catch (Exception e) {
-
-		}
-
-
 		String token = authentication.login(user.getUsername(), Hashing.sha256().hashString(user.getPassword(), StandardCharsets.UTF_8).toString())
 				.orElse(null);
 		System.out.println(token);
