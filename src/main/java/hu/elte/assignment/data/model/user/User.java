@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import hu.elte.assignment.data.model.Base;
+import hu.elte.assignment.data.model.people.Person;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -36,6 +38,9 @@ public class User extends Base implements UserDetails, Serializable {
 	private String password;
 
 	private Boolean active = true;
+
+	@OneToOne
+	private Person person;
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "users")

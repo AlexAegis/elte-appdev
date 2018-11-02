@@ -23,7 +23,7 @@ public class AuthorityGroup extends Base implements Serializable {
 	@Column(nullable = false)
 	private String name;
 
-	@ManyToMany()
+	@ManyToMany
 	@JsonIgnore
 	private List<User> users;
 
