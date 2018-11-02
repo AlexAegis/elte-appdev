@@ -73,24 +73,24 @@ public class JWTTokenService implements TokenService, Clock {
 	}
 
 	@Override
-	public Map<String, String> verify(final String token) {
-
+	public Claims verify(final String token) {
+		System.out.println("Verify this: " + token);
 		final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this)
 				.setAllowedClockSkewSeconds(clockSkewSec).setSigningKey(secretKey);
-		return parseClaims(() -> parser.parseClaimsJws(token).getBody());
+		return parser.parseClaimsJws(token).getBody();
 	}
 
 	@Override
-	public Map<String, String> untrusted(final String token) {
+	public Claims untrusted(final String token) {
 		// JWT.require(Algorithm.HMAC256(secretKey)).withIssuer(issuer)
 		final JwtParser parser = Jwts.parser().requireIssuer(issuer).setClock(this)
 				.setAllowedClockSkewSeconds(clockSkewSec);
 
 		// See: https://github.com/jwtk/jjwt/issues/135
 		final String withoutSignature = substringBeforeLast(token, DOT) + DOT;
-		return parseClaims(() -> parser.parseClaimsJwt(withoutSignature).getBody());
+		return parser.parseClaimsJwt(withoutSignature).getBody();
 	}
-
+/*
 	private static Map<String, String> parseClaims(final Supplier<Claims> toClaims) {
 		try {
 			final Claims claims = toClaims.get();
@@ -103,7 +103,7 @@ public class JWTTokenService implements TokenService, Clock {
 			return ImmutableMap.of();
 		}
 	}
-
+*/
 	@Override
 	public Date now() {
 		final DateTime now = dates.now();

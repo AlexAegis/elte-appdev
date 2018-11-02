@@ -1,5 +1,7 @@
 package hu.elte.assignment.service.auth;
 
+import io.jsonwebtoken.Claims;
+
 import java.util.Map;
 
 /**
@@ -17,7 +19,7 @@ public interface TokenService {
 	 * @param token
 	 * @return attributes if verified
 	 */
-	Map<String, String> untrusted(String token);
+	Claims untrusted(String token);
 
 	/**
 	 * Checks the validity of the given credentials.
@@ -25,5 +27,5 @@ public interface TokenService {
 	 * @param token
 	 * @return attributes if verified
 	 */
-	Map<String, String> verify(String token);
+	Claims verify(String token);
 }

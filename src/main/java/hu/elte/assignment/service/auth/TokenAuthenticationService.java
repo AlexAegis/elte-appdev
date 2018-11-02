@@ -4,9 +4,12 @@ import com.google.common.collect.ImmutableMap;
 import hu.elte.assignment.data.model.user.User;
 import hu.elte.assignment.data.repository.user.UserRepository;
 import hu.elte.assignment.service.UserCrudService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,7 +57,7 @@ final class TokenAuthenticationService implements UserAuthenticationService {
 
 	@Override
 	public Optional<User> findByToken(final String token) {
-		return Optional.of(jwtTokenService.verify(token)).map(map -> map.get("username")).flatMap(users::findByUsername);
+		return Optional.of(jwtTokenService.verify(token)).map(claims -> (String) claims.get("user", LinkedHashMap.class).get("username")).flatMap(users::findByUsername);
 	}
 
 	/**

@@ -23,6 +23,8 @@ final class SecuredUsersController {
 
 	@GetMapping("/current")
 	User getCurrent(@AuthenticationPrincipal final User user) throws Exception {
+		System.out.println("YEAF");
+
 		// Thread.sleep(500);
 		return user;
 	}
