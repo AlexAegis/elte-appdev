@@ -3,6 +3,7 @@ package hu.elte.assignment.data.model.user;
 import hu.elte.assignment.data.model.Base;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -21,6 +22,9 @@ import java.util.Collection;
 public class AuthorityGroup extends Base implements Serializable {
 
 	private static final long serialVersionUID = -3314538861697002120L;
+
+	@Column(nullable = false)
+	private String name;
 
 	@ManyToMany()
 	private Collection<User> user;
