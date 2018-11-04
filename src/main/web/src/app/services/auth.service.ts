@@ -44,6 +44,10 @@ export class AuthService {
 		return this.subject;
 	}
 
+	async logout() {
+		await this.oAuthService.logOut();
+	}
+
 	queryCurrentUser(): Observable<User> {
 		return this.http.get<User>('rest/users/current');
 	}

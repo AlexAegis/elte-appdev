@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.*;
 
 @Configuration
@@ -40,7 +41,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private final DefaultTokenServices defaultTokenServices;
 
     private final AccessTokenConverter accessTokenConverter;
-
+    
 	@Autowired
 	public AuthorizationServerConfig(AuthenticationManager authenticationManager, UserServiceBean userDetailsService, DefaultTokenServices defaultTokenServices, AccessTokenConverter accessTokenConverter) {
 		this.authenticationManager = authenticationManager;
