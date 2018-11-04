@@ -1,14 +1,19 @@
 package hu.elte.assignment.controller;
 
+import hu.elte.assignment.config.DTO;
+import hu.elte.assignment.data.dto.control.FilterDTO;
+import hu.elte.assignment.data.dto.theatre.MovieDTO;
 import hu.elte.assignment.data.model.theatre.Movie;
 import hu.elte.assignment.data.repository.theatre.CinemaRepository;
 import hu.elte.assignment.data.repository.theatre.MovieRepository;
 import lombok.experimental.FieldDefaults;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Nullable;
 import javax.validation.Valid;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -20,16 +25,18 @@ public class CinemaController {
 
 	MovieRepository movieRepository;
 	CinemaRepository cinemaRepository;
+	ModelMapper modelMapper;
 
 	@Autowired
-	public CinemaController(MovieRepository movieRepository, CinemaRepository cinemaRepository) {
+	public CinemaController(MovieRepository movieRepository, CinemaRepository cinemaRepository, ModelMapper modelMapper) {
 		this.movieRepository = movieRepository;
 		this.cinemaRepository = cinemaRepository;
+		this.modelMapper = modelMapper;
 	}
 
 	@PreAuthorize("hasAuthority('SUPER_ADMIN')")
 	@GetMapping("/movie")
-	public ResponseEntity<Iterable<Movie>> readMovies(@RequestBody String filter) {
+	public ResponseEntity<Iterable<Movie>> readMovies(@RequestBody FilterDTO<MovieDTO> filter) {
 		return ResponseEntity.ok(this.movieRepository.findAll());
 	}
 
@@ -41,7 +48,8 @@ public class CinemaController {
 	}
 
 	@PostMapping("/movie")
-	public ResponseEntity<Movie> createMovie(@Valid @RequestBody() Movie movie) {
+	public ResponseEntity<Movie> createMovie(@Valid @RequestBody() MovieDTO movieDTO) {
+		Movie movie = modelMapper.map(movieDTO, Movie.class);
 		return ResponseEntity.ok(this.movieRepository.save(movie));
 	}
 
@@ -51,7 +59,8 @@ public class CinemaController {
 	}
 
 	@PutMapping("/movie")
-	public Movie updateMovie(@Valid @RequestBody() Movie movie) {
+	public Movie updateMovie(@DTO(MovieDTO.class) @Valid @RequestBody() Movie movie) {
+		//Movie movie = modelMapper.map(movieDTO, Movie.class);
 		return this.movieRepository.save(movie);
 	}
 
