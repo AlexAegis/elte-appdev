@@ -2,30 +2,25 @@ package hu.elte.assignment.controller;
 
 import com.google.common.hash.Hashing;
 import hu.elte.assignment.data.repository.user.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import hu.elte.assignment.data.model.user.User;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
 
-import static lombok.AccessLevel.PACKAGE;
 import static lombok.AccessLevel.PRIVATE;
 
 @RestController
 @RequestMapping("/rest/public/users")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
-final class PublicUsersController {
+final class PublicUserController {
 
 	UserRepository userRepository;
 
 	@Autowired
-	public PublicUsersController(UserRepository userRepository) {
+	public PublicUserController(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 

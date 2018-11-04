@@ -47,8 +47,8 @@ Keep every asset of the project fresh and updated.
             - **[/model](./src/main/java/hu/elte/assignment/data/model)** - Entities
             - **[/repository](./src/main/java/hu/elte/assignment/data/repository)** - Spring Repositories
           - **[/security](./src/main/java/hu/elte/assignment/security)** - Security Config and Token provider
-          - **[/service](./src/main/java/hu/elte/assignment/service)** - Services
-            - **[/auth](./src/main/java/hu/elte/assignment/service/auth)** - Authentication Services
+          - **[/service](src/main/java/hu/elte/assignment/logic/service)** - Services
+            - **[/auth](src/main/java/hu/elte/assignment/logic/service/auth)** - Authentication Services
       - **[/resources](./src/main/resources)** - Backend project resources, application config, initial data sql
         - **[/static](./src/main/resources/static)** - The frontend project will be stored here after building
       - **[/web](./src/main/web)** - Fronted project root. Angular, npm, ts, tslint and proxy settings
