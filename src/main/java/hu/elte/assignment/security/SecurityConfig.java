@@ -1,4 +1,4 @@
-package hu.elte.assignment.security;
+/*package hu.elte.assignment.security;
 
 import lombok.experimental.FieldDefaults;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -80,7 +80,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/**
 	 * Disable Spring boot automatic filter registration.
-	 */
+	 *//*
 	@Bean
 	FilterRegistrationBean<TokenAuthenticationFilter> disableAutoRegistration(final TokenAuthenticationFilter filter) {
 		final FilterRegistrationBean<TokenAuthenticationFilter> registration = new FilterRegistrationBean<>(filter);
@@ -92,4 +92,4 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 	AuthenticationEntryPoint forbiddenEntryPoint() {
 		return new HttpStatusEntryPoint(FORBIDDEN);
 	}
-}
+}*/

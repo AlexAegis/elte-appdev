@@ -14,6 +14,8 @@ import {
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ErrorStateMatcher } from '@angular/material';
+import { OAuthService } from 'angular-oauth2-oidc';
+// import { OAuthService } from 'angular-oauth2-oidc';
 
 /** A hero's name can't match the given regular expression */
 export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
@@ -47,8 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 		// prevent memory leak when component destroyed
 	}
 
-	doLogin() {
-		console.log('Login with ' + this.loginForm.get('username').value + ' ' + this.loginForm.get('password').value);
-		return this.auth.login(this.loginForm.get('username').value, this.loginForm.get('password').value);
+	async doLogin() {
+		await this.auth.login(this.loginForm.get('username').value, this.loginForm.get('password').value);
 	}
 }

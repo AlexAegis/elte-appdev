@@ -3,6 +3,8 @@ package hu.elte.assignment.data.model.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.elte.assignment.data.model.Base;
 import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,6 +29,7 @@ public class AuthorityGroup extends Base implements Serializable {
 	@JsonIgnore
 	private List<User> users;
 
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "group")
 	private List<Authority> authorities = new ArrayList<>();
 

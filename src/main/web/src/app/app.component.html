@@ -5,8 +5,7 @@
   </span>
 
   <div id="user">
-    <app-login *ngIf="authService.user === undefined"></app-login>
-    <app-user [user]="authService.user" *ngIf="authService.user !== undefined"></app-user>
+    <app-login></app-login>
   </div>
 
 </mat-toolbar>
@@ -15,6 +14,11 @@
 </router-outlet>
 
 <!--
+
+   <app-login *ngIf="authService.user === undefined"></app-login>
+    <app-user [user]="authService.user" *ngIf="authService.user !== undefined"></app-user>
+
+
 <ng-template [appLoading]="authService.login$ | async">
   <app-login *ngIf="user === undefined"></app-login>
   <app-user [user]="user" *ngIf="user !== undefined"></app-user>

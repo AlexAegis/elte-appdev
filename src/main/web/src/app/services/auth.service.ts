@@ -9,6 +9,8 @@ import { environment } from '../../environments/environment';
 import { TokenPayload } from '../model/token-payload.interface';
 import { throwMatDialogContentAlreadyAttachedError } from '@angular/material';
 import { shareReplay } from 'rxjs/operators';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 @Injectable({
 	providedIn: 'root'
 })
@@ -16,131 +18,33 @@ export class AuthService {
 	loginCheckUrl = `${environment.apiBaseURL}/login-check`;
 	refreshTokenUrl = `${environment.apiBaseURL}/refresh-token`;
 
-	private subject: BehaviorSubject<LoginResponse> = new BehaviorSubject<LoginResponse>(
-		this.getPayload() ? { token: this.getAccessToken(), refresh_token: undefined } : undefined
+	private subject: BehaviorSubject<User> = new BehaviorSubject<User>(
+		this.oAuthService.getAccessToken() ? new User() : undefined
 	);
 
 	// Observable string streams
-	login$: Observable<LoginResponse> = this.subject.asObservable();
+	login$: Observable<User> = this.subject.asObservable();
 	user: User = undefined;
 
-	constructor(private http: HttpClient, private jwt: JwtHelperService) {
+	constructor(private http: HttpClient, private oAuthService: OAuthService) {
 		console.log('CONSTRUXCTING SERVICE');
-		this.subject.subscribe(
-			(r: LoginResponse) => {
-				if (r) {
-					this.setAccessToken(r.token);
-					this.setRefreshToken(r.refresh_token);
-					this.user = this.getPayload().user;
-				} else {
-					this.user = undefined;
-				}
-				return this.user;
-			},
-			err => {
-				this.handleAuthenticationError(err);
+		this.subject.subscribe((r: User) => {
+			if (r) {
+				this.user = r;
+			} else {
+				this.user = undefined;
 			}
-		);
+			return this.user;
+		});
 	}
 
-	login(username: string, password: string): Observable<LoginResponse> {
-		this.http
-			.post<LoginResponse>(`${environment.apiBaseURL}/public/users/login`, {
-				username: username,
-				password: password
-			})
-			.subscribe(res => this.subject.next(res), err => this.logout());
+	async login(username: string, password: string) {
+		await this.oAuthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(username, password);
+		this.subject.next(await this.queryCurrentUser().toPromise());
 		return this.subject;
 	}
 
-	logout() {
-		this.setAccessToken(undefined);
-		this.setRefreshToken(undefined);
-		this.subject.next(undefined);
-	}
-
-	public isLoggedIn(): boolean {
-		try {
-			return moment().isBefore(this.getExpiration());
-		} catch (e) {
-			return false;
-		}
-	}
-
-	isLoggedOut(): boolean {
-		return !this.isLoggedIn();
-	}
-
-	getExpiration(): Date {
-		return this.jwt.getTokenExpirationDate();
-	}
-
-	getPayload(): TokenPayload {
-		return this.jwt.decodeToken(this.jwt.tokenGetter());
-	}
-
 	queryCurrentUser(): Observable<User> {
-		console.log('queryCurrentUser');
-		if (this.isLoggedIn()) {
-			return this.http.get<User>('rest/users/current');
-		} else {
-			return undefined;
-		}
-	}
-
-	refresh(): Observable<LoginResponse> {
-		const body = new HttpParams().set('refresh_token', this.getRefreshToken());
-
-		const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-
-		const refreshObservable = this.http.post<LoginResponse>(this.refreshTokenUrl, body.toString(), {
-			headers
-		});
-
-		const refreshSubject = new ReplaySubject<LoginResponse>(1);
-		refreshSubject.subscribe(
-			(r: LoginResponse) => {
-				this.setAccessToken(r.token);
-				this.setRefreshToken(r.refresh_token);
-			},
-			err => {
-				this.handleAuthenticationError(err);
-			}
-		);
-
-		refreshObservable.subscribe(refreshSubject);
-		return refreshSubject;
-	}
-
-	isAuthenticated(): boolean {
-		return !!this.getAccessToken();
-	}
-
-	private handleAuthenticationError(err: any) {
-		this.logout();
-	}
-
-	private setAccessToken(accessToken: string) {
-		if (!accessToken) {
-			localStorage.removeItem('access_token');
-		} else {
-			localStorage.setItem('access_token', accessToken);
-		}
-	}
-
-	private setRefreshToken(refreshToken: string) {
-		if (!refreshToken) {
-			localStorage.removeItem('refresh_token');
-		} else {
-			localStorage.setItem('refresh_token', refreshToken);
-		}
-	}
-
-	getAccessToken() {
-		return localStorage.getItem('access_token');
-	}
-
-	getRefreshToken() {
-		return localStorage.getItem('refresh_token');
+		return this.http.get<User>('rest/users/current');
 	}
 }
