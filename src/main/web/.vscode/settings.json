@@ -1,0 +1,12 @@
+{
+	"editor.formatOnSave": true,
+	"editor.autoIndent": true,
+	"editor.tabSize": 4,
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
+	"prettier.singleQuote": true,
+	"prettier.eslintIntegration": true,
+	"bracket-pair-colorizer-2.excludedLanguages": [""],
+	"bracket-pair-colorizer-2.showBracketsInGutter": true,
+	"bracket-pair-colorizer-2.colors": ["#CB3", "#C64", "#C42"]
+}
