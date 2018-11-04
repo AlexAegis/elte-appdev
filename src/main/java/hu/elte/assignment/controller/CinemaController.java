@@ -6,8 +6,8 @@ import hu.elte.assignment.data.repository.theatre.MovieRepository;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -26,13 +26,14 @@ public class CinemaController {
 		this.cinemaRepository = cinemaRepository;
 	}
 
+	@PreAuthorize("hasAuthority('SUPER_ADMIN')")
 	@GetMapping("/movie")
 	public ResponseEntity<Iterable<Movie>> readMovies(@RequestBody String filter) {
 		return ResponseEntity.ok(this.movieRepository.findAll());
 	}
 
 	@GetMapping("/movie/{id}")
-	public ResponseEntity<Movie> readMovie(@PathVariable Integer id) {
+	public ResponseEntity<Movie> readMovie(@PathVariable("id") Integer id) {
 		return this.movieRepository.findById(id)
 				.map(ResponseEntity::ok)
 				.orElseGet(() -> ResponseEntity.noContent().build());
@@ -44,7 +45,7 @@ public class CinemaController {
 	}
 
 	@DeleteMapping("/movie/{id}")
-	public void deleteMovie(@PathVariable Integer id) {
+	public void deleteMovie(@PathVariable("id") Integer id) {
 		this.movieRepository.deleteById(id);
 	}
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from 'src/app/services/auth.service';
+// import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
 	selector: 'hello',
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 	styleUrls: ['./hello.component.scss']
 })
 export class HelloComponent implements OnInit {
-	constructor(private http: HttpClient, private authService: AuthService) {}
+	constructor(private http: HttpClient) {}
 
 	ngOnInit() {
 		console.log('log hello');

@@ -1,13 +1,14 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+/*import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
+// import { AuthService } from '../services/auth.service';
 import { JwtInterceptor } from '@auth0/angular-jwt';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable()
 export class RefreshTokenInterceptor implements HttpInterceptor {
-	constructor(private authorizationService: AuthService, private jwtInterceptor: JwtInterceptor) {}
+	constructor(private authorizationService: OAuthService, private jwtInterceptor: JwtInterceptor) {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 		console.log('INTERCEPTED!!');
@@ -16,7 +17,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 				catchError(err => {
 					const errorResponse = err as HttpErrorResponse;
 					if (errorResponse.status === 401 && errorResponse.error.message === 'Expired JWT Token') {
-						return this.authorizationService.refresh().pipe(
+						return this.authorizationService.re.refresh().pipe(
 							mergeMap(() => {
 								return this.jwtInterceptor.intercept(req, next);
 							})
@@ -30,3 +31,4 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 		}
 	}
 }
+*/
