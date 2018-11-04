@@ -1,0 +1,27 @@
+{
+	"recommendations": [
+		"jasonlhy.hungry-delete",
+		"karyfoundation.theme-karyfoundation-themes",
+		"gabrielbb.vscode-lombok",
+		"dbaeumer.vscode-eslint",
+		"eg2.tslint",
+		"eg2.vscode-npm-script",
+		"esbenp.prettier-vscode",
+		"formulahendry.auto-rename-tag",
+		"humao.rest-client",
+		"jasonlhy.hungry-delete",
+		"pkief.material-icon-theme",
+		"robinbentley.sass-indented",
+		"streetsidesoftware.code-spell-checker",
+		"peterjausovec.vscode-docker",
+		"ms-azuretools.vscode-cosmosdb",
+		"msjsdiag.debugger-for-chrome",
+		"daylerees.rainglow",
+		"wix.vscode-import-cost",
+		"angular.ng-template",
+		"eamodio.gitlens",
+		"npxms.hide-gitignored",
+		"cyrilletuzi.angular-schematics",
+		"msjsdiag.debugger-for-chrome"
+	]
+}
