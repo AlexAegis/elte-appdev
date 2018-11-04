@@ -1,10 +1,11 @@
 package hu.elte.assignment.config;
 
-import hu.elte.assignment.service.UserServiceBean;
+import hu.elte.assignment.logic.service.UserServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -40,102 +41,105 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(new AntPathRequestMatcher("/rest/public/**"),
-            new AntPathRequestMatcher("/hello/**"));
-    private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(new AntPathRequestMatcher("/rest/**"));// new
-    // NegatedRequestMatcher(PUBLIC_URLS);
+	private static final RequestMatcher PUBLIC_URLS = new OrRequestMatcher(new AntPathRequestMatcher("/rest/public/**"),
+			new AntPathRequestMatcher("/hello/**"));
+	private static final RequestMatcher PROTECTED_URLS = new OrRequestMatcher(new AntPathRequestMatcher("/rest/**"));// new
+
+	@Value("${security.signing-key}")
+	private String signingKey;
+
+	@Value("${security.encoding-strength}")
+	private Integer encodingStrength;
+
+	@Value("${security.security-realm}")
+	private String securityRealm;
+
+	private final PasswordEncoder bCryptPasswordEncoder;
+
+	private final UserServiceBean userDetailsService;
+
+	/**
+	 * PasswordEncoder is marked as Lazy because otherwise it'll generate a circular dependency injection
+	 * error. Probably because it's defined in this class.
+	 *
+	 * @param bCryptPasswordEncoder
+	 * @param userDetailsService
+	 */
+	@Autowired
+	public SecurityConfig(@Lazy PasswordEncoder bCryptPasswordEncoder, UserServiceBean userDetailsService) {
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.userDetailsService = userDetailsService;
+	}
+
+	@Bean
+	@Override
+	protected AuthenticationManager authenticationManager() throws Exception {
+		return super.authenticationManager();
+	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+	}
+
+	@Override
+	public void configure(final WebSecurity web) {
+		web.ignoring().requestMatchers(PUBLIC_URLS);
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.headers().frameOptions().disable().and()
+				.httpBasic().realmName(securityRealm).and()
+				.sessionManagement().sessionCreationPolicy(STATELESS).and()
+				.exceptionHandling().defaultAuthenticationEntryPointFor(forbiddenEntryPoint(), PROTECTED_URLS).and()
+				.authorizeRequests().requestMatchers(PROTECTED_URLS).authenticated().and()
+				.csrf().disable()
+				.formLogin().disable()
+				.logout().disable();
+	}
 
 
-    @Value("${security.signing-key}")
-    private String signingKey;
+	@Bean
+	AuthenticationEntryPoint forbiddenEntryPoint() {
+		return new HttpStatusEntryPoint(FORBIDDEN);
+	}
 
-    @Value("${security.encoding-strength}")
-    private Integer encodingStrength;
+	@Bean
+	public JwtAccessTokenConverter accessTokenConverter() {
+		JwtAccessTokenConverter jwt = new JwtAccessTokenConverter();
+		jwt.setSigningKey(signingKey);
+		DefaultUserAuthenticationConverter duac = new DefaultUserAuthenticationConverter();
+		duac.setUserDetailsService(userDetailsService);
+		DefaultAccessTokenConverter datc = new DefaultAccessTokenConverter();
+		datc.setUserTokenConverter(duac);
+		jwt.setAccessTokenConverter(datc);
+		return jwt;
+	}
 
-    @Value("${security.security-realm}")
-    private String securityRealm;
+	@Bean
+	public TokenStore tokenStore() {
+		return new JwtTokenStore(accessTokenConverter());
+	}
 
-    @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
+	@Bean
+	public TokenEnhancerChain tokenEnhancerChain() {
+		final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+		tokenEnhancerChain.setTokenEnhancers(Lists.newArrayList((a, b) -> a, accessTokenConverter()));
+		return tokenEnhancerChain;
+	}
 
-    @Autowired
-    private UserServiceBean userDetailsService;
+	@Bean
+	public DefaultTokenServices defaultTokenServices() {
+		final DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+		defaultTokenServices.setTokenStore(tokenStore());
+		defaultTokenServices.setTokenEnhancer(tokenEnhancerChain());
+		defaultTokenServices.setSupportRefreshToken(true);
+		return defaultTokenServices;
+	}
 
-    @Bean
-    @Override
-    protected AuthenticationManager authenticationManager() throws Exception {
-        return super.authenticationManager();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-    }
-
-    @Override
-    public void configure(final WebSecurity web) {
-        web.ignoring().requestMatchers(PUBLIC_URLS);
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        /*http.sessionManagement().sessionCreationPolicy(STATELESS).and()
-                .httpBasic().realmName(securityRealm).and()
-                .csrf().disable();*/
-
-        http.headers().frameOptions().disable().and()
-                .httpBasic().realmName(securityRealm).and()
-                .sessionManagement().sessionCreationPolicy(STATELESS).and()
-                .exceptionHandling().defaultAuthenticationEntryPointFor(forbiddenEntryPoint(), PROTECTED_URLS).and()
-                .authorizeRequests().requestMatchers(PROTECTED_URLS).authenticated().and()
-                .csrf().disable()
-                .formLogin().disable()
-                //.httpBasic().disable()
-                .logout().disable();
-    }
-
-
-    @Bean
-    AuthenticationEntryPoint forbiddenEntryPoint() {
-        return new HttpStatusEntryPoint(FORBIDDEN);
-    }
-
-    @Bean
-    public JwtAccessTokenConverter accessTokenConverter() {
-        JwtAccessTokenConverter jwt = new JwtAccessTokenConverter();
-        jwt.setSigningKey(signingKey);
-        DefaultUserAuthenticationConverter duac = new DefaultUserAuthenticationConverter();
-        duac.setUserDetailsService(userDetailsService);
-        DefaultAccessTokenConverter datc = new DefaultAccessTokenConverter();
-        datc.setUserTokenConverter(duac);
-        jwt.setAccessTokenConverter(datc);
-        return jwt;
-    }
-
-    @Bean
-    public TokenStore tokenStore() {
-        return new JwtTokenStore(accessTokenConverter());
-    }
-
-    @Bean
-    public TokenEnhancerChain tokenEnhancerChain() {
-        final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-        tokenEnhancerChain.setTokenEnhancers(Lists.newArrayList((a, b) -> a, accessTokenConverter()));
-        return tokenEnhancerChain;
-    }
-
-    @Bean
-    public DefaultTokenServices defaultTokenServices() {
-        final DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-        defaultTokenServices.setTokenStore(tokenStore());
-       // defaultTokenServices.setClientDetailsService(userDetailsService);
-        defaultTokenServices.setTokenEnhancer(tokenEnhancerChain());
-        defaultTokenServices.setSupportRefreshToken(true);
-        return defaultTokenServices;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }

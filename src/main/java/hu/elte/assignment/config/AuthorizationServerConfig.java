@@ -1,29 +1,17 @@
 package hu.elte.assignment.config;
 
-import hu.elte.assignment.data.model.user.User;
-import hu.elte.assignment.service.UserServiceBean;
+import hu.elte.assignment.logic.service.UserServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.*;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
-import java.util.Map;
-
-/**
- * Created by tharsan on 4/24/18.
- */
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -45,31 +33,24 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Value("${security.jwt.resource-ids}")
     private String resourceIds;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private UserServiceBean userDetailsService;
+    private final UserServiceBean userDetailsService;
 
-    @Autowired
-    private DefaultTokenServices defaultTokenServices;
+    private final DefaultTokenServices defaultTokenServices;
 
-    @Autowired
-    private AccessTokenConverter accessTokenConverter;
+    private final AccessTokenConverter accessTokenConverter;
 
-/*
-    @Autowired
-    private UserAuthenticationConverter userAuthenticationConverter;
+	@Autowired
+	public AuthorizationServerConfig(AuthenticationManager authenticationManager, UserServiceBean userDetailsService, DefaultTokenServices defaultTokenServices, AccessTokenConverter accessTokenConverter) {
+		this.authenticationManager = authenticationManager;
+		this.userDetailsService = userDetailsService;
+		this.defaultTokenServices = defaultTokenServices;
+		this.accessTokenConverter = accessTokenConverter;
+	}
 
-    @Autowired
-    private DefaultAccessTokenConverter defaultAccessTokenConverter;
-
-    @Autowired
-    private DefaultUserAuthenticationConverter defaultUserAuthenticationConverter
-*/
-    @Override
+	@Override
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
-
         configurer
                 .inMemory()
                 .withClient(clientId)
@@ -81,55 +62,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-
-        JwtAccessTokenConverter jwt = new JwtAccessTokenConverter();
-        DefaultUserAuthenticationConverter duac = new DefaultUserAuthenticationConverter();
-        duac.setUserDetailsService(userDetailsService);
-        DefaultAccessTokenConverter datc = new DefaultAccessTokenConverter();
-        datc.setUserTokenConverter(duac);
-        jwt.setAccessTokenConverter(datc);
-
-
-
-
-
-
-/*
-
-
-
-        DefaultAccessTokenConverter tokenConverter = new DefaultAccessTokenConverter();
-
-
-
-
-
-        DefaultUserAuthenticationConverter defaultUserAuthenticationConverter = new DefaultUserAuthenticationConverter() {
-
-            @Override
-            public Map<String, ?> convertUserAuthentication(Authentication authentication) {
-                System.out.println("EWWWWWLLLOOO");
-                return super.convertUserAuthentication(authentication);
-            }
-
-            @Override
-            public Authentication extractAuthentication(Map<String, ?> map) {
-                System.out.println("WHOOHOO");
-                Authentication authentication = super.extractAuthentication(map);
-                // User is my custom UserDetails class
-                User user = new User();
-                user.setSpecialKey(map.get("specialKey").toString());
-                return new UsernamePasswordAuthenticationToken(user,
-                        authentication.getCredentials(), authentication.getAuthorities());
-            }
-
-        };
-        defaultUserAuthenticationConverter.setUserDetailsService(userDetailsService);
-        tokenConverter.setUserTokenConverter(defaultUserAuthenticationConverter);
-*/
         endpoints.userDetailsService(userDetailsService)
                 .tokenServices(defaultTokenServices)
                 .authenticationManager(authenticationManager)
-                .accessTokenConverter(jwt);
+                .accessTokenConverter(accessTokenConverter);
     }
 }
