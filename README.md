@@ -8,6 +8,10 @@ Compiling and running this is straightforward and only needs Java to be installe
 java -jar cinema.jar
 ```
 
+http://metal.web.elte.hu/af/gyak7.txt
+https://github.com/elteKrisztianKereszti/alkfejl_2018_1-app
+
+
 ## Functional requirements
 
 This application provides an interface for cinema employees top schedule movie screenings and for users to get tickets for such screenings.
@@ -96,31 +100,16 @@ An interceptor refreshes the token on each http request so it never expires whil
 If you're not running this project from a recommended environment (IntelliJ or VS Code) You can still run it using the
 command line:
 
-Windows
-
 ```cmd
-mvnw.cmd spring-boot:run
+./mvnw spring-boot:run
 ```
 
-Linux
-
-```bash
-mvnw spring-boot:run
-```
 
 If you want to use hot reload (and your JVM is capable) just pass the _-P dev_ profile parameter and it will use the
 necessary JVM arguments.
 
-Windows
-
 ```cmd
-mvnw.cmd -P dev spring-boot:run
-```
-
-Linux
-
-```bash
-mvnw -P dev spring-boot:run
+./mvnw -P dev spring-boot:run
 ```
 
 ## Technologies
