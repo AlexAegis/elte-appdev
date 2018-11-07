@@ -23,6 +23,7 @@ public class UserServiceBean implements UserDetailsService {
 		this.modelMapper = modelMapper;
 	}
 
+
 	@Override
 	public UserDTO loadUserByUsername(String username) {
 		User user = userRepository.findByUsername(username);

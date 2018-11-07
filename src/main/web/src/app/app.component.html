@@ -5,13 +5,18 @@
   </span>
 
   <div id="user">
-    <app-login></app-login>
+    <app-login *ngIf="authService.user === undefined"></app-login>
+    <app-user [user]="authService.user" *ngIf="authService.user !== undefined"></app-user>
   </div>
-
 </mat-toolbar>
 <router-outlet>
   Welcome
 </router-outlet>
+
+
+<button (click)="whoami()">ellele</button>
+
+
 
 <!--
 

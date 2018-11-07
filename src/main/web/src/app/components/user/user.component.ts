@@ -16,13 +16,10 @@ export class UserComponent implements OnInit {
 	@Input()
 	user: User;
 
-	expiration: Moment;
-	time$: Observable<Moment>;
+	expiration: Moment = this.auth.getAccessTokenExpiration();
+	time$: Observable<Moment> = timer(0, 1000).pipe(map(() => moment()));
 
 	constructor(private http: HttpClient, public auth: AuthService) {}
 
-	ngOnInit() {
-		// this.expiration = moment(this.auth.getExpiration());
-		this.time$ = timer(0, 1000).pipe(map(() => moment()));
-	}
+	ngOnInit() {}
 }
