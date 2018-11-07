@@ -7,7 +7,7 @@ import { HelloComponent } from './components/hello/hello.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 // import { JwtModule } from '@auth0/angular-jwt';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
@@ -19,10 +19,7 @@ import { MomentModule } from 'ngx-moment';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
-
-export function jwtTokenGetter(): string {
-	return localStorage.getItem('access_token');
-}
+import { RefreshTokenInterceptor } from './interceptors/refresh-token.interceptor';
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [AppComponent, HelloComponent, LoginComponent, UserComponent, LoadingComponent, LoadingDirective],
@@ -32,17 +29,9 @@ export function jwtTokenGetter(): string {
 		AppRoutingModule,
 		HttpClientModule,
 		ReactiveFormsModule,
-		/*JwtModule.forRoot({
-			config: {
-				headerName: 'Authorization',
-				tokenGetter: jwtTokenGetter,
-				whitelistedDomains: ['localhost:4200', 'http://localhost:4200/rest/users'],
-				blacklistedRoutes: ['www.google.com']
-			}
-		}),*/
 		OAuthModule.forRoot({
 			resourceServer: {
-				allowedUrls: ['http://localhost:4200/rest/'],
+				allowedUrls: ['rest'],
 				sendAccessToken: true
 			}
 		}),
@@ -58,7 +47,14 @@ export function jwtTokenGetter(): string {
 		BrowserAnimationsModule,
 		MaterialModule
 	],
-	providers: [AuthService],
+	providers: [
+		AuthService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useExisting: RefreshTokenInterceptor,
+			multi: true
+		}
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule {}
