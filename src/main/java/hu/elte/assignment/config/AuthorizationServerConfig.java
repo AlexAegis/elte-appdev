@@ -51,13 +51,20 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	}
 
 	@Override
+	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+		security.allowFormAuthenticationForClients(); // here
+	}
+
+	@Override
     public void configure(ClientDetailsServiceConfigurer configurer) throws Exception {
         configurer
                 .inMemory()
                 .withClient(clientId)
                 .secret(new BCryptPasswordEncoder().encode(clientSecret))
-                .authorizedGrantTypes(grantType)
+		        .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
                 .scopes(scopeRead, scopeWrite)
+		        .accessTokenValiditySeconds(3600) // 1 hour
+		        .refreshTokenValiditySeconds(2592000) // 30 days
                 .resourceIds(resourceIds);
     }
 

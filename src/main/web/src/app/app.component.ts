@@ -3,6 +3,7 @@ import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './services/auth.config';
 import { runInThisContext } from 'vm';
 import { AuthService } from './services/auth.service';
+import { observable } from 'rxjs';
 // import { AuthService } from './services/auth.service';
 @Component({
 	selector: 'app-root',
@@ -18,5 +19,8 @@ export class AppComponent implements OnInit {
 
 	whoami(): any {
 		console.log('whoami');
+		this.authService.queryCurrentUser().subscribe(observable => {
+			console.log(observable);
+		});
 	}
 }

@@ -60,8 +60,14 @@ export class AuthService {
 		this.subject.next(undefined);
 	}
 
-	async refresh() {
-		return await this.oAuthService.refreshToken();
+	refresh() {
+		this.oAuthService.refreshToken().then(() => {
+			console.debug('ok');
+		}); /*
+		from(this.oAuthService.refreshToken()).subscribe(observer => {
+			console.log('baakfitty');
+			console.log(observer);
+		});*/
 	}
 
 	getAccessTokenExpiration(): moment.Moment {
