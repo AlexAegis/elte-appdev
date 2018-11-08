@@ -1,11 +1,14 @@
 package hu.elte.assignment.config;
 
+import hu.elte.assignment.interceptor.DelayerInterceptor;
 import hu.elte.assignment.logic.service.UserServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -34,6 +37,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Value("${security.jwt.resource-ids}")
     private String resourceIds;
 
+	private final DelayerInterceptor delayerInterceptor;
+
+	private final PasswordEncoder bCryptPasswordEncoder;
+
     private final AuthenticationManager authenticationManager;
 
     private final UserServiceBean userDetailsService;
@@ -43,7 +50,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private final AccessTokenConverter accessTokenConverter;
     
 	@Autowired
-	public AuthorizationServerConfig(AuthenticationManager authenticationManager, UserServiceBean userDetailsService, DefaultTokenServices defaultTokenServices, AccessTokenConverter accessTokenConverter) {
+	public AuthorizationServerConfig(@Lazy DelayerInterceptor delayerInterceptor, @Lazy PasswordEncoder bCryptPasswordEncoder, AuthenticationManager authenticationManager, UserServiceBean userDetailsService, DefaultTokenServices defaultTokenServices, AccessTokenConverter accessTokenConverter) {
+		this.delayerInterceptor = delayerInterceptor;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 		this.authenticationManager = authenticationManager;
 		this.userDetailsService = userDetailsService;
 		this.defaultTokenServices = defaultTokenServices;
@@ -60,7 +69,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         configurer
                 .inMemory()
                 .withClient(clientId)
-                .secret(new BCryptPasswordEncoder().encode(clientSecret))
+                .secret(bCryptPasswordEncoder.encode(clientSecret))
 		        .authorizedGrantTypes("authorization_code", "password", "client_credentials", "implicit", "refresh_token")
                 .scopes(scopeRead, scopeWrite)
 		        .accessTokenValiditySeconds(3600) // 1 hour
@@ -72,6 +81,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.userDetailsService(userDetailsService)
                 .tokenServices(defaultTokenServices)
+		        .addInterceptor(delayerInterceptor)
                 .authenticationManager(authenticationManager)
                 .accessTokenConverter(accessTokenConverter);
     }

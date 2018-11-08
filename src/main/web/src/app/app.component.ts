@@ -1,10 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
-import { authConfig } from './services/auth.config';
-import { runInThisContext } from 'vm';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import { observable } from 'rxjs';
-// import { AuthService } from './services/auth.service';
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
