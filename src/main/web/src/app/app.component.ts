@@ -1,36 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { AuthService } from './service/auth.service';
-import { transition, animate, state, style, trigger } from '@angular/animations';
+import { transition, animate, state, style, trigger, group } from '@angular/animations';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 	animations: [
 		trigger('expand', [
-			transition('open => closed', [animate('500ms ease-in-out')]),
-			transition('closed => open', [animate('500ms cubic-bezier(0.680, -0.550, 0.265, 1.550)')]),
+			//transition('* => *', [animate('500ms ease-in-out')]),
+			transition('open => *', [animate('500ms ease')]),
+			transition('closed => *', [animate('500ms ease')]),
+			transition('small => *', [animate('500ms ease')]),
+			transition('large => *', [animate('500ms ease')]),
 			state(
 				'open',
 				style({
 					height: '50vh',
-					minHeight: '16em',
+					minHeight: '16em', // 16 rem
 					opacity: 0.6
 				})
 			),
 			state(
 				'closed',
 				style({
-					height: '8vh',
-					minHeight: '4em',
+					//height: '8vh',
+					minHeight: '8vh', // 2 rem
 					opacity: 1
+				})
+			),
+			state(
+				'small',
+				style({
+					fontSize: '2rem',
+					opacity: 1
+				})
+			),
+			state(
+				'large',
+				style({
+					fontSize: '10rem',
+					opacity: 0.8
 				})
 			)
 		])
 	]
 })
 export class AppComponent implements OnInit {
-	title: string = 'client';
+	title: string = 'Client';
+
 	open: boolean = true;
+	exp: boolean = true;
 	constructor(public auth: AuthService) {}
 
 	ngOnInit(): void {}
@@ -44,5 +64,6 @@ export class AppComponent implements OnInit {
 
 	animate(): void {
 		this.open = !this.open;
+		this.exp = !this.exp;
 	}
 }
