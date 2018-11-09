@@ -1,6 +1,17 @@
 <ng-progress #progressBar></ng-progress>
-<mat-toolbar color="primary" [@expand]="auth.user === undefined ? 'open' : 'closed'">
+<mat-toolbar color="primary" [@expand]="auth.user === undefined ? 'open' : 'closed'"
+	><!--
+		<div id="registration" [@routeAnimations]="prepareRoute(regout)">
+
+			<router-outlet name="register" #regout="outlet"></router-outlet>
+
+			<button [routerLink]="[{ outlets: { register: ['register'] } }]">Register</button>
+
+		</div>
+	-->
+
 	<h1 [@expand]="auth.user === undefined ? 'large' : 'small'">{{ title }}</h1>
+
 	<div id="user" class="">
 		<ng-template [appLoading]="auth.login$ | async">
 			<app-login *ngIf="auth.user === undefined"></app-login>
@@ -8,9 +19,7 @@
 		</ng-template>
 	</div>
 </mat-toolbar>
-
-<router-outlet> Welcome </router-outlet>
-
+<div [@routeAnimations]="prepareRoute(outlet)"><router-outlet #outlet="outlet"></router-outlet></div>
 <div id="devtools">
 	<button (click)="animate()">ellele</button>
 

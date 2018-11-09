@@ -1,6 +1,8 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { transition, animate, state, style, trigger, group } from '@angular/animations';
+import { RouterOutlet } from '@angular/router';
+import { slideInAnimation } from './animation/route.animation';
 
 @Component({
 	selector: 'app-root',
@@ -43,7 +45,8 @@ import { transition, animate, state, style, trigger, group } from '@angular/anim
 					opacity: 0.8
 				})
 			)
-		])
+		]),
+		slideInAnimation
 	]
 })
 export class AppComponent implements OnInit {
@@ -65,5 +68,9 @@ export class AppComponent implements OnInit {
 	animate(): void {
 		this.open = !this.open;
 		this.exp = !this.exp;
+	}
+
+	prepareRoute(outlet: RouterOutlet) {
+		return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
 	}
 }
