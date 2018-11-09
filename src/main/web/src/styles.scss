@@ -50,10 +50,10 @@ form {
 
 @for $i from 1 through 100 {
 	.width-#{$i} {
-		width: 100%;
+		width: #{percentage($i/100)};
 	}
 
 	.height-#{$i} {
-		height: 100%;
+		height: #{percentage($i/100)};
 	}
 }
