@@ -1,13 +1,21 @@
 :host {
 	mat-toolbar {
 		display: grid;
-		grid-template-rows: 1fr;
-		grid-template-columns: 1fr 1fr 1fr;
+		height: auto;
+		overflow: auto;
+		grid-template-columns: repeat(auto-fit, minmax(20rem, auto));
+		grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
+		//grid-template-rows: 1fr 1fr;
+		h1 {
+			color: rgba($color: rgb(199, 244, 255), $alpha: 0.5);
+			font-size: 2rem;
+			max-width: 20vw;
+			transition: font-size 500ms;
+		}
+
 		#user {
-			grid-row: 1;
-			grid-column: 2 / 4;
-			margin-left: auto;
-			margin-right: 4em;
+			position: relative;
+			height: 100%;
 		}
 	}
 }
