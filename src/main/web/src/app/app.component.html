@@ -1,52 +1,20 @@
 <ng-progress #progressBar></ng-progress>
-<mat-toolbar color="primary">
-	<span>
-		<h1>{{ title }}</h1>
-	</span>
-
-	<div id="user">
-		<ng-template [appLoading]="authService.login$ | async">
-			<app-login *ngIf="authService.user === undefined"></app-login>
-			<app-user [user]="authService.user" *ngIf="authService.user !== undefined"></app-user>
+<mat-toolbar color="primary" [@expand]="auth.user === undefined ? 'open' : 'closed'">
+	<h1>{{ title }}</h1>
+	<div id="user" class="width-100 height-100">
+		<ng-template [appLoading]="auth.login$ | async">
+			<app-login *ngIf="auth.user === undefined"></app-login>
+			<app-user [user]="auth.user" *ngIf="auth.user !== undefined"></app-user>
 		</ng-template>
 	</div>
 </mat-toolbar>
+
 <router-outlet> Welcome </router-outlet>
 
-<button (click)="whoami()">ellele</button>
+<div id="devtools">
+	<button (click)="whoami()">ellele</button>
 
-<button id="refresh" mat-flat-button (click)="authService.refresh()">REFREEE</button>
+	<button id="refresh" mat-flat-button (click)="auth.refresh()">REFREEE</button>
 
-<button id="refresh" mat-flat-button (click)="whoami()">WHOIREALLYAM</button>
-
-<!--
-	   <app-login *ngIf="authService.user === undefined"></app-login>
-
-
-
-	    <app-user [user]="authService.user" *ngIf="authService.user !== undefined"></app-user>
-
-
-
-	
-
-
-
-	
-
-
-
-	<ng-template [appLoading]="authService.login$ | async">
-
-
-
-	  <app-login *ngIf="user === undefined"></app-login>
-
-
-
-	  <app-user [user]="user" *ngIf="user !== undefined"></app-user>
-
-
-
-	</ng-template>
--->
+	<button id="whoami" mat-flat-button (click)="whoami()">WHOIREALLYAM</button>
+</div>

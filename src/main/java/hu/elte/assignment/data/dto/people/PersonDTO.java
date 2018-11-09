@@ -1,4 +1,13 @@
 package hu.elte.assignment.data.dto.people;
 
-public class PersonDTO {
+import lombok.Data;
+
+import java.io.Serializable;
+
+@Data
+public class PersonDTO implements Serializable {
+
+	private static final long serialVersionUID = -1570731485952447370L;
+	private String firstName;
+	private String lastName;
 }

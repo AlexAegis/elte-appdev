@@ -1,5 +1,6 @@
 package hu.elte.assignment.data.model.people;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.elte.assignment.data.model.Base;
 import hu.elte.assignment.data.model.theatre.Movie;
 import hu.elte.assignment.data.model.theatre.Ticket;
@@ -26,8 +27,12 @@ public class Person extends Base implements Serializable {
 	private static final long serialVersionUID = -6777531118953482884L;
 
 	@Column(nullable = false)
-	private String name;
+	private String firstName;
 
+	@Column(nullable = false)
+	private String lastName;
+
+	@JsonIgnore
 	@OneToOne(mappedBy = "person")
 	private User user;
 

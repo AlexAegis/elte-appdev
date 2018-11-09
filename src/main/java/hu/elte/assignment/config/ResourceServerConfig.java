@@ -38,7 +38,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.requestMatchers().and()
+		http.headers().frameOptions().sameOrigin().and()
+				.requestMatchers().and()
 				.authorizeRequests().antMatchers("/rest/**").authenticated();
 	}
 

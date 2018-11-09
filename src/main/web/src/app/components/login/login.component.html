@@ -1,17 +1,21 @@
 <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
+	<mat-form-field hideRequiredMarker>
+		<input id="username" matInput formControlName="username" placeholder="Username" />
+		<mat-error *ngIf="loginForm.controls['username'].errors"> Required </mat-error>
+	</mat-form-field>
 
-  <mat-form-field hideRequiredMarker>
-    <input id="username" matInput formControlName="username" placeholder="Username">
-    <mat-error *ngIf="loginForm.controls['username'].errors">
-      Required
-    </mat-error>
-  </mat-form-field>
+	<mat-form-field hideRequiredMarker>
+		<input
+			id="password"
+			matInput
+			type="password"
+			formControlName="password"
+			placeholder="Password"
+			[type]="hide ? 'password' : 'text'"
+		/>
+		<mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+	</mat-form-field>
 
-
-  <mat-form-field hideRequiredMarker>
-    <input id="password" matInput formControlName="password" placeholder="Password">
-  </mat-form-field>
-
-  <button id="loginButton" mat-flat-button type="submit" [disabled]="!loginForm.valid">Login</button>
-  <ng-content></ng-content>
+	<button id="loginButton" mat-flat-button type="submit" [disabled]="!loginForm.valid">Login</button>
+	<ng-content></ng-content>
 </form>

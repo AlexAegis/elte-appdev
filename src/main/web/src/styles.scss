@@ -47,3 +47,13 @@ form {
 	font-size: 0.3em;
 	background-color: blueviolet;
 }
+
+@for $i from 1 through 100 {
+	.width-#{$i} {
+		width: 100%;
+	}
+
+	.height-#{$i} {
+		height: 100%;
+	}
+}

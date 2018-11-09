@@ -146,6 +146,10 @@ necessary JVM arguments.
 
 > **CSS** extension
 
+### [Dragula](https://github.com/valor-software/ng2-dragula)
+
+> **Drag and drop** made really easy
+
 ## Recommendations
 
 ### [IntelliJ IDEA](https://www.jetbrains.com/idea/)
