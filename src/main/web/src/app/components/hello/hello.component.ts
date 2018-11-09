@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-// import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
 	selector: 'hello',

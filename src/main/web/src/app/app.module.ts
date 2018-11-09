@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { RoutingModule } from './router/routing.module';
 import { AppComponent } from './app.component';
 import { HelloComponent } from './components/hello/hello.component';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './service/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './components/user/user.component';
 import { LoadingComponent } from './components/loading/loading.component';
@@ -19,13 +19,25 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { RefreshTokenInterceptor } from './interceptors/refresh-token.interceptor';
+import { HolaComponent } from './dummy/hola/hola.component';
+import { HaloComponent } from './dummy/halo/halo.component';
+import { AvatarModule } from 'ngx-avatar';
 @NgModule({
 	entryComponents: [LoadingComponent],
-	declarations: [AppComponent, HelloComponent, LoginComponent, UserComponent, LoadingComponent, LoadingDirective],
+	declarations: [
+		AppComponent,
+		HelloComponent,
+		LoginComponent,
+		UserComponent,
+		LoadingComponent,
+		LoadingDirective,
+		HolaComponent,
+		HaloComponent
+	],
 	imports: [
 		BrowserModule,
 		FormsModule,
-		AppRoutingModule,
+		RoutingModule,
 		HttpClientModule,
 		ReactiveFormsModule,
 		OAuthModule.forRoot({
@@ -42,6 +54,7 @@ import { RefreshTokenInterceptor } from './interceptors/refresh-token.intercepto
 			color: '#84f8ff',
 			spinner: false
 		}),
+		AvatarModule,
 		NgProgressHttpModule.forRoot(),
 		BrowserAnimationsModule,
 		MaterialModule

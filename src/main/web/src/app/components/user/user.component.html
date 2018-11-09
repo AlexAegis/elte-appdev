@@ -1,8 +1,7 @@
-<div id="timer">{{expiration| amDifference: (time$ | async) | amDateFormat: 'm:ss'}}</div>
+<div id="timer">{{ expiration | amDifference: (time$ | async) | amDateFormat: 'm:ss' }}</div>
 <div id="person">
-    <div id="avatar">PIC</div>
-    <div id="name">{{ user.username }}</div>
+	<ngx-avatar name="{{ user.name() }}"></ngx-avatar>
+	<div id="name">{{ user.name() }}</div>
 </div>
 
-<button id="logout" mat-flat-button (click)="auth.logout()">Logout</button>
-<ng-content></ng-content>
+<button id="logout" mat-flat-button (click)="auth.logout()">Logout</button> <ng-content></ng-content>

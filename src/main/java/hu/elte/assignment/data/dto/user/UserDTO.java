@@ -1,5 +1,8 @@
 package hu.elte.assignment.data.dto.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import hu.elte.assignment.data.dto.people.PersonDTO;
+import hu.elte.assignment.data.model.people.Person;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,11 +20,14 @@ public class UserDTO implements UserDetails, Serializable {
 	
 	private String username;
 
+	@JsonIgnore
 	private String password;
 
 	private Boolean active = true;
 
 	private String specialKey;
+
+	private PersonDTO person;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

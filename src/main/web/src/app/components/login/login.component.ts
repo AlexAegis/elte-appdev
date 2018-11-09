@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
-import { User } from '../../model/user.interface';
+import { User } from '../../model/user.class';
 import * as moment from 'moment';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../service/auth.service';
 import {
 	FormBuilder,
 	FormGroup,
@@ -15,7 +15,7 @@ import {
 import { Subscription } from 'rxjs';
 import { ErrorStateMatcher } from '@angular/material';
 import { OAuthService } from 'angular-oauth2-oidc';
-// import { OAuthService } from 'angular-oauth2-oidc';
+import { trigger } from '@angular/animations';
 
 export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
 	return (control: AbstractControl): { [key: string]: any } | null => {
@@ -30,6 +30,7 @@ export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
+	hide = true;
 	loginForm: FormGroup = this.formBuilder.group(
 		{
 			username: ['', [Validators.required]],
@@ -48,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 		// prevent memory leak when component destroyed
 	}
 
-	async doLogin() {
-		await this.auth.login(this.loginForm.get('username').value, this.loginForm.get('password').value);
+	doLogin() {
+		this.auth.login(this.loginForm.get('username').value, this.loginForm.get('password').value);
 	}
 }

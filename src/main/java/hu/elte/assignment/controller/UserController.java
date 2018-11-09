@@ -1,6 +1,5 @@
 package hu.elte.assignment.controller;
 
-import hu.elte.assignment.config.DTO;
 import hu.elte.assignment.data.dto.user.UserDTO;
 import hu.elte.assignment.data.model.user.User;
 import lombok.experimental.FieldDefaults;
@@ -30,10 +29,10 @@ public final class UserController {
 	 * @return
 	 */
 	@GetMapping("/current")
-	public User getCurrent(/*@DTO(UserDTO.class)*/ @AuthenticationPrincipal UserDTO userDTO) {
+	public UserDTO getCurrent(/*@DTO(UserDTO.class)*/ @AuthenticationPrincipal UserDTO userDTO) {
 		User user = modelMapper.map(userDTO, User.class);
 		System.out.println("return current user" + user);
-		return user;
+		return userDTO;
 	}
 
 }
