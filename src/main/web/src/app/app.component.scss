@@ -6,8 +6,13 @@
 		grid-template-columns: repeat(auto-fit, minmax(20rem, auto));
 		grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
 		//grid-template-rows: 1fr 1fr;
+		#registration {
+			//grid-column: 1 / -1;
+			//width: 100%;
+		}
 		h1 {
 			color: rgba($color: rgb(199, 244, 255), $alpha: 0.5);
+
 			font-size: 2rem;
 			max-width: 20vw;
 			transition: font-size 500ms;
@@ -15,6 +20,7 @@
 
 		#user {
 			position: relative;
+			//grid-column-end: -1;
 			height: 100%;
 		}
 	}
