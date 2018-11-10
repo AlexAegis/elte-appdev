@@ -6,7 +6,12 @@
 	(@expand.start)="animDebug($event)"
 	(@expand.done)="animDebug($event)"
 >
-	<mat-toolbar-row id="regBar" [@expandReg]="navSize('expandReg')">
+	<mat-toolbar-row
+		id="regBar"
+		[@expandReg]="navSize('expandReg')"
+		(@expandReg.start)="animDebug($event)"
+		(@expandReg.done)="animDebug($event)"
+	>
 		<router-outlet name="register"></router-outlet>
 	</mat-toolbar-row>
 	<!--
@@ -15,7 +20,11 @@
 
 
 
+
+
 			 [@expandTitle]="auth.user === undefined ? 'large' : 'small'" 
+
+
 
 
 
@@ -28,7 +37,11 @@
 
 
 
+
+
 			<div id="user" class="">
+
+
 
 
 
@@ -40,7 +53,11 @@
 
 
 
+
+
 					<app-login *ngIf="auth.user === undefined"></app-login>
+
+
 
 
 
@@ -52,13 +69,19 @@
 
 
 
+
+
 				</ng-template>
 
 
 
 
 
+
+
 			</div>
+
+
 
 
 

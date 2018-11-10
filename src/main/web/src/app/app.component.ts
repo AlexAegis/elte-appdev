@@ -33,12 +33,7 @@ import { slideInAnimation } from './animation/route.animation';
 			]),
 			transition('open => closed', [animate('2500ms ease')]),
 			transition('closed => open', [animate('2500ms ease')]),
-			transition('void => open', [
-				group([
-					query('@expandReg', animateChild()),
-					animate('2500ms ease')
-				])
-			]),
+
 			state(
 				'wideopen',
 				style({
@@ -67,14 +62,19 @@ import { slideInAnimation } from './animation/route.animation';
 			)
 		]),
 		trigger('expandReg', [
-			transition('void => open', [animate('1500ms ease')]),
-			transition('open => wideopen', [animate('1500ms ease')]),
+			transition('open <=> wideopen', [
+				group([
+					query(':leave', animate('1500ms ease'), { optional: true }),
+					animate('1500ms ease')
+				])
+			]),
 			state(
 				'wideopen',
 				style({
 					height: '80vh',
 					minHeight: '1em',
-					backgroundColor: 'red'
+					backgroundColor: 'red',
+					transform: 'translateY(0)'
 				})
 			),
 			state(
@@ -82,7 +82,8 @@ import { slideInAnimation } from './animation/route.animation';
 				style({
 					height: '0vh',
 					minHeight: '0em',
-					backgroundColor: 'aqua'
+					backgroundColor: 'aqua',
+					transform: 'translateY(-100%)'
 				})
 			)
 		]),
