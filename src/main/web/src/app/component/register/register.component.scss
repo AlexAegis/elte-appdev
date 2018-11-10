@@ -1,7 +1,12 @@
 :host {
-	height: 25px;
 	width: 100%;
-	background-color: deeppink;
+	height: 100%;
+	background-color: rgba(#fff, 0.1);
+	box-shadow: 0 0 100em 0 rgba(0, 0, 0, 0.192);
 
-	transform: translateY(-400%);
+	h1 {
+	}
+
+	form {
+	}
 }
