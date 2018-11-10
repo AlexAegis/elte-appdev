@@ -29,14 +29,14 @@ $client-theme: mat-light-theme($client-primary, $client-accent, $client-warn);
 
 /* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-	height: 100%;
-}
 body {
 	margin: 0;
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
-	background-image: linear-gradient(-10deg, rgba(214, 233, 255, 0.726), rgba(247, 247, 247, 0.178));
+	background-image: linear-gradient(
+		-10deg,
+		rgba(155, 49, 63, 0.726),
+		rgba(73, 150, 22, 0.178)
+	);
 }
 
 form {

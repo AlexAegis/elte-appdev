@@ -20,18 +20,49 @@
 		</div>
 	</mat-toolbar-row>
 </mat-toolbar>
-<div><router-outlet #outlet="outlet"></router-outlet></div>
-<div id="devtools">
-	<button (click)="animate()">ellele</button>
+<div id="content">
+	<div><router-outlet #outlet="outlet"></router-outlet></div>
+	<div id="devtools">
+		<button (click)="animate()">ellele</button>
 
-	<button id="refresh" mat-flat-button (click)="auth.refresh()">
-		REFREEE
+		<button id="refresh" mat-flat-button (click)="auth.refresh()">
+			REFREEE
+		</button>
+
+		<button id="whoami" mat-flat-button (click)="whoami()">
+			WHOIREALLYAM
+		</button>
+	</div>
+	<div id="a"></div>
+	<div id="b"></div>
+	<button [routerLink]="[{ outlets: { register: ['register'] } }]">
+		Register
 	</button>
 
-	<button id="whoami" mat-flat-button (click)="whoami()">WHOIREALLYAM</button>
+	<app-lorem></app-lorem>
+
+	<app-lorem></app-lorem>
+
+	<app-lorem></app-lorem>
+
+	<app-lorem></app-lorem>
+	<app-lorem></app-lorem>
+
+	<app-lorem></app-lorem>
+
+	<app-lorem></app-lorem>
+
+	<app-lorem></app-lorem><app-lorem></app-lorem>
+
+	<app-lorem></app-lorem>
+
+	<app-lorem></app-lorem><app-lorem></app-lorem>
+
+	<app-lorem></app-lorem>
+
+	<app-lorem></app-lorem><app-lorem></app-lorem>
+
+	<app-lorem></app-lorem>
+
+	<app-lorem></app-lorem>
 </div>
-<div id="a"></div>
-<div id="b"></div>
-<button [routerLink]="[{ outlets: { register: ['register'] } }]">
-	Register
-</button>

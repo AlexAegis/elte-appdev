@@ -1,18 +1,22 @@
 :host {
+	position: relative;
+	overflow: auto;
 	mat-toolbar {
+		position: sticky;
+		top: 0;
+		z-index: 100;
 		display: grid;
 		overflow: hidden;
-		// grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
 		box-shadow: 0 0 100em 0 rgba(0, 0, 0, 0.192),
 			inset 0 0 100rem 0 rgba(255, 255, 255, 0.425);
-		// grid-template-rows: 1fr 1fr;
+
 		#regBar {
-			margin: 0;
 			padding: 0;
 			height: 0;
 		}
 
 		#mainBar {
+			height: 100%;
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(20rem, auto));
 			grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
@@ -34,5 +38,9 @@
 				height: 100%;
 			}
 		}
+	}
+
+	#content {
+		position: relative;
 	}
 }
