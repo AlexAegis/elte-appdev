@@ -43,8 +43,7 @@ import { slideInAnimation } from './animation/route.animation';
 			state(
 				'closed',
 				style({
-					//height: '8vh',
-					minHeight: '2rem', // 2 rem
+					minHeight: '1rem', // 2 rem
 					opacity: 1
 				})
 			)

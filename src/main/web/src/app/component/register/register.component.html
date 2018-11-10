@@ -3,7 +3,7 @@
 <form [formGroup]="registrationForm" (ngSubmit)="register()">
 	<mat-form-field hideRequiredMarker>
 		<input
-			id="username"
+			id="usernameReg"
 			matInput
 			formControlName="username"
 			placeholder="Username"
@@ -15,9 +15,8 @@
 
 	<mat-form-field hideRequiredMarker>
 		<input
-			id="password"
+			id="passwordReg"
 			matInput
-			type="password"
 			formControlName="password"
 			placeholder="Password"
 			[type]="hidePassword ? 'password' : 'text'"

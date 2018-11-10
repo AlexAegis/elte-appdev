@@ -23,6 +23,7 @@ import { HolaComponent } from './component/dummy/hola/hola.component';
 import { HaloComponent } from './component/dummy/halo/halo.component';
 import { AvatarModule } from 'ngx-avatar';
 import { RegisterComponent } from './component/register/register.component';
+import { LoremComponent } from './component/dummy/lorem/lorem.component';
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [
@@ -34,7 +35,8 @@ import { RegisterComponent } from './component/register/register.component';
 		LoadingDirective,
 		HolaComponent,
 		HaloComponent,
-		RegisterComponent
+		RegisterComponent,
+		LoremComponent
 	],
 	imports: [
 		BrowserModule,
