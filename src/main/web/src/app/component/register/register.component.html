@@ -1,1 +1,38 @@
-<p>register works!</p>
+<h1>Registration</h1>
+
+<form [formGroup]="registrationForm" (ngSubmit)="register()">
+	<mat-form-field hideRequiredMarker>
+		<input
+			id="username"
+			matInput
+			formControlName="username"
+			placeholder="Username"
+		/>
+		<mat-error *ngIf="registrationForm.controls['username'].errors">
+			Required
+		</mat-error>
+	</mat-form-field>
+
+	<mat-form-field hideRequiredMarker>
+		<input
+			id="password"
+			matInput
+			type="password"
+			formControlName="password"
+			placeholder="Password"
+			[type]="hidePassword ? 'password' : 'text'"
+		/>
+		<mat-icon matSuffix (click)="hide = !hide">{{
+			hidePassword ? 'visibility_off' : 'visibility'
+		}}</mat-icon>
+	</mat-form-field>
+
+	<button
+		id="registerButton"
+		mat-flat-button
+		type="submit"
+		[disabled]="!registrationForm.valid"
+	>
+		Register
+	</button>
+</form>

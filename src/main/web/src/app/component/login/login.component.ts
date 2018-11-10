@@ -16,13 +16,7 @@ import { Subscription } from 'rxjs';
 import { ErrorStateMatcher } from '@angular/material';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { trigger } from '@angular/animations';
-
-export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
-	return (control: AbstractControl): { [key: string]: any } | null => {
-		const forbidden = nameRe.test(control.value);
-		return forbidden ? { forbiddenName: { value: control.value } } : undefined;
-	};
-}
+import { forbiddenNameValidator } from 'src/app/validator/name.validator';
 
 @Component({
 	selector: 'app-login',
@@ -50,6 +44,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 	}
 
 	doLogin() {
-		this.auth.login(this.loginForm.get('username').value, this.loginForm.get('password').value);
+		this.auth.login(
+			this.loginForm.get('username').value,
+			this.loginForm.get('password').value
+		);
 	}
 }

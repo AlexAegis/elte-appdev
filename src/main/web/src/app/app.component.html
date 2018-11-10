@@ -1,94 +1,24 @@
 <ng-progress #progressBar></ng-progress>
 
-<mat-toolbar
-	color="primary"
-	[@expand]="navSize('expand')"
-	(@expand.start)="animDebug($event)"
-	(@expand.done)="animDebug($event)"
->
-	<mat-toolbar-row
-		id="regBar"
-		[@expandReg]="navSize('expandReg')"
-		(@expandReg.start)="animDebug($event)"
-		(@expandReg.done)="animDebug($event)"
-	>
+<mat-toolbar color="primary" [@expand]="navSize()">
+	<mat-toolbar-row id="regBar" [@expandReg]="navSize()">
 		<router-outlet name="register"></router-outlet>
 	</mat-toolbar-row>
-	<!--
-		<mat-toolbar-row id="mainBar">
 
+	<mat-toolbar-row id="mainBar" [@expandMain]="navSize()">
+		<h1 [@expandTitle]="navSize()">{{ title }}</h1>
 
+		<div id="user" class="">
+			<ng-template [appLoading]="auth.login$ | async">
+				<app-login *ngIf="auth.user === undefined"></app-login>
 
-
-
-
-			 [@expandTitle]="auth.user === undefined ? 'large' : 'small'" 
-
-
-
-
-
-
-
-			<h1>{{ title }}</h1>
-
-
-
-
-
-
-
-
-			<div id="user" class="">
-
-
-
-
-
-
-
-				<ng-template [appLoading]="auth.login$ | async">
-
-
-
-
-
-
-
-					<app-login *ngIf="auth.user === undefined"></app-login>
-
-
-
-
-
-
-
-					<app-user [user]="auth.user" *ngIf="auth.user !== undefined"></app-user>
-
-
-
-
-
-
-
-				</ng-template>
-
-
-
-
-
-
-
-			</div>
-
-
-
-
-
-
-
-		</mat-toolbar-row>
-	-->
+				<app-user
+					[user]="auth.user"
+					*ngIf="auth.user !== undefined"
+				></app-user>
+			</ng-template>
+		</div>
+	</mat-toolbar-row>
 </mat-toolbar>
 <div><router-outlet #outlet="outlet"></router-outlet></div>
 <div id="devtools">

@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { ActivatedRoute } from '@angular/router';
+import {
+	trigger,
+	state,
+	style,
+	transition,
+	animate
+} from '@angular/animations';
+
 import { slideInAnimation } from 'src/app/animation/route.animation';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { forbiddenNameValidator } from 'src/app/validator/name.validator';
 
 @Component({
 	selector: 'app-register',
@@ -10,13 +18,20 @@ import { slideInAnimation } from 'src/app/animation/route.animation';
 	animations: [slideInAnimation]
 })
 export class RegisterComponent implements OnInit {
-	shouldAnimate: boolean;
-	constructor(private route: ActivatedRoute) {
-		console.log(`asd ${this.route.outlet}`);
-		if (this.route.outlet === 'register') {
-			this.shouldAnimate = true; // Yes, I do enter here every time
+	hidePassword = true;
+	registrationForm: FormGroup = this.formBuilder.group(
+		{
+			username: ['', [Validators.required]],
+			password: ['', [Validators.required]]
+		},
+		{
+			validator: forbiddenNameValidator(/asd/)
 		}
-	}
+	);
+
+	constructor(private formBuilder: FormBuilder) {}
 
 	ngOnInit() {}
+
+	register(): void {}
 }

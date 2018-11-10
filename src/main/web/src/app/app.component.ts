@@ -19,28 +19,16 @@ import { slideInAnimation } from './animation/route.animation';
 	styleUrls: ['./app.component.scss'],
 	animations: [
 		trigger('expand', [
-			transition('open => wideopen', [
-				group([
-					query('@expandReg', animateChild()),
-					animate('2500ms ease')
-				])
+			transition('* <=> *', [
+				group([query('@*', animateChild()), animate('500ms ease')])
 			]),
-			transition('wideopen => open', [
-				group([
-					query('@expandReg', animateChild()),
-					animate('2500ms ease')
-				])
-			]),
-			transition('open => closed', [animate('2500ms ease')]),
-			transition('closed => open', [animate('2500ms ease')]),
-
 			state(
 				'wideopen',
 				style({
 					height: '90vh',
 					minHeight: '32em', // 16 rem
-					opacity: 0.9,
-					backgroundColor: 'black'
+					opacity: 0.9
+					// backgroundColor: 'black'
 				})
 			),
 			state(
@@ -48,24 +36,39 @@ import { slideInAnimation } from './animation/route.animation';
 				style({
 					height: '50vh',
 					minHeight: '16em', // 16 rem
-					opacity: 0.6,
-					backgroundColor: 'green'
+					opacity: 0.6
+					// backgroundColor: 'green'
 				})
 			),
 			state(
 				'closed',
 				style({
 					//height: '8vh',
-					minHeight: '8vh', // 2 rem
+					minHeight: '2rem', // 2 rem
 					opacity: 1
 				})
 			)
 		]),
+		trigger('expandMain', [
+			transition('* <=> *', [group([animate('500ms ease')])]),
+			state(
+				'wideopen',
+				style({
+					transform: 'translateY(100vh)'
+				})
+			),
+			state(
+				'open',
+				style({
+					transform: 'translateY(0)'
+				})
+			)
+		]),
 		trigger('expandReg', [
-			transition('open <=> wideopen', [
+			transition('* <=> *', [
 				group([
-					query(':leave', animate('1500ms ease'), { optional: true }),
-					animate('1500ms ease')
+					query(':leave', animate('500ms ease'), { optional: true }),
+					animate('500ms ease')
 				])
 			]),
 			state(
@@ -73,7 +76,7 @@ import { slideInAnimation } from './animation/route.animation';
 				style({
 					height: '80vh',
 					minHeight: '1em',
-					backgroundColor: 'red',
+					// backgroundColor: 'red',
 					transform: 'translateY(0)'
 				})
 			),
@@ -82,22 +85,22 @@ import { slideInAnimation } from './animation/route.animation';
 				style({
 					height: '0vh',
 					minHeight: '0em',
-					backgroundColor: 'aqua',
-					transform: 'translateY(-100%)'
+					// backgroundColor: 'aqua',
+					transform: 'translateY(-100vh)'
 				})
 			)
 		]),
 		trigger('expandTitle', [
-			transition('* <=> *', [animate('2500ms ease')]),
+			transition('* <=> *', [animate('500ms ease')]),
 			state(
-				'small',
+				'closed',
 				style({
 					fontSize: '2rem',
 					opacity: 1
 				})
 			),
 			state(
-				'large',
+				'open',
 				style({
 					fontSize: '10rem',
 					opacity: 0.8
@@ -137,19 +140,13 @@ export class AppComponent implements OnInit {
 		return lol;
 	}
 
-	navSize(forMe: string) {
-		let result: string;
-
-		result = this.auth.user === undefined ? 'open' : 'closed';
-		if (
-			this.route.firstChild &&
-			this.route.firstChild.outlet === 'register'
-		) {
-			result = 'wideopen';
-		}
-
-		console.log(`saywhat ${forMe} is: ${result}`);
-		return result;
+	navSize() {
+		return this.auth.user === undefined
+			? this.route.firstChild &&
+			  this.route.firstChild.outlet === 'register'
+				? 'wideopen'
+				: 'open'
+			: 'closed';
 	}
 	animDebug(event) {
 		console.log(event);
