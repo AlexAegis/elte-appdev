@@ -1,7 +1,16 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { AuthService } from './service/auth.service';
-import { transition, animate, state, style, trigger, group } from '@angular/animations';
-import { RouterOutlet } from '@angular/router';
+import {
+	transition,
+	animate,
+	state,
+	style,
+	trigger,
+	group,
+	animateChild,
+	query
+} from '@angular/animations';
+import { RouterOutlet, ActivatedRoute } from '@angular/router';
 import { slideInAnimation } from './animation/route.animation';
 
 @Component({
@@ -10,17 +19,42 @@ import { slideInAnimation } from './animation/route.animation';
 	styleUrls: ['./app.component.scss'],
 	animations: [
 		trigger('expand', [
-			//transition('* => *', [animate('500ms ease-in-out')]),
-			transition('open => *', [animate('500ms ease')]),
-			transition('closed => *', [animate('500ms ease')]),
-			transition('small => *', [animate('500ms ease')]),
-			transition('large => *', [animate('500ms ease')]),
+			transition('open => wideopen', [
+				group([
+					query('@expandReg', animateChild()),
+					animate('2500ms ease')
+				])
+			]),
+			transition('wideopen => open', [
+				group([
+					query('@expandReg', animateChild()),
+					animate('2500ms ease')
+				])
+			]),
+			transition('open => closed', [animate('2500ms ease')]),
+			transition('closed => open', [animate('2500ms ease')]),
+			transition('void => open', [
+				group([
+					query('@expandReg', animateChild()),
+					animate('2500ms ease')
+				])
+			]),
+			state(
+				'wideopen',
+				style({
+					height: '90vh',
+					minHeight: '32em', // 16 rem
+					opacity: 0.9,
+					backgroundColor: 'black'
+				})
+			),
 			state(
 				'open',
 				style({
 					height: '50vh',
 					minHeight: '16em', // 16 rem
-					opacity: 0.6
+					opacity: 0.6,
+					backgroundColor: 'green'
 				})
 			),
 			state(
@@ -30,7 +64,30 @@ import { slideInAnimation } from './animation/route.animation';
 					minHeight: '8vh', // 2 rem
 					opacity: 1
 				})
+			)
+		]),
+		trigger('expandReg', [
+			transition('void => open', [animate('1500ms ease')]),
+			transition('open => wideopen', [animate('1500ms ease')]),
+			state(
+				'wideopen',
+				style({
+					height: '80vh',
+					minHeight: '1em',
+					backgroundColor: 'red'
+				})
 			),
+			state(
+				'open',
+				style({
+					height: '0vh',
+					minHeight: '0em',
+					backgroundColor: 'aqua'
+				})
+			)
+		]),
+		trigger('expandTitle', [
+			transition('* <=> *', [animate('2500ms ease')]),
 			state(
 				'small',
 				style({
@@ -54,7 +111,7 @@ export class AppComponent implements OnInit {
 
 	open: boolean = true;
 	exp: boolean = true;
-	constructor(public auth: AuthService) {}
+	constructor(public auth: AuthService, private route: ActivatedRoute) {}
 
 	ngOnInit(): void {}
 
@@ -71,6 +128,29 @@ export class AppComponent implements OnInit {
 	}
 
 	prepareRoute(outlet: RouterOutlet) {
-		return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+		const lol =
+			outlet &&
+			outlet.activatedRouteData &&
+			outlet.activatedRouteData['animation'];
+
+		return lol;
+	}
+
+	navSize(forMe: string) {
+		let result: string;
+
+		result = this.auth.user === undefined ? 'open' : 'closed';
+		if (
+			this.route.firstChild &&
+			this.route.firstChild.outlet === 'register'
+		) {
+			result = 'wideopen';
+		}
+
+		console.log(`saywhat ${forMe} is: ${result}`);
+		return result;
+	}
+	animDebug(event) {
+		console.log(event);
 	}
 }

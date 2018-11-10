@@ -1,31 +1,84 @@
 <ng-progress #progressBar></ng-progress>
-<mat-toolbar color="primary" [@expand]="auth.user === undefined ? 'open' : 'closed'"
-	><!--
-		<div id="registration" [@routeAnimations]="prepareRoute(regout)">
 
-			<router-outlet name="register" #regout="outlet"></router-outlet>
+<mat-toolbar
+	color="primary"
+	[@expand]="navSize('expand')"
+	(@expand.start)="animDebug($event)"
+	(@expand.done)="animDebug($event)"
+>
+	<mat-toolbar-row id="regBar" [@expandReg]="navSize('expandReg')">
+		<router-outlet name="register"></router-outlet>
+	</mat-toolbar-row>
+	<!--
+		<mat-toolbar-row id="mainBar">
 
-			<button [routerLink]="[{ outlets: { register: ['register'] } }]">Register</button>
 
-		</div>
+
+
+			 [@expandTitle]="auth.user === undefined ? 'large' : 'small'" 
+
+
+
+
+
+			<h1>{{ title }}</h1>
+
+
+
+
+
+
+			<div id="user" class="">
+
+
+
+
+
+				<ng-template [appLoading]="auth.login$ | async">
+
+
+
+
+
+					<app-login *ngIf="auth.user === undefined"></app-login>
+
+
+
+
+
+					<app-user [user]="auth.user" *ngIf="auth.user !== undefined"></app-user>
+
+
+
+
+
+				</ng-template>
+
+
+
+
+
+			</div>
+
+
+
+
+
+		</mat-toolbar-row>
 	-->
-
-	<h1 [@expand]="auth.user === undefined ? 'large' : 'small'">{{ title }}</h1>
-
-	<div id="user" class="">
-		<ng-template [appLoading]="auth.login$ | async">
-			<app-login *ngIf="auth.user === undefined"></app-login>
-			<app-user [user]="auth.user" *ngIf="auth.user !== undefined"></app-user>
-		</ng-template>
-	</div>
 </mat-toolbar>
-<div [@routeAnimations]="prepareRoute(outlet)"><router-outlet #outlet="outlet"></router-outlet></div>
+<div><router-outlet #outlet="outlet"></router-outlet></div>
 <div id="devtools">
 	<button (click)="animate()">ellele</button>
 
-	<button id="refresh" mat-flat-button (click)="auth.refresh()">REFREEE</button>
+	<button id="refresh" mat-flat-button (click)="auth.refresh()">
+		REFREEE
+	</button>
 
 	<button id="whoami" mat-flat-button (click)="whoami()">WHOIREALLYAM</button>
 </div>
 <div id="a"></div>
 <div id="b"></div>
+<button [routerLink]="[{ outlets: { register: ['register'] } }]">
+	Register
+</button>

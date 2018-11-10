@@ -1,14 +1,14 @@
 import { trigger, transition, style, animateChild, animate, query, group } from '@angular/animations';
 
 export const slideInAnimation = trigger('routeAnimations', [
-	transition('HomePage <=> AboutPage', [
+	transition('* <=> *', [
 		style({ position: 'relative' }),
 		query(':enter, :leave', [
 			style({
 				position: 'absolute',
 				top: 0,
 				left: 0,
-				width: '100%'
+				width: '66%'
 			})
 		]),
 		query(':enter', [style({ left: '-100%' })]),
@@ -18,8 +18,8 @@ export const slideInAnimation = trigger('routeAnimations', [
 			query(':enter', [animate('300ms ease-out', style({ left: '0%' }))])
 		]),
 		query(':enter', animateChild())
-	]),
-	transition('* <=> FilterPage', [
+	]) /*,
+	transition('* <=> *', [
 		style({ position: 'relative' }),
 		query(':enter, :leave', [
 			style({
@@ -36,5 +36,5 @@ export const slideInAnimation = trigger('routeAnimations', [
 			query(':enter', [animate('300ms ease-out', style({ left: '0%' }))])
 		]),
 		query(':enter', animateChild())
-	])
+	])*/
 ]);
