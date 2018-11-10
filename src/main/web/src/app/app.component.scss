@@ -1,28 +1,38 @@
 :host {
 	mat-toolbar {
 		display: grid;
-		height: auto;
-		overflow: auto;
-		grid-template-columns: repeat(auto-fit, minmax(20rem, auto));
-		grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
-		box-shadow: 0 0 100em 0 rgba(0, 0, 0, 0.192), inset 0 0 100rem 0 rgba(255, 255, 255, 0.425);
-		//grid-template-rows: 1fr 1fr;
-		#registration {
-			//grid-column: 1 / -1;
-			//width: 100%;
-		}
-		h1 {
-			color: rgba($color: rgb(199, 244, 255), $alpha: 0.5);
-
-			font-size: 2rem;
-			max-width: 20vw;
-			transition: font-size 500ms;
+		// overflow: auto;
+		// grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
+		box-shadow: 0 0 100em 0 rgba(0, 0, 0, 0.192),
+			inset 0 0 100rem 0 rgba(255, 255, 255, 0.425);
+		// grid-template-rows: 1fr 1fr;
+		#regBar {
+			margin: 0;
+			padding: 0;
+			height: 0;
 		}
 
-		#user {
-			position: relative;
-			//grid-column-end: -1;
-			height: 100%;
+		#mainBar {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(20rem, auto));
+			grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
+			#registration {
+				//grid-column: 1 / -1;
+				//width: 100%;
+			}
+			h1 {
+				color: rgba($color: rgb(199, 244, 255), $alpha: 0.5);
+
+				font-size: 2rem;
+				max-width: 20vw;
+				transition: font-size 500ms;
+			}
+
+			#user {
+				position: relative;
+				//grid-column-end: -1;
+				height: 100%;
+			}
 		}
 	}
 }

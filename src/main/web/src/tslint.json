@@ -40,7 +40,7 @@
 		"jsdoc-format": true,
 		"max-line-length": {
 			"options": {
-				"limit": 120
+				"limit": 80
 			}
 		}
 	}
