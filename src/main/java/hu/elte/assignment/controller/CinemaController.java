@@ -34,9 +34,9 @@ public class CinemaController {
 		this.modelMapper = modelMapper;
 	}
 
-	@PreAuthorize("hasAuthority('SUPER_ADMIN')")
+	@PreAuthorize("hasAuthority('READ')")
 	@GetMapping("/movie")
-	public ResponseEntity<Iterable<Movie>> readMovies(@RequestBody FilterDTO<MovieDTO> filter) {
+	public ResponseEntity<Iterable<Movie>> readMovies() {
 		return ResponseEntity.ok(this.movieRepository.findAll());
 	}
 

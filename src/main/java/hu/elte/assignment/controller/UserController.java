@@ -25,14 +25,14 @@ public final class UserController {
 	}
 
 	/**
-	 * @param userDTO Same as SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	 * @param user Same as SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	 * @return
 	 */
 	@GetMapping("/current")
-	public UserDTO getCurrent(/*@DTO(UserDTO.class)*/ @AuthenticationPrincipal UserDTO userDTO) {
-		User user = modelMapper.map(userDTO, User.class);
+	public User getCurrent(/*@DTO(UserDTO.class)*/ @AuthenticationPrincipal User user) {
+		//User user = modelMapper.map(userDTO, User.class);
 		System.out.println("return current user" + user);
-		return userDTO;
+		return user;
 	}
 
 }

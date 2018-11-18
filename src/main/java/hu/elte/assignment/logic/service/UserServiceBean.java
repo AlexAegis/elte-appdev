@@ -25,12 +25,12 @@ public class UserServiceBean implements UserDetailsService {
 
 
 	@Override
-	public UserDTO loadUserByUsername(String username) {
+	public User loadUserByUsername(String username) {
 		User user = userRepository.findByUsername(username);
 		UserDTO userDTO = modelMapper.map(user, UserDTO.class);
 		if (user == null) {
 			throw new UsernameNotFoundException(String.format("The username %s doesn't exist", username));
 		}
-		return userDTO;
+		return user;
 	}
 }
