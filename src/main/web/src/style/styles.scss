@@ -20,7 +20,7 @@ $client-accent: mat-palette($mat-pink, A200, A100, A400);
 $client-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$client-theme: mat-light-theme($client-primary, $client-accent, $client-warn);
+$client-theme: mat-dark-theme($client-primary, $client-accent, $client-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -37,15 +37,6 @@ body {
 		rgba(155, 49, 63, 0.726),
 		rgba(73, 150, 22, 0.178)
 	);
-}
-
-form {
-	display: grid;
-}
-
-.test {
-	font-size: 0.3em;
-	background-color: blueviolet;
 }
 
 @for $i from 1 through 100 {

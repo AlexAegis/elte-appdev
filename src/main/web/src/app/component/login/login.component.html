@@ -1,7 +1,15 @@
 <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
 	<mat-form-field hideRequiredMarker>
-		<input id="username" matInput formControlName="username" placeholder="Username" />
-		<mat-error *ngIf="loginForm.controls['username'].errors"> Required </mat-error>
+		<input
+			id="username"
+			matInput
+			autocomplete="username"
+			formControlName="username"
+			placeholder="Username"
+		/>
+		<mat-error *ngIf="loginForm.controls['username'].errors">
+			Required
+		</mat-error>
 	</mat-form-field>
 
 	<mat-form-field hideRequiredMarker>
@@ -9,12 +17,22 @@
 			id="password"
 			matInput
 			type="password"
+			autocomplete="current-password"
 			formControlName="password"
 			placeholder="Password"
 			[type]="hide ? 'password' : 'text'"
 		/>
-		<mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+		<mat-icon matSuffix (click)="hide = !hide">{{
+			hide ? 'visibility_off' : 'visibility'
+		}}</mat-icon>
 	</mat-form-field>
 
-	<button id="loginButton" mat-flat-button type="submit" [disabled]="!loginForm.valid">Login</button>
+	<button
+		id="loginButton"
+		mat-flat-button
+		type="submit"
+		[disabled]="!loginForm.valid"
+	>
+		Login
+	</button>
 </form>

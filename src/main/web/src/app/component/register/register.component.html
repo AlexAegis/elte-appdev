@@ -6,6 +6,7 @@
 			id="usernameReg"
 			matInput
 			formControlName="username"
+			autocomplete="username"
 			placeholder="Username"
 		/>
 		<mat-error *ngIf="registrationForm.controls['username'].errors">
@@ -18,6 +19,7 @@
 			id="passwordReg"
 			matInput
 			formControlName="password"
+			autocomplete="new-password"
 			placeholder="Password"
 			[type]="hidePassword ? 'password' : 'text'"
 		/>
@@ -25,6 +27,8 @@
 			hidePassword ? 'visibility_off' : 'visibility'
 		}}</mat-icon>
 	</mat-form-field>
+
+	<app-person [personForm]="person"></app-person>
 
 	<button
 		id="registerButton"

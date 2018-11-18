@@ -24,6 +24,7 @@ import { HaloComponent } from './component/dummy/halo/halo.component';
 import { AvatarModule } from 'ngx-avatar';
 import { RegisterComponent } from './component/register/register.component';
 import { LoremComponent } from './component/dummy/lorem/lorem.component';
+import { PersonComponent } from './component/people/person/person.component';
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [
@@ -36,7 +37,8 @@ import { LoremComponent } from './component/dummy/lorem/lorem.component';
 		HolaComponent,
 		HaloComponent,
 		RegisterComponent,
-		LoremComponent
+		LoremComponent,
+		PersonComponent
 	],
 	imports: [
 		BrowserModule,

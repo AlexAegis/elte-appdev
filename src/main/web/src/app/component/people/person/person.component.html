@@ -1,0 +1,20 @@
+<form [formGroup]="personForm">
+	<mat-form-field hideRequiredMarker>
+		<input
+			id="firstName"
+			matInput
+			formControlName="firstName"
+			placeholder="First name"
+		/>
+	</mat-form-field>
+
+	<mat-form-field hideRequiredMarker>
+		<input
+			id="lastName"
+			matInput
+			formControlName="lastName"
+			placeholder="Last name"
+			type="text"
+		/>
+	</mat-form-field>
+</form>
