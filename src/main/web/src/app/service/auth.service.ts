@@ -2,20 +2,30 @@ import * as moment from 'moment';
 import { User } from '../model/user.class';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable, Output, EventEmitter, OnInit } from '@angular/core';
-import { Subject, BehaviorSubject, ReplaySubject, Observable, from, observable } from 'rxjs';
+import {
+	Subject,
+	BehaviorSubject,
+	ReplaySubject,
+	Observable,
+	from,
+	observable
+} from 'rxjs';
 import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
 import { TypedJSON } from 'typedjson-fork';
+import { unescapeIdentifier } from '@angular/compiler';
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
 	private subject: BehaviorSubject<User> = new BehaviorSubject<User>(
-		this.oAuthService.getAccessToken() ? TypedJSON.parse(this.oAuthService.getIdentityClaims(), User) : undefined
+		this.oAuthService.getAccessToken()
+			? TypedJSON.parse(this.oAuthService.getIdentityClaims(), User)
+			: undefined
 	);
 
 	login$: Observable<User> = this.subject.asObservable();
-	user: User;
+	user: User = undefined;
 
 	constructor(private http: HttpClient, private oAuthService: OAuthService) {
 		this.oAuthService.configure(authConfig);
@@ -27,7 +37,12 @@ export class AuthService {
 	}
 
 	login(username: string, password: string) {
-		from(this.oAuthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(username, password))
+		from(
+			this.oAuthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(
+				username,
+				password
+			)
+		)
 			.pipe(o => {
 				// tslint:disable-next-line:no-null-keyword
 				this.subject.next(null);

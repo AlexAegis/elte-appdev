@@ -1,34 +1,29 @@
 @import '../style/responsive.scss';
 
 :host {
+	width: 100%;
 	position: relative;
 	overflow: auto;
+	display: grid;
 	mat-toolbar {
+		width: 100%;
 		position: sticky;
 		top: 0;
 		z-index: 100;
 		display: grid;
 		overflow: hidden;
-		grid-template-rows: 0 16fr;
-		grid-auto-columns: auto;
+		grid-template-rows: 1fr;
+		grid-auto-columns: 1fr 3fr;
 		box-shadow: 0 0 100em 0 rgba(0, 0, 0, 0.192),
 			inset 0 0 100rem 0 rgba(255, 255, 255, 0.425);
 
-		#regBar {
-			padding: 0;
-			height: 0;
-		}
-
 		#mainBar {
 			height: 100%;
+			width: 100%;
 			display: grid;
-			grid-row: 2;
-			//grid-template-columns: repeat(auto-fit, minmax(28rem, auto));
-			//grid-template-rows: repeat(auto-fit, minmax(10rem, auto));
-			#registration {
-				//grid-column: 1 / -1;
-				//width: 100%;
-			}
+			grid-row: 1;
+			grid-template-columns: 20rem auto;
+
 			h1 {
 				color: rgba($color: rgb(199, 244, 255), $alpha: 0.5);
 
@@ -43,7 +38,7 @@
 				height: 100%;
 
 				@include respond-to(small, medium) {
-					grid-column: 1;
+					grid-column: 1 / -1;
 					grid-row: 2;
 				}
 				@include respond-to(large) {

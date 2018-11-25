@@ -1,16 +1,20 @@
 <ng-progress #progressBar></ng-progress>
 
 <mat-toolbar color="primary" [@expand]="navSize()">
-	<mat-toolbar-row id="regBar" [@expandReg]="navSize()">
-		<router-outlet name="register"></router-outlet>
-	</mat-toolbar-row>
-
-	<mat-toolbar-row id="mainBar" [@expandMain]="navSize()">
+	<mat-toolbar-row id="mainBar">
 		<h1 [@expandTitle]="navSize()">{{ title }}</h1>
 
-		<div id="user" class="">
+		<div id="user">
 			<ng-template [appLoading]="auth.login$ | async">
-				<app-login *ngIf="auth.user === undefined"></app-login>
+				<div [@expandReg]="navSize()" class="fixed-bottom fixed-right">
+					<router-outlet name="register"></router-outlet>
+				</div>
+
+				<app-login
+					class="fixed-bottom fixed-right"
+					*ngIf="auth.user === undefined"
+					[@expandMain]="navSize()"
+				></app-login>
 
 				<app-user
 					[user]="auth.user"
@@ -23,8 +27,6 @@
 <div id="content">
 	<div><router-outlet #outlet="outlet"></router-outlet></div>
 	<div id="devtools">
-		<button (click)="animate()">ellele</button>
-
 		<button id="refresh" mat-flat-button (click)="auth.refresh()">
 			REFREEE
 		</button>

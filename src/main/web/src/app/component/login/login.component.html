@@ -1,41 +1,7 @@
-<form [formGroup]="loginForm" (ngSubmit)="doLogin()">
-	<mat-form-field id="username-field" hideRequiredMarker>
-		<input
-			id="username"
-			matInput
-			autocomplete="username"
-			formControlName="username"
-			placeholder="Username"
-		/>
-		<mat-error *ngIf="loginForm.controls['username'].errors">
-			Required
-		</mat-error>
-	</mat-form-field>
+<form novalidate #f="ngForm" [formGroup]="loginForm" (submit)="doLogin(f)">
+	<app-user-form id="user-group" [parent]="loginForm"></app-user-form>
 
-	<mat-form-field id="password-field" hideRequiredMarker>
-		<input
-			id="password"
-			matInput
-			type="password"
-			autocomplete="current-password"
-			formControlName="password"
-			placeholder="Password"
-			[type]="hide ? 'password' : 'text'"
-		/>
-		<mat-icon matSuffix (click)="hide = !hide">{{
-			hide ? 'visibility_off' : 'visibility'
-		}}</mat-icon>
-	</mat-form-field>
-
-	<button
-		id="login"
-		mat-flat-button
-		type="submit"
-		[disabled]="!loginForm.valid"
-	>
-		Login
-	</button>
-
+	<button id="login" type="submit" mat-flat-button>Login</button>
 	<button
 		id="register"
 		type="button"

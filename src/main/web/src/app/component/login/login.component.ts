@@ -1,4 +1,11 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	HostListener,
+	OnDestroy,
+	Input,
+	ViewChild
+} from '@angular/core';
 import { User } from '../../model/user.class';
 import * as moment from 'moment';
 import { AuthService } from '../../service/auth.service';
@@ -17,6 +24,7 @@ import { ErrorStateMatcher } from '@angular/material';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { trigger } from '@angular/animations';
 import { forbiddenNameValidator } from 'src/app/validator/name.validator';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @Component({
 	selector: 'app-login',
@@ -24,29 +32,20 @@ import { forbiddenNameValidator } from 'src/app/validator/name.validator';
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-	hide = true;
-	loginForm: FormGroup = this.formBuilder.group(
-		{
-			username: ['', [Validators.required]],
-			password: ['', [Validators.required]]
-		},
-		{
-			validator: forbiddenNameValidator(/asd/)
-		}
-	);
-
 	constructor(private auth: AuthService, private formBuilder: FormBuilder) {}
 
-	ngOnInit() {}
+	loginForm: FormGroup = this.formBuilder.group({});
+
+	ngOnInit(): void {}
 
 	ngOnDestroy() {
 		// prevent memory leak when component destroyed
 	}
 
-	doLogin() {
+	doLogin(form: NgForm) {
 		this.auth.login(
-			this.loginForm.get('username').value,
-			this.loginForm.get('password').value
+			this.loginForm.get('user').get('username').value,
+			this.loginForm.get('user').get('password').value
 		);
 	}
 }
