@@ -1,21 +1,40 @@
-$break-small: 320px;
-$break-large: 1024px;
+$respond-to-no-mediaqueries-fallback: desktop;
+$respond-to-fallback-class: lt-ie9;
+$respond-to-breakpoints: (
+	large '(min-width: 721px)',
+	medium '(min-width: 321px) and (max-width: 720px)',
+	small '(max-width: 320px)'
+);
 
-@mixin respond-to($media) {
-	@if $media == handhelds {
-		@media only screen and (max-width: $break-small) {
-			@content;
+@mixin respond-to($medias...) {
+	$breakpoints-length: length($respond-to-breakpoints);
+
+	@each $media in $medias {
+		$had-a-hit: false;
+
+		@for $i from 1 through $breakpoints-length {
+			$breakpoint: nth($respond-to-breakpoints, $i);
+			@if $media == nth($breakpoint, 1) {
+				$definition: nth($breakpoint, 2);
+				$had-a-hit: true;
+				@media #{$definition} {
+					@content;
+				}
+			}
 		}
-	} @else if $media == medium-screens {
-		@media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) {
-			@content;
+
+		@if $media == $respond-to-no-mediaqueries-fallback {
+			.#{$respond-to-fallback-class} & {
+				@content;
+			}
 		}
-	} @else if $media == wide-screens {
-		@media only screen and (min-width: $break-large) {
-			@content;
+
+		@if $had-a-hit == false {
+			@warn "Media #{media} not found!";
 		}
 	}
 }
+
 /*
 .profile-pic {
 	float: left;
