@@ -1,0 +1,30 @@
+@import '../../../../style/responsive.scss';
+
+:host {
+	#user-form {
+		display: grid;
+		grid-gap: 1rem;
+
+		width: 100%;
+
+		#username-field {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		@include respond-to(medium, small) {
+			grid-template-columns: 1fr;
+			#password-field {
+				grid-column: 1;
+				grid-row: 2;
+			}
+		}
+		@include respond-to(large) {
+			grid-template-columns: 1fr 1fr;
+			#password-field {
+				grid-column: 2;
+				grid-row: 1;
+			}
+		}
+	}
+}

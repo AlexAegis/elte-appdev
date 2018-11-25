@@ -48,3 +48,16 @@ body {
 		height: #{percentage($i/100)};
 	}
 }
+
+.fixed-bottom {
+	bottom: 0;
+	position: absolute;
+}
+.fixed-right {
+	right: 0;
+	position: absolute;
+}
+
+.hidden {
+	display: none;
+}

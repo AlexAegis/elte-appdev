@@ -19,7 +19,10 @@ import { slideInAnimation } from './animation/route.animation';
 	styleUrls: ['./app.component.scss'],
 	animations: [
 		trigger('expand', [
-			transition('* <=> *', [
+			transition('open <=> wideopen', [
+				group([query('@*', animateChild()), animate('500ms ease')])
+			]),
+			transition('open <=> closed', [
 				group([query('@*', animateChild()), animate('500ms ease')])
 			]),
 			state(
@@ -42,7 +45,7 @@ import { slideInAnimation } from './animation/route.animation';
 			state('closed', style({}))
 		]),
 		trigger('expandMain', [
-			transition('* <=> *', [group([animate('500ms ease')])]),
+			transition('open <=> wideopen', [group([animate('500ms ease')])]),
 			state(
 				'wideopen',
 				style({
@@ -66,24 +69,24 @@ import { slideInAnimation } from './animation/route.animation';
 			state(
 				'wideopen',
 				style({
-					//height: '80vh',
-					//minHeight: '1em',
-					// backgroundColor: 'red',
-					transform: 'translateY(0)'
+					transform: 'translateY(0vh)'
 				})
 			),
 			state(
 				'open',
 				style({
-					//height: '0vh',
-					//minHeight: '0em',
-					// backgroundColor: 'aqua',
+					transform: 'translateY(-100vh)'
+				})
+			),
+			state(
+				'closed',
+				style({
 					transform: 'translateY(-100vh)'
 				})
 			)
 		]),
 		trigger('expandTitle', [
-			transition('* <=> *', [animate('500ms ease')]),
+			transition('closed <=> open', [animate('1100ms ease')]),
 			state(
 				'closed',
 				style({
@@ -93,6 +96,13 @@ import { slideInAnimation } from './animation/route.animation';
 			),
 			state(
 				'open',
+				style({
+					fontSize: '10rem',
+					opacity: 0.8
+				})
+			),
+			state(
+				'wideopen',
 				style({
 					fontSize: '10rem',
 					opacity: 0.8
@@ -107,6 +117,7 @@ export class AppComponent implements OnInit {
 
 	open: boolean = true;
 	exp: boolean = true;
+	show: boolean = true;
 	constructor(public auth: AuthService, private route: ActivatedRoute) {}
 
 	ngOnInit(): void {}
@@ -118,20 +129,6 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	animate(): void {
-		this.open = !this.open;
-		this.exp = !this.exp;
-	}
-
-	prepareRoute(outlet: RouterOutlet) {
-		const lol =
-			outlet &&
-			outlet.activatedRouteData &&
-			outlet.activatedRouteData['animation'];
-
-		return lol;
-	}
-
 	navSize() {
 		return this.auth.user === undefined
 			? this.route.firstChild &&
@@ -140,6 +137,7 @@ export class AppComponent implements OnInit {
 				: 'open'
 			: 'closed';
 	}
+
 	animDebug(event) {
 		console.log(event);
 	}

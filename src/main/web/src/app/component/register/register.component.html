@@ -1,5 +1,3 @@
-<h1>Registration</h1>
-
 <form [formGroup]="registrationForm" (ngSubmit)="register()">
 	<mat-form-field hideRequiredMarker>
 		<input
@@ -28,7 +26,7 @@
 		}}</mat-icon>
 	</mat-form-field>
 
-	<app-person [personForm]="person"></app-person>
+	<app-person [personForm]="person"> </app-person>
 
 	<button
 		id="registerButton"

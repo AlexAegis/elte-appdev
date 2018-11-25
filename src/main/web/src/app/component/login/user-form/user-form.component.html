@@ -1,0 +1,31 @@
+<div [formGroup]="parent">
+	<div formGroupName="user" id="user-form">
+		<mat-form-field id="username-field" hideRequiredMarker>
+			<input
+				id="username"
+				matInput
+				autocomplete="username"
+				formControlName="username"
+				placeholder="Username"
+			/>
+			<mat-error *ngIf="user.controls['username'].errors">
+				Required
+			</mat-error>
+		</mat-form-field>
+
+		<mat-form-field id="password-field" hideRequiredMarker>
+			<input
+				id="password"
+				matInput
+				type="password"
+				autocomplete="current-password"
+				formControlName="password"
+				placeholder="Password"
+				[type]="hide ? 'password' : 'text'"
+			/>
+			<mat-icon matSuffix (click)="hide = !hide" *ngIf="false">{{
+				hide ? 'visibility_off' : 'visibility'
+			}}</mat-icon>
+		</mat-form-field>
+	</div>
+</div>
