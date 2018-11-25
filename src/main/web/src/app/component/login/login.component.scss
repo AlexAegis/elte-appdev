@@ -1,27 +1,53 @@
 @import '../../../style/responsive.scss';
 
 :host {
-	@include respond-to(handhelds) {
-		font-size: 0.2em;
-	}
-	@include respond-to(medium-screens) {
-		font-size: 0.6em;
-	}
-	@include respond-to(wide-screens) {
-		font-size: 0.8em;
-	}
 	form {
 		font-size: 1em;
 		background-color: rgba($color: #000000, $alpha: 0.08);
 		box-shadow: inset 0 0 100rem 0 rgba(0, 0, 0, 0.096);
 		padding: 1em;
-		grid-column-gap: 1em;
-		grid-template-columns: repeat(auto-fit, minmax(15rem, auto));
-		grid-template-rows: repeat(auto-fill, minmax(5rem, auto));
+		display: grid;
+		grid-gap: 1em;
+		min-width: fit-content;
 		//grid-auto-rows: minmax(25px, auto);
 		//grid-template-rows: repeat(auto-fill, minmax(1em, 8em));
-		button {
-			//grid-column: -1;
+
+		#username-field {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		@include respond-to(medium, small) {
+			#password-field {
+				grid-column: 1;
+				grid-row: 2;
+			}
+
+			#login {
+				grid-column: 1;
+				grid-row: 3;
+			}
+
+			#register {
+				grid-column: 1;
+				grid-row: 4;
+			}
+		}
+		@include respond-to(large) {
+			#password-field {
+				grid-column: 2;
+				grid-row: 1;
+			}
+
+			#login {
+				grid-column: 2;
+				grid-row: 2;
+			}
+
+			#register {
+				grid-column: 1;
+				grid-row: 2;
+			}
 		}
 	}
 	bottom: 1rem;

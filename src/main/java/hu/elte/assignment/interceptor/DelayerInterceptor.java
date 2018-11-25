@@ -20,7 +20,7 @@ public class DelayerInterceptor implements HandlerInterceptor {
         if(delay > 0) {
             logger.warn("The delayer interceptor is turned on!");
             logger.info("ZA WARUDO!");
-            //Thread.sleep(delay);
+            Thread.sleep(delay);
         }
         return true;
     }

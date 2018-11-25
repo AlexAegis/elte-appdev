@@ -1,3 +1,5 @@
+@import '../style/responsive.scss';
+
 :host {
 	position: relative;
 	overflow: auto;
@@ -7,6 +9,8 @@
 		z-index: 100;
 		display: grid;
 		overflow: hidden;
+		grid-template-rows: 0 16fr;
+		grid-auto-columns: auto;
 		box-shadow: 0 0 100em 0 rgba(0, 0, 0, 0.192),
 			inset 0 0 100rem 0 rgba(255, 255, 255, 0.425);
 
@@ -18,8 +22,9 @@
 		#mainBar {
 			height: 100%;
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(20rem, auto));
-			grid-template-rows: repeat(auto-fit, minmax(5rem, auto));
+			grid-row: 2;
+			//grid-template-columns: repeat(auto-fit, minmax(28rem, auto));
+			//grid-template-rows: repeat(auto-fit, minmax(10rem, auto));
 			#registration {
 				//grid-column: 1 / -1;
 				//width: 100%;
@@ -27,15 +32,24 @@
 			h1 {
 				color: rgba($color: rgb(199, 244, 255), $alpha: 0.5);
 
-				font-size: 2rem;
-				max-width: 20vw;
-				transition: font-size 500ms;
+				grid-column: 1;
+				grid-row: 1;
+
+				width: 0;
 			}
 
 			#user {
 				position: relative;
-				//grid-column-end: -1;
 				height: 100%;
+
+				@include respond-to(small, medium) {
+					grid-column: 1;
+					grid-row: 2;
+				}
+				@include respond-to(large) {
+					grid-column: 2;
+					grid-row: 1;
+				}
 			}
 		}
 	}

@@ -26,27 +26,20 @@ import { slideInAnimation } from './animation/route.animation';
 				'wideopen',
 				style({
 					height: '90vh',
-					minHeight: '32em', // 16 rem
-					opacity: 0.9
-					// backgroundColor: 'black'
+					minHeight: '32em' // 16 rem
+					//transform: 'translateY(-10%)'
+					// backgroundColor:4 'black'
 				})
 			),
 			state(
 				'open',
 				style({
 					height: '50vh',
-					minHeight: '16em', // 16 rem
-					opacity: 0.6
+					minHeight: '32em' // 16 rem
 					// backgroundColor: 'green'
 				})
 			),
-			state(
-				'closed',
-				style({
-					minHeight: '1rem', // 2 rem
-					opacity: 1
-				})
-			)
+			state('closed', style({}))
 		]),
 		trigger('expandMain', [
 			transition('* <=> *', [group([animate('500ms ease')])]),
@@ -73,8 +66,8 @@ import { slideInAnimation } from './animation/route.animation';
 			state(
 				'wideopen',
 				style({
-					height: '80vh',
-					minHeight: '1em',
+					//height: '80vh',
+					//minHeight: '1em',
 					// backgroundColor: 'red',
 					transform: 'translateY(0)'
 				})
@@ -82,8 +75,8 @@ import { slideInAnimation } from './animation/route.animation';
 			state(
 				'open',
 				style({
-					height: '0vh',
-					minHeight: '0em',
+					//height: '0vh',
+					//minHeight: '0em',
 					// backgroundColor: 'aqua',
 					transform: 'translateY(-100vh)'
 				})
@@ -110,7 +103,7 @@ import { slideInAnimation } from './animation/route.animation';
 	]
 })
 export class AppComponent implements OnInit {
-	title: string = 'Client';
+	title: string = 'Cinema';
 
 	open: boolean = true;
 	exp: boolean = true;
