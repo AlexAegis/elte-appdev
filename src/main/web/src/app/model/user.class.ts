@@ -10,7 +10,7 @@ export class User implements Named {
 	password: string;
 	id: number;
 	@jsonMember
-	person: Person;
+	person: Person = new Person();
 	active: boolean;
 	enabled: boolean;
 	authorities: Array<GrantedAuthority>;

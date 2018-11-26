@@ -17,7 +17,6 @@ insert into authority_group (name) values ('user');
 insert into authority_group_users (groups_id, users_id) values (select id from authority_group where name = 'admin', select id from user where username = 'admin');
 insert into authority_group_users (groups_id, users_id) values (select id from authority_group where name = 'user', select id from user where username = 'admin');
 insert into authority_group_users (groups_id, users_id) values (select id from authority_group where name = 'user', select id from user where username = 'a');
-insert into authority_group_users (groups_id, users_id) values (select id from authority_group where name = 'user', select id from user where username = 's');
 
 insert into authority (authority, group_id) values ('USER.CREATE', select id from authority_group where name = 'admin');
 insert into authority (authority, group_id) values ('USER.READ:ANY', select id from authority_group where name = 'admin');

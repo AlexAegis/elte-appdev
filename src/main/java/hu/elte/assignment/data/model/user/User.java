@@ -37,7 +37,7 @@ public class User extends Base implements UserDetails, Serializable {
 
 	private String specialKey;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Person person;
 
 	@JsonIgnore

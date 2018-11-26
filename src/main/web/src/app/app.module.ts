@@ -26,6 +26,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { LoremComponent } from './component/dummy/lorem/lorem.component';
 import { PersonComponent } from './component/people/person/person.component';
 import { UserFormComponent } from './component/login/user-form/user-form.component';
+import { UserService } from './service/user/user.service';
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [
@@ -69,6 +70,7 @@ import { UserFormComponent } from './component/login/user-form/user-form.compone
 	],
 	providers: [
 		AuthService,
+		UserService,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useExisting: RefreshTokenInterceptor,
