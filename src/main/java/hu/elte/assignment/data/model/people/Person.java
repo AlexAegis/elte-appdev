@@ -36,9 +36,11 @@ public class Person extends Base implements Serializable {
 	@OneToOne(mappedBy = "person")
 	private User user;
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "actors")
-	private List<Movie> participates;
+	private List<Movie> participates = new ArrayList<>();
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "owner")
 	private List<Ticket> tickets = new ArrayList<>();
 }
