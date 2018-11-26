@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
 	selector: 'app-person',
@@ -7,8 +7,17 @@ import { FormGroup } from '@angular/forms';
 	styleUrls: ['./person.component.scss']
 })
 export class PersonComponent implements OnInit {
-	@Input() personForm: FormGroup;
-	constructor() {}
+	@Input()
+	parent: FormGroup;
 
-	ngOnInit() {}
+	person: FormGroup = this.formBuilder.group({
+		firstName: [''],
+		lastName: ['']
+	});
+
+	ngOnInit() {
+		this.parent.setControl('person', this.person);
+	}
+
+	constructor(private formBuilder: FormBuilder) {}
 }

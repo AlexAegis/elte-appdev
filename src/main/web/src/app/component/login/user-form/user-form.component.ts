@@ -34,8 +34,4 @@ export class UserFormComponent implements OnInit {
 	ngOnInit() {
 		this.parent.setControl('user', this.user);
 	}
-
-	doSub() {
-		console.log('asdasdasds');
-	}
 }

@@ -1,4 +1,10 @@
-import { Component, OnInit, HostListener, OnDestroy, Input } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	HostListener,
+	OnDestroy,
+	Input
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../model/user.class';
 import { AuthService } from 'src/app/service/auth.service';
