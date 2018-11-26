@@ -19,20 +19,7 @@ import { forbiddenNameValidator } from 'src/app/validator/name.validator';
 })
 export class RegisterComponent implements OnInit {
 	hidePassword = true;
-	registrationForm: FormGroup = this.formBuilder.group(
-		{
-			username: ['', [Validators.required]],
-			password: ['', [Validators.required]]
-		},
-		{
-			validator: forbiddenNameValidator(/asd/)
-		}
-	);
-
-	person: FormGroup = this.formBuilder.group({
-		firstName: [''],
-		lastName: ['']
-	});
+	registrationForm: FormGroup = this.formBuilder.group({});
 
 	constructor(private formBuilder: FormBuilder) {}
 

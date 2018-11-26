@@ -1,32 +1,7 @@
-<form [formGroup]="registrationForm" (ngSubmit)="register()">
-	<mat-form-field hideRequiredMarker>
-		<input
-			id="usernameReg"
-			matInput
-			formControlName="username"
-			autocomplete="username"
-			placeholder="Username"
-		/>
-		<mat-error *ngIf="registrationForm.controls['username'].errors">
-			Required
-		</mat-error>
-	</mat-form-field>
+<form [formGroup]="registrationForm" (submit)="register()">
+	<app-user-form id="user-group" [parent]="registrationForm"></app-user-form>
 
-	<mat-form-field hideRequiredMarker>
-		<input
-			id="passwordReg"
-			matInput
-			formControlName="password"
-			autocomplete="new-password"
-			placeholder="Password"
-			[type]="hidePassword ? 'password' : 'text'"
-		/>
-		<mat-icon matSuffix (click)="hide = !hide">{{
-			hidePassword ? 'visibility_off' : 'visibility'
-		}}</mat-icon>
-	</mat-form-field>
-
-	<app-person [personForm]="person"> </app-person>
+	<app-person [parent]="registrationForm"> </app-person>
 
 	<button
 		id="registerButton"
