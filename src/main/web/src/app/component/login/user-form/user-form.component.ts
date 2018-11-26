@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { forbiddenNameValidator } from 'src/app/validator/name.validator';
+import { matchValidator } from 'src/app/validator/match.validator';
+import { requiredIf } from 'src/app/validator/required-if.validator';
 
 @Component({
 	selector: 'app-user-form',
@@ -21,17 +23,26 @@ export class UserFormComponent implements OnInit {
 	@Input()
 	parent: FormGroup;
 
-	user: FormGroup = this.formBuilder.group(
-		{
-			username: ['', [Validators.required]],
-			password: ['', [Validators.required]]
-		},
-		{
-			validator: forbiddenNameValidator(/asd/)
-		}
-	);
+	@Input()
+	confirmNeeded: boolean;
+
+	user: FormGroup;
 
 	ngOnInit() {
+		this.user = this.formBuilder.group(
+			{
+				username: ['', [Validators.required]],
+				password: ['', [Validators.required]],
+				passwordConfirm: ['', [requiredIf(this.confirmNeeded)]]
+			},
+			{
+				validator: matchValidator(
+					'password',
+					'passwordConfirm',
+					this.confirmNeeded
+				)
+			}
+		);
 		this.parent.setControl('user', this.user);
 	}
 }

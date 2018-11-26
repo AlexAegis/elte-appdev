@@ -25,5 +25,16 @@
 				hide ? 'visibility_off' : 'visibility'
 			}}</mat-icon>
 		</mat-form-field>
+
+		<mat-form-field hideRequiredMarker *ngIf="confirmNeeded">
+			<input
+				matInput
+				type="password"
+				autocomplete="current-password"
+				formControlName="passwordConfirm"
+				placeholder="Confirm password"
+				[type]="hide ? 'password' : 'text'"
+			/>
+		</mat-form-field>
 	</div>
 </div>
