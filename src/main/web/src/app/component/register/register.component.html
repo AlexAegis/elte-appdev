@@ -1,5 +1,9 @@
 <form [formGroup]="registrationForm" (submit)="register()">
-	<app-user-form id="user-group" [parent]="registrationForm"></app-user-form>
+	<app-user-form
+		id="user-group"
+		[parent]="registrationForm"
+		[confirmNeeded]="true"
+	></app-user-form>
 
 	<app-person [parent]="registrationForm"> </app-person>
 

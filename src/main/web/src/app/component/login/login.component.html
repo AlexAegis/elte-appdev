@@ -1,7 +1,18 @@
-<form novalidate #f="ngForm" [formGroup]="loginForm" (submit)="doLogin(f)">
-	<app-user-form id="user-group" [parent]="loginForm"></app-user-form>
+<form #f="ngForm" [formGroup]="loginForm" (submit)="doLogin(f)">
+	<app-user-form
+		id="user-group"
+		[parent]="loginForm"
+		[confirmNeeded]="false"
+	></app-user-form>
 
-	<button id="login" type="submit" mat-flat-button>Login</button>
+	<button
+		id="login"
+		type="submit"
+		mat-flat-button
+		[disabled]="!loginForm.valid"
+	>
+		Login
+	</button>
 	<button
 		id="register"
 		type="button"
