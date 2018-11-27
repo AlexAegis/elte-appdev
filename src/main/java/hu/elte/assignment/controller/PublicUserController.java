@@ -41,7 +41,7 @@ final class PublicUserController {
 	 * @return response for the login
 	 */
 	@PostMapping("/register")
-	ResponseEntity<String> register(@RequestBody() final User user) {
+	ResponseEntity<User> register(@RequestBody() final User user) {
 		try {
 			System.out.println("REGISTRATONNN! BEF PASS" + user);
 			// System.out.println("REGISTRATONNN! DTO" + userDTO);
@@ -49,10 +49,15 @@ final class PublicUserController {
 			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 			System.out.println("REGISTRATONNN! CONVO" + user);
 			userRepository.save(user);
-			return ResponseEntity.ok("");
+			return ResponseEntity.ok(user);
 		} catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("SMD");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
+	}
+
+	@GetMapping("/name/{username}")
+	ResponseEntity<Boolean> name(@PathVariable("username") final String username) {
+		return ResponseEntity.ok(this.userRepository.findByUsername(username).isPresent());
 	}
 
 }

@@ -19,7 +19,6 @@ public class DelayerInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if(delay > 0) {
             logger.warn("The delayer interceptor is turned on!");
-            logger.info("ZA WARUDO!");
             Thread.sleep(delay);
         }
         return true;
