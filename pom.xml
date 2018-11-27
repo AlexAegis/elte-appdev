@@ -170,23 +170,11 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                     </execution>
-
                     <execution>
                         <id>npm install</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
-                    </execution>
-
-                    <execution>
-                        <id>npm run build</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-
-                        <configuration>
-                            <arguments>run build</arguments>
-                        </configuration>
                     </execution>
                     <execution>
                         <id>prod</id>
@@ -207,7 +195,7 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>validate</phase>
+                        <phase>generate-sources</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
