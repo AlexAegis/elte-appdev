@@ -10,7 +10,8 @@ import {
 	MatInputModule,
 	MatRippleModule,
 	ErrorStateMatcher,
-	ShowOnDirtyErrorStateMatcher
+	ShowOnDirtyErrorStateMatcher,
+	MatProgressSpinnerModule
 } from '@angular/material';
 
 import { NgModule } from '@angular/core';
@@ -25,12 +26,15 @@ const modules = [
 	MatCardModule,
 	MatSidenavModule,
 	MatTooltipModule,
-	MatToolbarModule
+	MatToolbarModule,
+	MatProgressSpinnerModule
 ];
 
 @NgModule({
 	imports: [...modules],
 	exports: [...modules],
-	providers: [{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }]
+	providers: [
+		{ provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+	]
 })
 export class MaterialModule {}

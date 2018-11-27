@@ -7,9 +7,35 @@
 				formControlName="username"
 				placeholder="Username"
 			/>
-			<mat-error *ngIf="user.controls['username'].errors">
-				Required
+			<mat-error *ngIf="user.controls['username'].errors?.required">
+				Reqired
 			</mat-error>
+
+			<mat-error
+				*ngIf="
+					user.controls['username'].value &&
+					user.controls['username'].invalid &&
+					user.controls['username'].dirty
+				"
+			>
+				<ng-template [ngIf]="allowExisting">
+					Username does not exist
+				</ng-template>
+				<ng-template [ngIf]="!allowExisting">
+					Username already exist
+				</ng-template>
+			</mat-error>
+
+			<mat-hint *ngIf="user.controls['username'].valid">
+				Hooray :)
+			</mat-hint>
+
+			<mat-spinner
+				*ngIf="user.controls['username'].pending"
+				color="accent"
+				diameter="20"
+				matSuffix
+			></mat-spinner>
 		</mat-form-field>
 
 		<mat-form-field hideRequiredMarker>
