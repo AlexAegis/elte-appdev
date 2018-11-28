@@ -227,6 +227,7 @@
                                     <followSymlinks>false</followSymlinks>
                                 </fileset>
                             </filesets>
+                            <excludeDefaultDirectories>true</excludeDefaultDirectories>
                         </configuration>
 
                     </execution>
