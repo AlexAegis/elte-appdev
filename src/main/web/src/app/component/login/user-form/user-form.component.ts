@@ -3,7 +3,7 @@ import {
 	OnInit,
 	Input,
 	Output,
-	OnChanges,
+	AfterViewInit,
 	ViewChild,
 	ElementRef
 } from '@angular/core';
@@ -26,17 +26,17 @@ import { UserService } from 'src/app/service/user/user.service';
 	templateUrl: './user-form.component.html',
 	styleUrls: ['./user-form.component.scss']
 })
-export class UserFormComponent implements OnInit, OnChanges {
+export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
+	ngAfterViewInit(): void {
+		console.log('asda');
+	}
+
 	constructor(
 		private formBuilder: FormBuilder,
 		private userService: UserService
 	) {}
 
 	hide = true;
-
-	ngOnChanges() {
-		console.log('RERER');
-	}
 
 	@Input()
 	parent: FormGroup;
@@ -87,5 +87,8 @@ export class UserFormComponent implements OnInit, OnChanges {
 			}
 		);
 		this.parent.setControl('user', this.user);
+		if (this.userService.username) {
+			this.user.get('username').markAsDirty();
+		}
 	}
 }

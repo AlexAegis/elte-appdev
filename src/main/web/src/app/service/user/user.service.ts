@@ -12,11 +12,8 @@ export class UserService {
 
 	username: string;
 
-	register(user: User): void {
-		console.log(`register service! ${JSON.stringify(user)}`);
-		this.http
-			.post<User>('rest/public/user/register', user)
-			.subscribe(res => console.log(res), err => console.log(err));
+	register(user: User): Observable<User> {
+		return this.http.post<User>('rest/public/user/register', user);
 	}
 
 	usernameTaken(username: string): Observable<boolean> {
