@@ -1,18 +1,15 @@
 # Cinema
 
+[![Build Status](https://travis-ci.org/AlexAegis/elte-appdev.svg?branch=master)](https://travis-ci.org/AlexAegis/elte-appdev)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-## [Live Demo @ Heroku](https://elte-cinema.herokuapp.com/)
+## [Live Demo on Heroku](https://elte-cinema.herokuapp.com/)
 
 Compiling and running this is straightforward and only needs Java to be installed, however if you want to jump straight to running the server head over to [releases](https://github.com/AlexAegis/elte-appdev/releases) and grab the newest one. It's a background process so I recommend you starting it in a console if you want to shut it down easily.
 
 ```cmd
 java -jar cinema.jar
 ```
-
-http://metal.web.elte.hu/af/gyak7.txt
-https://github.com/elteKrisztianKereszti/alkfejl_2018_1-app
-
 
 ## Functional requirements
 
