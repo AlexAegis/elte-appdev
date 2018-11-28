@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 export class UserService {
 	constructor(private http: HttpClient) {}
 
+	username: string;
+
 	register(user: User): void {
 		console.log(`register service! ${JSON.stringify(user)}`);
 		this.http

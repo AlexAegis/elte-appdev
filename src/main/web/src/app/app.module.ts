@@ -11,7 +11,7 @@ import { AuthService } from './service/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserComponent } from './component/user/user.component';
 import { LoadingComponent } from './component/loading/loading.component';
-import { LoadingDirective } from './directives/loading.directive';
+import { LoadingDirective } from './directive/loading.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './module/material.module';
 import { MomentModule } from 'ngx-moment';
@@ -27,6 +27,7 @@ import { LoremComponent } from './component/dummy/lorem/lorem.component';
 import { PersonComponent } from './component/people/person/person.component';
 import { UserFormComponent } from './component/login/user-form/user-form.component';
 import { UserService } from './service/user/user.service';
+import { FocusDirective } from './directive/focus.directive';
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [
@@ -41,7 +42,8 @@ import { UserService } from './service/user/user.service';
 		RegisterComponent,
 		LoremComponent,
 		PersonComponent,
-		UserFormComponent
+		UserFormComponent,
+		FocusDirective
 	],
 	imports: [
 		BrowserModule,

@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	Input,
+	Output,
+	OnChanges,
+	ViewChild,
+	ElementRef
+} from '@angular/core';
 import {
 	FormGroup,
 	Validators,
@@ -41,11 +49,14 @@ export class UserFormComponent implements OnInit, OnChanges {
 
 	user: FormGroup;
 
+	@ViewChild('username')
+	username: ElementRef;
+
 	ngOnInit() {
 		this.user = this.formBuilder.group(
 			{
 				username: [
-					'',
+					this.userService.username || '',
 					[Validators.required],
 					[
 						validateObservable<boolean>(
