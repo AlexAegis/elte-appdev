@@ -1,6 +1,7 @@
 # Cinema
 
 [![Build Status](https://travis-ci.org/AlexAegis/elte-appdev.svg?branch=master)](https://travis-ci.org/AlexAegis/elte-appdev)
+
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## [Live Demo on Heroku](https://elte-cinema.herokuapp.com/)
@@ -102,7 +103,6 @@ command line:
 ```cmd
 ./mvnw spring-boot:run
 ```
-
 
 If you want to use hot reload (and your JVM is capable) just pass the _-P dev_ profile parameter and it will use the
 necessary JVM arguments.
@@ -215,7 +215,7 @@ you can do this by opening up the 'Environment' panel and putting this in the VM
 
 > **Command Line Tools** for Travis
 
-You need ruby to use the Travis CLI 
+You need ruby to use the Travis CLI
 
 Windows:
 
@@ -227,16 +227,24 @@ then follow the instructions on the link given
 
 ## Services
 
+### [GitHub](https://github.com/)
+
+> **Git** repository
+
 ### [Travis](https://travis-ci.com/)
 
 > **Continuous Integration** solution
 
-To setup automatic Heroku deployment to Travis just run the following command 
-(You need both Travis and Heroku CLI's installed)
+To setup automatic deployment to Heroku through travis
+you either enable the Travis app on Github and then enable CI on Heroku or you tell
+Travis to deploy to Heroku in the configuration file of Travis.
+The Travis CLI has a wizard for setting up this entry.
+You need both Travis and Heroku CLI's installed.
 
 ```bash
 travis setup heroku
 ```
 
+### [Heroku](https://heroku.com/)
 
-
+> **Deployment Platform**
