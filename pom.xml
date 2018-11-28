@@ -195,7 +195,7 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>generate-sources</phase>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
