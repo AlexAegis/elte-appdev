@@ -25,6 +25,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 import { trigger } from '@angular/animations';
 import { forbiddenNameValidator } from 'src/app/validator/name.validator';
 import { UserFormComponent } from './user-form/user-form.component';
+import { UserService } from 'src/app/service/user/user.service';
 
 @Component({
 	selector: 'app-login',
@@ -32,7 +33,11 @@ import { UserFormComponent } from './user-form/user-form.component';
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-	constructor(private auth: AuthService, private formBuilder: FormBuilder) {}
+	constructor(
+		private auth: AuthService,
+		private formBuilder: FormBuilder,
+		public userService: UserService
+	) {}
 
 	loginForm: FormGroup = this.formBuilder.group({});
 
@@ -41,8 +46,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 	ngOnDestroy() {
 		// prevent memory leak when component destroyed
 	}
+	initRegistration() {
+		this.userService.username = this.loginForm
+			.get('user')
+			.get('username').value;
+	}
 
 	doLogin(form: NgForm) {
+		this.userService.username = undefined;
 		this.auth.login(
 			this.loginForm.get('user').get('username').value,
 			this.loginForm.get('user').get('password').value

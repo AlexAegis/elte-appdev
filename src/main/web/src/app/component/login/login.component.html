@@ -1,4 +1,9 @@
-<form #f="ngForm" [formGroup]="loginForm" (submit)="doLogin(f)">
+<form
+	#f="ngForm"
+	[formGroup]="loginForm"
+	(submit)="doLogin(f)"
+	(keydown.enter)="!f.valid ? registerButton.focus() : $event"
+>
 	<app-user-form
 		id="user-group"
 		[parent]="loginForm"
@@ -16,9 +21,11 @@
 	</button>
 	<button
 		id="register"
+		#registerButton
 		type="button"
 		mat-flat-button
 		[routerLink]="[{ outlets: { register: ['register'] } }]"
+		(click)="initRegistration()"
 	>
 		Register
 	</button>

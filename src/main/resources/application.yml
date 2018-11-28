@@ -16,7 +16,7 @@ security:
     jwt:
         client-id: CinemaClient
         client-secret: f2a1ed52710d4533bde25be6da03b6e3
-        grant-type: 'password '
+        grant-type: 'password'
         resource-ids: CinemaRest
         scope-read: read
         scope-write: write
