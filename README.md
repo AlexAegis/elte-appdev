@@ -1,6 +1,6 @@
 # [Cinema](https://elte-cinema.herokuapp.com/)
 
-[![Build Status](https://travis-ci.com/AlexAegis/elte-appdev.svg?branch=master)](https://travis-ci.org/AlexAegis/elte-appdev)
+[![Build Status](https://travis-ci.com/AlexAegis/elte-appdev.svg?branch=master)](https://travis-ci.com/AlexAegis/elte-appdev)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## [Live Demo on Heroku](https://elte-cinema.herokuapp.com/)
