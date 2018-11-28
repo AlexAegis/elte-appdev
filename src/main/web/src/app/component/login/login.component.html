@@ -2,10 +2,15 @@
 	#f="ngForm"
 	[formGroup]="loginForm"
 	(submit)="doLogin(f)"
-	(keydown.enter)="!f.valid ? registerButton.focus() : $event"
+	(keydown.enter)="
+		!f.valid && !f.form.controls['user'].controls['username'].valid
+			? registerButton.focus()
+			: $event
+	"
 >
 	<app-user-form
 		id="user-group"
+		#userForm
 		[parent]="loginForm"
 		[confirmNeeded]="false"
 		[allowExisting]="true"
@@ -15,6 +20,9 @@
 		id="login"
 		type="submit"
 		mat-flat-button
+		[ngClass]="{
+			lit: f.valid || f.form.controls['user'].controls['username'].valid
+		}"
 		[disabled]="!loginForm.valid"
 	>
 		Login
@@ -24,6 +32,9 @@
 		#registerButton
 		type="button"
 		mat-flat-button
+		[ngClass]="{
+			lit: !f.valid && !f.form.controls['user'].controls['username'].valid
+		}"
 		[routerLink]="[{ outlets: { register: ['register'] } }]"
 		(click)="initRegistration()"
 	>

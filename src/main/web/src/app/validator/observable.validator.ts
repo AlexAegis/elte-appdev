@@ -6,8 +6,15 @@ import {
 import { Observable, timer } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
+/**
+ * Generic async validator creator for observables
+ *
+ * @param observable a funcion which returns an observable based on the control
+ * @param resolver a function which resolves the result of the observable
+ * @param debounce time, prevents server stress
+ */
 export function validateObservable<T>(
-	observable: (AbstractControl) => Observable<T>,
+	observable: (control: AbstractControl) => Observable<T>,
 	resolver: (result: T) => ValidationErrors | undefined,
 	debounce: number = 500
 ): AsyncValidatorFn {

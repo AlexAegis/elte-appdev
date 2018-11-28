@@ -59,4 +59,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 			this.loginForm.get('user').get('password').value
 		);
 	}
+
+	log(e) {
+		console.log(e);
+	}
 }
