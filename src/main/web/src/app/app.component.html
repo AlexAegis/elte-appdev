@@ -27,19 +27,12 @@
 <div id="content">
 	<div><router-outlet #outlet="outlet"></router-outlet></div>
 	<div id="devtools">
-		<button id="refresh" mat-flat-button (click)="auth.refresh()">
-			REFREEE
-		</button>
-
 		<button id="whoami" mat-flat-button (click)="whoami()">
-			WHOIREALLYAM
+			Log current user
 		</button>
 	</div>
 	<div id="a"></div>
 	<div id="b"></div>
-	<button [routerLink]="[{ outlets: { register: ['register'] } }]">
-		Register
-	</button>
 
 	<app-lorem></app-lorem>
 
