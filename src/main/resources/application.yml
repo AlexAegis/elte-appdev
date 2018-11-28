@@ -1,0 +1,42 @@
+h2:
+    tcp:
+        enabled: true
+interceptor:
+    delay: 0
+logging:
+    level:
+        org:
+            hibernate:
+                SQL: debug
+                type:
+                    descriptor:
+                        sql: trace
+security:
+    encoding-strength: 256
+    jwt:
+        client-id: CinemaClient
+        client-secret: f2a1ed52710d4533bde25be6da03b6e3
+        grant-type: 'password '
+        resource-ids: CinemaRest
+        scope-read: read
+        scope-write: write
+    oauth2:
+        resource:
+            filter-order: 3
+    security-realm: CinemaRealm
+    signing-key: MaYzkSjmkzPC57L
+server:
+    port: 8080
+spring:
+    datasource:
+        driver-class-name: org.h2.Driver
+        password: ''
+        platform: h2
+        url: jdbc:h2:mem:mydb
+        username: sa
+    h2:
+        console:
+            enabled: true
+            path: /public/h2
+            settings:
+                web-allow-others: true
