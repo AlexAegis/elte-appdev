@@ -206,3 +206,37 @@ you can do this by opening up the 'Environment' panel and putting this in the VM
 
 > **Compile time magic** before compile time.
 > Install [this plugin](https://plugins.jetbrains.com/plugin/6317-lombok-plugin) if you're using IntelliJ.
+
+### [Chocolately](https://chocolatey.org/)
+
+> **Package Manager** for Windows
+
+### [Travis CLI](https://github.com/travis-ci/travis.rb#installation)
+
+> **Command Line Tools** for Travis
+
+You need ruby to use the Travis CLI 
+
+Windows:
+
+```cmd
+choco install ruby
+```
+
+then follow the instructions on the link given
+
+## Services
+
+### [Travis](https://travis-ci.com/)
+
+> **Continuous Integration** solution
+
+To setup automatic Heroku deployment to Travis just run the following command 
+(You need both Travis and Heroku CLI's installed)
+
+```bash
+travis setup heroku
+```
+
+
+
