@@ -1,6 +1,5 @@
 package hu.elte.assignment.controller;
 
-import hu.elte.assignment.data.dto.user.UserDTO;
 import hu.elte.assignment.data.model.user.User;
 import lombok.experimental.FieldDefaults;
 import org.modelmapper.ModelMapper;
