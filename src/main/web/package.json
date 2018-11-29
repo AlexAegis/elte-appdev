@@ -38,7 +38,7 @@
 		"moment": "^2.22.2",
 		"ng2-dragula": "^2.1.1",
 		"ngx-avatar": "^3.2.0",
-		"ngx-charts": "^3.0.2",
+		"@swimlane/ngx-charts": "^10.0.0",
 		"ngx-moment": "^3.2.0",
 		"ngx-valdemort": "^1.0.0",
 		"placeholder-loading": "^0.1.5",
