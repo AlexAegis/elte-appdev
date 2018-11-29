@@ -1,18 +1,5 @@
-import {
-	Component,
-	OnInit,
-	Input,
-	Output,
-	AfterViewInit,
-	ViewChild,
-	ElementRef
-} from '@angular/core';
-import {
-	FormGroup,
-	Validators,
-	FormBuilder,
-	AbstractControl
-} from '@angular/forms';
+import { Component, OnInit, Input, Output, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { forbiddenNameValidator } from 'src/app/validator/name.validator';
 import { matchValidator } from 'src/app/validator/match.validator';
 import { requiredIf } from 'src/app/validator/required-if.validator';
@@ -20,6 +7,8 @@ import { validateObservable } from 'src/app/validator/observable.validator';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { UserService } from 'src/app/service/user/user.service';
+import { UserAvailableResponse } from 'src/app/model/api/public/user/available.get.interface';
+import { ApiResponse } from 'src/app/model/api/api-response.interface';
 
 @Component({
 	selector: 'app-user-form',
@@ -31,10 +20,7 @@ export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
 		console.log('asda');
 	}
 
-	constructor(
-		private formBuilder: FormBuilder,
-		private userService: UserService
-	) {}
+	constructor(private formBuilder: FormBuilder, private userService: UserService) {}
 
 	hide = true;
 
@@ -59,16 +45,13 @@ export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
 					this.userService.username || '',
 					[Validators.required],
 					[
-						validateObservable<boolean>(
-							(ctrl: AbstractControl) =>
-								this.userService.usernameTaken(ctrl.value),
-							(result: boolean) => {
+						validateObservable<ApiResponse<UserAvailableResponse>>(
+							(ctrl: AbstractControl) => this.userService.usernameTaken(ctrl.value),
+							(result: ApiResponse<UserAvailableResponse>) => {
 								if (this.allowExisting) {
-									return result
-										? undefined
-										: { taken: false };
+									return result.data.available ? undefined : { taken: false };
 								} else {
-									return result ? { taken: true } : undefined;
+									return result.data.available ? { taken: true } : undefined;
 								}
 							},
 							200
@@ -79,11 +62,7 @@ export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
 				passwordConfirm: ['', [requiredIf(this.confirmNeeded)]]
 			},
 			{
-				validator: matchValidator(
-					'password',
-					'passwordConfirm',
-					this.confirmNeeded
-				)
+				validator: matchValidator('password', 'passwordConfirm', this.confirmNeeded)
 			}
 		);
 		this.parent.setControl('user', this.user);

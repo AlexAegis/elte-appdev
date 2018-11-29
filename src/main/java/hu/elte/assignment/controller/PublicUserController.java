@@ -1,7 +1,12 @@
 package hu.elte.assignment.controller;
 
+import hu.elte.assignment.api.Message;
+import hu.elte.assignment.api.MessageType;
+import hu.elte.assignment.api.Response;
 import hu.elte.assignment.data.model.user.User;
 import hu.elte.assignment.data.repository.user.UserRepository;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import static lombok.AccessLevel.PRIVATE;
 
 @RestController
-@RequestMapping("/rest/public/user")
+@RequestMapping("/rest/public/users")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 final class PublicUserController {
 
@@ -51,9 +56,20 @@ final class PublicUserController {
 		}
 	}
 
-	@GetMapping("/name/{username}")
-	ResponseEntity<Boolean> name(@PathVariable("username") final String username) {
-		return ResponseEntity.ok(this.userRepository.findByUsername(username).isPresent());
+	@GetMapping("/available/{username}")
+	ResponseEntity<Response<AvailablePayload>> available(@PathVariable("username") final String username) {
+		boolean present = this.userRepository.findByUsername(username).isPresent();
+		Response.ResponseBuilder<AvailablePayload> res = Response.<AvailablePayload>builder().data(new AvailablePayload(true));
+		if(present) {
+			res.message(Message.builder().type(MessageType.ERROR).message("username_not_available").build());
+		}
+		return ResponseEntity.ok(res.build());
+	}
+
+	@Data
+	@AllArgsConstructor
+	class AvailablePayload {
+		boolean available;
 	}
 
 }

@@ -3,7 +3,8 @@ import { Person } from '../../model/people/person.class';
 import { User } from '../../model/user.class';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import * as IUserAvailable from '../../model/api/public/user/available.get.interface';
+import { ApiResponse } from 'src/app/model/api/api-response.interface';
 @Injectable({
 	providedIn: 'root'
 })
@@ -16,7 +17,7 @@ export class UserService {
 		return this.http.post<User>('rest/public/user/register', user);
 	}
 
-	usernameTaken(username: string): Observable<boolean> {
-		return this.http.get<boolean>(`rest/public/user/name/${username}`);
+	usernameTaken(username: string): Observable<ApiResponse<IUserAvailable.UserAvailableResponse>> {
+		return this.http.get<ApiResponse<IUserAvailable.UserAvailableResponse>>(IUserAvailable.url(username));
 	}
 }
