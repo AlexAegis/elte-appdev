@@ -18,7 +18,8 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 	): Observable<HttpEvent<any>> {
 		if (
 			!req.url.startsWith('oauth') &&
-			!req.url.startsWith('rest/public')
+			!req.url.startsWith('rest/public') &&
+			!req.url.startsWith('rest/users/current')
 		) {
 			this.auth.refresh();
 		}
