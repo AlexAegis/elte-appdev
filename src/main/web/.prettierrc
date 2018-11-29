@@ -2,7 +2,7 @@
 	"tabWidth": 4,
 	"useTabs": true,
 	"singleQuote": true,
-	"printWidth": 80,
+	"printWidth": 120,
 	"eslintIntegration": true,
 	"jsonEnable": true,
 	"overrides": [
