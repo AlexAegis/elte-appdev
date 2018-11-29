@@ -2,18 +2,14 @@
 	#f="ngForm"
 	[formGroup]="loginForm"
 	(submit)="doLogin(f)"
-	(keydown.enter)="
-		!f.valid && !f.form.controls['user'].controls['username'].valid
-			? registerButton.focus()
-			: $event
-	"
+	(keydown.enter)="!f.valid && !f.form.controls['user'].controls['username'].valid ? registerButton.focus() : $event"
 >
 	<app-user-form
 		id="user-group"
 		#userForm
 		[parent]="loginForm"
 		[confirmNeeded]="false"
-		[allowExisting]="true"
+		[requireExisting]="true"
 	></app-user-form>
 
 	<button

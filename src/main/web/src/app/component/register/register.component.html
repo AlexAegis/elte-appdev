@@ -3,17 +3,12 @@
 		id="user-group"
 		[parent]="registrationForm"
 		[confirmNeeded]="true"
-		[allowExisting]="false"
+		[requireExisting]="false"
 	></app-user-form>
 
 	<app-person [parent]="registrationForm"> </app-person>
-
-	<button
-		id="registerButton"
-		mat-flat-button
-		type="submit"
-		[disabled]="!registrationForm.valid"
-	>
-		Register
-	</button>
+	{{ registrationForm.errors && registrationForm.errors['username_not_available'] | json }}
+	<mat-error *ngIf="registrationForm.errors && registrationForm.errors['username_not_available']"> Hejho </mat-error>
+	{{ registrationForm.errors | json }}
+	<button id="registerButton" mat-flat-button type="submit" [disabled]="!registrationForm.valid">Register</button>
 </form>

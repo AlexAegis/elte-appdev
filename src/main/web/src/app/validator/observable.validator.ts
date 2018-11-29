@@ -13,7 +13,8 @@ import { ApiResponse } from '../model/api/api-response.interface';
 export function validateObservable<T>(
 	observable: (control: AbstractControl) => Observable<T>,
 	resolver: (result: T) => ValidationErrors | undefined,
-	debounce: number = 500
+	debounce: number = 500,
+	condition: boolean = true
 ): AsyncValidatorFn {
 	return (ctrl: AbstractControl): Observable<ValidationErrors | undefined> =>
 		timer(debounce).pipe(switchMap(() => observable(ctrl).pipe(map(resolver))));

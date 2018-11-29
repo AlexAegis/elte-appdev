@@ -9,6 +9,8 @@ import { map, catchError } from 'rxjs/operators';
 import { UserService } from 'src/app/service/user/user.service';
 import { UserAvailableResponse } from 'src/app/model/api/public/user/available.get.interface';
 import { ApiResponse } from 'src/app/model/api/api-response.interface';
+import { ParentErrorStateMatcher } from 'src/app/tool/material/error-state-matcher.class';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
 	selector: 'app-user-form',
@@ -19,6 +21,8 @@ export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
 	ngAfterViewInit(): void {
 		console.log('asda');
 	}
+
+	matcher: ParentErrorStateMatcher = new ParentErrorStateMatcher();
 
 	constructor(private formBuilder: FormBuilder, private userService: UserService) {}
 
@@ -31,7 +35,7 @@ export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
 	confirmNeeded: boolean = false;
 
 	@Input()
-	allowExisting: boolean = false;
+	requireExisting: boolean = false;
 
 	user: FormGroup;
 
@@ -48,7 +52,7 @@ export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
 						validateObservable<ApiResponse<UserAvailableResponse>>(
 							(ctrl: AbstractControl) => this.userService.usernameTaken(ctrl.value),
 							(result: ApiResponse<UserAvailableResponse>) => {
-								if (this.allowExisting) {
+								if (!this.requireExisting) {
 									return result.data.available ? undefined : { taken: false };
 								} else {
 									return result.data.available ? { taken: true } : undefined;
@@ -65,7 +69,9 @@ export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
 				validator: matchValidator('password', 'passwordConfirm', this.confirmNeeded)
 			}
 		);
-		this.parent.setControl('user', this.user);
+		this.parent.addControl('user', this.user);
+		//this.user.setParent(this.parent);
+
 		if (this.userService.username) {
 			this.user.get('username').markAsDirty();
 		}

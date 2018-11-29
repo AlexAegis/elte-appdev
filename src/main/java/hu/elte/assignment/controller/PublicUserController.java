@@ -42,25 +42,31 @@ final class PublicUserController {
 	 * @return response for the login
 	 */
 	@PostMapping("/register")
-	ResponseEntity<User> register(@RequestBody() final User user) {
+	ResponseEntity<Response<User>> register(@RequestBody() final User user) {
 		try {
-			System.out.println("REGISTRATONNN! BEF PASS" + user);
-			// System.out.println("REGISTRATONNN! DTO" + userDTO);
-			//User user = modelMapper.map(userDTO, User.class);
+			if (this.userRepository.findByUsername(user.getUsername()).isPresent()) {
+				throw new UserNotAvailableException();
+			}
 			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-			System.out.println("REGISTRATONNN! CONVO" + user);
 			userRepository.save(user);
-			return ResponseEntity.ok(user);
-		} catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+			return ResponseEntity.ok(Response.<User>builder().data(user).build());
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body(Response.<User>builder().message(Message.builder().type(MessageType.ERROR).message(e.getMessage()).build()).build());
+		}//
+	}
+
+	class UserNotAvailableException extends Exception {
+		UserNotAvailableException() {
+			super("username_not_available");
 		}
 	}
 
 	@GetMapping("/available/{username}")
 	ResponseEntity<Response<AvailablePayload>> available(@PathVariable("username") final String username) {
 		boolean present = this.userRepository.findByUsername(username).isPresent();
-		Response.ResponseBuilder<AvailablePayload> res = Response.<AvailablePayload>builder().data(new AvailablePayload(true));
-		if(present) {
+		Response.ResponseBuilder<AvailablePayload> res = Response.<AvailablePayload>builder().data(new AvailablePayload(!present));
+		if (present) {
 			res.message(Message.builder().type(MessageType.ERROR).message("username_not_available").build());
 		}
 		return ResponseEntity.ok(res.build());
