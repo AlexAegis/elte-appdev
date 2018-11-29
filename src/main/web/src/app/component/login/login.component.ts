@@ -19,13 +19,14 @@ import {
 	ValidatorFn,
 	AbstractControl
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
 import { ErrorStateMatcher } from '@angular/material';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { trigger } from '@angular/animations';
 import { forbiddenNameValidator } from 'src/app/validator/name.validator';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserService } from 'src/app/service/user/user.service';
+import { map, catchError } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-login',
@@ -54,10 +55,17 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 	doLogin(form: NgForm) {
 		this.userService.username = undefined;
-		this.auth.login(
-			this.loginForm.get('user').get('username').value,
-			this.loginForm.get('user').get('password').value
-		);
+		this.auth
+			.login(
+				this.loginForm.get('user').get('username').value,
+				this.loginForm.get('user').get('password').value
+			)
+			.pipe(
+				catchError(err => {
+					console.log('hihi: ' + err);
+					return of(err);
+				})
+			);
 	}
 
 	log(e) {

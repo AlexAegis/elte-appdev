@@ -1,6 +1,7 @@
 # [Cinema](https://elte-cinema.herokuapp.com/)
 
 [![Build Status](https://travis-ci.com/AlexAegis/elte-appdev.svg?branch=master)](https://travis-ci.com/AlexAegis/elte-appdev)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8f5aec2a4d8d4c959257671ac028dcfa)](https://www.codacy.com/app/AlexAegis/elte-appdev?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AlexAegis/elte-appdev&amp;utm_campaign=Badge_Grade)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## [Live Demo on Heroku](https://elte-cinema.herokuapp.com/)
@@ -247,3 +248,7 @@ travis setup heroku
 ### [Heroku](https://heroku.com/)
 
 > **Deployment Platform**
+
+### [Codacy](https://app.codacy.com/)
+
+> **Code review** tool
