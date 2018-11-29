@@ -1,7 +1,6 @@
 package hu.elte.assignment.controller;
 
 import hu.elte.assignment.config.DTO;
-import hu.elte.assignment.data.dto.control.FilterDTO;
 import hu.elte.assignment.data.dto.theatre.MovieDTO;
 import hu.elte.assignment.data.model.theatre.Movie;
 import hu.elte.assignment.data.repository.theatre.CinemaRepository;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Nullable;
 import javax.validation.Valid;
 
 import static lombok.AccessLevel.PRIVATE;

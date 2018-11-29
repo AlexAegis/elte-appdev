@@ -1,10 +1,8 @@
 package hu.elte.assignment.controller;
 
-import com.google.common.hash.Hashing;
-import hu.elte.assignment.data.dto.user.UserDTO;
+import hu.elte.assignment.data.model.user.User;
 import hu.elte.assignment.data.repository.user.UserRepository;
 import lombok.experimental.FieldDefaults;
-import hu.elte.assignment.data.model.user.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -12,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.nio.charset.StandardCharsets;
 
 import static lombok.AccessLevel.PRIVATE;
 

@@ -2,7 +2,6 @@ package hu.elte.assignment.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hu.elte.assignment.interceptor.DelayerInterceptor;
-import org.checkerframework.checker.fenum.qual.AwtFlowLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
