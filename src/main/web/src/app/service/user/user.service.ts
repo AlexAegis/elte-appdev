@@ -4,6 +4,7 @@ import { User } from '../../model/user.class';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as IUserAvailable from '../../model/api/public/user/available.get.interface';
+import * as IUserRegister from '../../model/api/public/user/register.post.interface';
 import { ApiResponse } from 'src/app/model/api/api-response.interface';
 @Injectable({
 	providedIn: 'root'
@@ -13,8 +14,8 @@ export class UserService {
 
 	username: string;
 
-	register(user: User): Observable<User> {
-		return this.http.post<User>('rest/public/user/register', user);
+	register(user: User): Observable<ApiResponse<IUserRegister.RegisterResponse>> {
+		return this.http.post<ApiResponse<IUserRegister.RegisterResponse>>(IUserRegister.url(), user);
 	}
 
 	usernameTaken(username: string): Observable<ApiResponse<IUserAvailable.UserAvailableResponse>> {
