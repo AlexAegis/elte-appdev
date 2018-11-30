@@ -11,17 +11,7 @@ import { AuthGuard } from '../guard/auth.guard';
 	styleUrls: ['./app.component.scss'],
 	animations: [
 		trigger('expand', [
-			transition('open <=> wideopen', [group([query('@*', animateChild()), animate('500ms ease')])]),
 			transition('open <=> closed', [group([query('@*', animateChild()), animate('500ms ease')])]),
-			state(
-				'wideopen',
-				style({
-					height: '90vh',
-					minHeight: '32em' // 16 rem
-					//transform: 'translateY(-10%)'
-					// backgroundColor:4 'black'
-				})
-			),
 			state(
 				'open',
 				style({
@@ -32,64 +22,40 @@ import { AuthGuard } from '../guard/auth.guard';
 			),
 			state('closed', style({}))
 		]),
-		trigger('expandMain', [
-			transition('open <=> wideopen', [group([animate('500ms ease')])]),
-			state(
-				'wideopen',
-				style({
-					transform: 'translateY(100vh)'
-				})
-			),
-			state(
-				'open',
-				style({
-					transform: 'translateY(0)'
-				})
-			)
-		]),
-		trigger('expandReg', [
-			transition('* <=> *', [
+		trigger('translateLogin', [
+			transition('open <=> closed', [
 				group([query(':leave', animate('500ms ease'), { optional: true }), animate('500ms ease')])
 			]),
 			state(
-				'wideopen',
+				'open',
 				style({
 					transform: 'translateY(0vh)'
 				})
 			),
 			state(
-				'open',
-				style({
-					transform: 'translateY(-100vh)'
-				})
-			),
-			state(
 				'closed',
 				style({
-					transform: 'translateY(-100vh)'
+					transform: 'translateY(20rem)'
 				})
 			)
 		]),
 		trigger('expandTitle', [
-			transition('closed <=> open', [animate('1100ms ease')]),
+			transition('closed <=> open', [animate('500ms ease')]),
 			state(
 				'closed',
 				style({
-					fontSize: '2rem',
+					maxHeight: '2rem',
+					height: '2rem',
+					fontSize: '2em',
 					opacity: 1
 				})
 			),
 			state(
 				'open',
 				style({
-					fontSize: '10rem',
-					opacity: 0.8
-				})
-			),
-			state(
-				'wideopen',
-				style({
-					fontSize: '10rem',
+					maxHeight: '4rem',
+					height: '4rem',
+					fontSize: '8em',
 					opacity: 0.8
 				})
 			)
@@ -113,11 +79,7 @@ export class AppComponent implements OnInit {
 	ngOnInit(): void {}
 
 	navSize() {
-		return this.auth.user === undefined
-			? this.router.url === '/(register:register)'
-				? 'wideopen'
-				: 'open'
-			: 'closed';
+		return this.auth.user === undefined && this.router.url !== '/register' ? 'open' : 'closed';
 	}
 
 	nav() {

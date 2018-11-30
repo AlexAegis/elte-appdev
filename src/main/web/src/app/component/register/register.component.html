@@ -5,10 +5,9 @@
 		[confirmNeeded]="true"
 		[requireExisting]="false"
 	></app-user-form>
-
 	<app-person [parent]="registrationForm"> </app-person>
-	{{ registrationForm.errors && registrationForm.errors['username_not_available'] | json }}
-	<mat-error *ngIf="registrationForm.errors && registrationForm.errors['username_not_available']"> Hejho </mat-error>
-	{{ registrationForm.errors | json }}
+	<mat-error *ngIf="registrationForm.errors && registrationForm.errors['username_not_available']">
+		Username not available
+	</mat-error>
 	<button id="registerButton" mat-flat-button type="submit" [disabled]="!registrationForm.valid">Register</button>
 </form>

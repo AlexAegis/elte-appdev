@@ -1,11 +1,10 @@
 # [Cinema](https://elte-cinema.herokuapp.com/)
 
+[![Demo](https://img.shields.io/badge/demo-online-ed1c46.svg)](https://elte-cinema.herokuapp.com/)
 [![Build Status](https://travis-ci.com/AlexAegis/elte-appdev.svg?branch=master)](https://travis-ci.com/AlexAegis/elte-appdev)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8f5aec2a4d8d4c959257671ac028dcfa)](https://www.codacy.com/app/AlexAegis/elte-appdev?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AlexAegis/elte-appdev&amp;utm_campaign=Badge_Grade)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f1d569ea129e57b8eb48/maintainability)](https://codeclimate.com/github/AlexAegis/elte-appdev/maintainability)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-
-## [Live Demo on Heroku](https://elte-cinema.herokuapp.com/)
 
 Compiling and running this is straightforward and only needs Java to be installed, however if you want to jump straight to running the server head over to [releases](https://github.com/AlexAegis/elte-appdev/releases) and grab the newest one. It's a background process so I recommend you starting it in a console if you want to shut it down easily.
 
@@ -257,3 +256,7 @@ travis setup heroku
 ### [Code Climate](https://codeclimate.com/dashboard)
 
 > **Code review** tool for maintainability
+
+### [Shields](https://shields.io/#/)
+
+> **Badges** to look cool

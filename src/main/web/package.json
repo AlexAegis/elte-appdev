@@ -1,11 +1,13 @@
 {
 	"name": "client",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"author": {
 		"name": "Alex Aegis",
 		"email": "alexaegis@gmail.com",
 		"url": "https://github.com/AlexAegis"
 	},
+  "bugs":"https://github.com/AlexAegis/elte-appdev/issues",
+  "repository": "https://github.com/AlexAegis/elte-appdev/",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve --proxyConfig proxy.conf.json",
@@ -30,6 +32,7 @@
 		"@angular/router": "^7.1.1",
 		"@ngx-progressbar/core": "^5.2.1",
 		"@ngx-progressbar/http": "^5.2.1",
+		"@swimlane/ngx-charts": "^10.0.0",
 		"@types/animejs": "^2.0.1",
 		"angular-oauth2-oidc": "^5.0.2",
 		"animejs": "^2.2.0",
@@ -38,8 +41,8 @@
 		"moment": "^2.22.2",
 		"ng2-dragula": "^2.1.1",
 		"ngx-avatar": "^3.2.0",
-		"@swimlane/ngx-charts": "^10.0.0",
 		"ngx-moment": "^3.2.0",
+		"ngx-scrollbar": "^3.2.2",
 		"ngx-valdemort": "^1.0.0",
 		"placeholder-loading": "^0.1.5",
 		"rxjs": "~6.3.3",

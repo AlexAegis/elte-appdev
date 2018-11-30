@@ -7,7 +7,7 @@
 	display: grid;
 	mat-toolbar {
 		width: 100%;
-		position: sticky;
+		position: fixed;
 		top: 0;
 		z-index: 100;
 		display: grid;
@@ -23,13 +23,17 @@
 			grid-row: 1;
 			grid-template-columns: 20rem auto;
 
-			h1 {
+			.title {
 				color: rgba($color: rgb(199, 244, 255), $alpha: 0.5);
 
 				grid-column: 1;
 				grid-row: 1;
 
-				width: 0;
+				height: 1em;
+				font-size: 2em;
+				width: 4em;
+				text-align: left;
+				vertical-align: top;
 			}
 
 			#user {

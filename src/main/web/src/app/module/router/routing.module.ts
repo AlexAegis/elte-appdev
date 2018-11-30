@@ -16,6 +16,8 @@ const routes: Routes = [
 	{
 		path: '',
 		canActivateChild: [AuthGuard],
+
+		canLoad: ['register'],
 		//runGuardsAndResolvers: 'always',
 		//component: HolaComponent,
 		children: [
