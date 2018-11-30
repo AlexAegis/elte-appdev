@@ -12,6 +12,7 @@ import { ApiResponse } from 'src/app/model/api/api-response.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorResponse } from 'src/app/model/api/error-response.interface';
 import { RegisterResponse } from 'src/app/model/api/public/user/register.post.interface';
+import { Router } from '@angular/router';
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
@@ -22,7 +23,7 @@ export class RegisterComponent implements OnInit {
 	hidePassword = true;
 	registrationForm: FormGroup = this.formBuilder.group({});
 
-	constructor(private formBuilder: FormBuilder, private userService: UserService) {}
+	constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {}
 
 	ngOnInit() {}
 
@@ -34,6 +35,7 @@ export class RegisterComponent implements OnInit {
 		this.userService.register(user).subscribe(
 			res => {
 				this.userService.username = res.data.username;
+				this.router.navigateByUrl('/');
 			},
 			err => {
 				const errors = {};
