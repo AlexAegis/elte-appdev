@@ -1,11 +1,6 @@
 @import '../../../style/responsive.scss';
 
 :host {
-	//align-self: center;
-	//width: 100%;
-	//height: 100%;
-	background-color: red !important;
-	//background-color: rgba(#fff, 0.1);
 	box-shadow: 0 0 100em 0 rgba(0, 0, 0, 0.192);
 
 	form {
@@ -17,8 +12,8 @@
 		//margin: 10rem 5rem 2rem 1rem;
 
 		display: grid;
-		background-color: rgba($color: #000000, $alpha: 0.08);
-		box-shadow: inset 0 0 100rem 0 rgba(0, 0, 0, 0.096);
+		background-color: rgba($color: #b6b6b6, $alpha: 0.08);
+		//box-shadow: inset 0 0 100rem 0 rgba(59, 59, 59, 0.082);
 		@include respond-to(medium, small) {
 			grid-template-columns: 1fr;
 		}

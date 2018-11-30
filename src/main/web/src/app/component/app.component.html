@@ -6,7 +6,6 @@
 				[@expandTitle]="navSize()"
 				class="title"
 				mat-button
-				color="primary"
 				[routerLink]="['']"
 				matRipple
 				disableRipple
@@ -28,21 +27,27 @@
 			</div>
 		</mat-toolbar-row>
 	</mat-toolbar>
-	<ng-scrollbar id="content" #scrollable barClass="scroll-bar" thumbClass="scroll-thumbs">
-		<router-outlet #outlet="outlet"></router-outlet>
-		<app-home *ngIf="router.url === '/' && auth.user !== undefined"></app-home>
-		<app-welcome *ngIf="router.url === '/' && auth.user === undefined"></app-welcome>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
-		<app-lorem></app-lorem>
+	<ng-scrollbar #scrollable barClass="scroll-bar" thumbClass="scroll-thumbs">
+		<div id="content">
+			<div id="content-main">
+				<router-outlet #outlet="outlet"></router-outlet>
+				<app-home *ngIf="router.url === '/' && auth.user !== undefined"></app-home>
+				<app-welcome *ngIf="router.url === '/' && auth.user === undefined"></app-welcome>
+			</div>
+		</div>
+		<!--
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+			<app-lorem></app-lorem>
+		-->
 	</ng-scrollbar>
 </div>
