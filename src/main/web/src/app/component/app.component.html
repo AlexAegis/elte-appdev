@@ -1,4 +1,4 @@
-<div class="mainwin">
+<div class="window">
 	<ng-progress #progressBar></ng-progress>
 	<mat-toolbar color="primary" [@expand]="navSize()">
 		<mat-toolbar-row id="mainBar">
@@ -9,6 +9,7 @@
 				color="primary"
 				[routerLink]="['']"
 				matRipple
+				disableRipple
 				[matRippleRadius]="800"
 			>
 				{{ title }}

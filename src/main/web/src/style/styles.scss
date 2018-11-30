@@ -79,14 +79,6 @@ body {
 }
 */
 
-.mainwin {
-	position: fixed;
-	top: 4rem;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: calc(100vh - 4rem);
-}
 .scroll-bar {
 	background-color: rgba(0, 0, 0, 0.4) !important;
 	border-radius: 4px;
@@ -97,4 +89,13 @@ body {
 	&:active {
 		background-color: rgba(161, 27, 27, 0.7) !important;
 	}
+}
+
+.window {
+	position: fixed;
+	top: 4rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: calc(100vh - 4rem);
 }
