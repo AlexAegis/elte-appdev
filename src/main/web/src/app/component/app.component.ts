@@ -1,17 +1,8 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { AuthService } from './service/auth.service';
-import {
-	transition,
-	animate,
-	state,
-	style,
-	trigger,
-	group,
-	animateChild,
-	query
-} from '@angular/animations';
+import { AuthService } from '../service/auth.service';
+import { transition, animate, state, style, trigger, group, animateChild, query } from '@angular/animations';
 import { RouterOutlet, ActivatedRoute } from '@angular/router';
-import { slideInAnimation } from './animation/route.animation';
+import { slideInAnimation } from '../animation/route.animation';
 
 @Component({
 	selector: 'app-root',
@@ -19,12 +10,8 @@ import { slideInAnimation } from './animation/route.animation';
 	styleUrls: ['./app.component.scss'],
 	animations: [
 		trigger('expand', [
-			transition('open <=> wideopen', [
-				group([query('@*', animateChild()), animate('500ms ease')])
-			]),
-			transition('open <=> closed', [
-				group([query('@*', animateChild()), animate('500ms ease')])
-			]),
+			transition('open <=> wideopen', [group([query('@*', animateChild()), animate('500ms ease')])]),
+			transition('open <=> closed', [group([query('@*', animateChild()), animate('500ms ease')])]),
 			state(
 				'wideopen',
 				style({
@@ -61,10 +48,7 @@ import { slideInAnimation } from './animation/route.animation';
 		]),
 		trigger('expandReg', [
 			transition('* <=> *', [
-				group([
-					query(':leave', animate('500ms ease'), { optional: true }),
-					animate('500ms ease')
-				])
+				group([query(':leave', animate('500ms ease'), { optional: true }), animate('500ms ease')])
 			]),
 			state(
 				'wideopen',
@@ -131,8 +115,7 @@ export class AppComponent implements OnInit {
 
 	navSize() {
 		return this.auth.user === undefined
-			? this.route.firstChild &&
-			  this.route.firstChild.outlet === 'register'
+			? this.route.firstChild && this.route.firstChild.outlet === 'register'
 				? 'wideopen'
 				: 'open'
 			: 'closed';
