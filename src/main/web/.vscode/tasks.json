@@ -13,7 +13,7 @@
 				{
 					"owner": "typescript",
 					"pattern": {
-						"regexp": "^([^\\s].*)\\((\\d+|\\,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+						"regexp": "^heeheheh([^\\s].*)\\((\\d+|\\,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
 						"file": 1,
 						"location": 2,
 						"severity": 3,

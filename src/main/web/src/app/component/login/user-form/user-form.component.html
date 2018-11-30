@@ -1,15 +1,10 @@
 <div [formGroup]="parent">
 	<div formGroupName="user" id="user-form">
 		<mat-form-field hideRequiredMarker>
-			<input
-				matInput
-				autocomplete="username"
-				formControlName="username"
-				placeholder="Username"
-				[focus]="true"
-				[errorStateMatcher]="matcher"
-			/>
-			<mat-error *ngIf="user.controls['username'].errors?.required"> Reqired </mat-error>
+			<input matInput autocomplete="username" formControlName="username" placeholder="Username" [focus]="true" />
+			<mat-error *ngIf="user.controls['username'].dirty && user.controls['username'].errors?.required">
+				Reqired
+			</mat-error>
 			<mat-error
 				*ngIf="
 					(parent.errors && parent.errors['username_not_available']) ||
@@ -35,10 +30,11 @@
 				formControlName="password"
 				placeholder="Password"
 				[type]="hide ? 'password' : 'text'"
+				[errorStateMatcher]="parentMatcher"
 			/>
+			<mat-error *ngIf="parent.errors && parent.errors['login_failed']"> Bad pass </mat-error>
 			<mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
 		</mat-form-field>
-
 		<mat-form-field hideRequiredMarker *ngIf="confirmNeeded">
 			<input
 				matInput

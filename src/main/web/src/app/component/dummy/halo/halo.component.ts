@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./halo.component.scss']
 })
 export class HaloComponent implements OnInit {
-	constructor() {}
+	constructor() {
+		console.log('halllloooo');
+	}
 
 	ngOnInit() {}
 }
