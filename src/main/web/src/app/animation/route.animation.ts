@@ -1,12 +1,4 @@
-import {
-	trigger,
-	transition,
-	style,
-	animateChild,
-	animate,
-	query,
-	group
-} from '@angular/animations';
+import { trigger, transition, style, animateChild, animate, query, group } from '@angular/animations';
 
 export const slideInAnimation = trigger('routeAnimations', [
 	transition('* <=> *', [
@@ -22,9 +14,7 @@ export const slideInAnimation = trigger('routeAnimations', [
 		query(':enter', [style({ left: '-100%' })]),
 		query(':leave', animateChild()),
 		group([
-			query(':leave', [
-				animate('300ms ease-out', style({ left: '100%' }))
-			]),
+			query(':leave', [animate('300ms ease-out', style({ left: '100%' }))]),
 			query(':enter', [animate('300ms ease-out', style({ left: '0%' }))])
 		]),
 		query(':enter', animateChild())

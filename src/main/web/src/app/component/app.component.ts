@@ -1,8 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { transition, animate, state, style, trigger, group, animateChild, query } from '@angular/animations';
-import { RouterOutlet, ActivatedRoute } from '@angular/router';
+import { RouterOutlet, ActivatedRoute, Router } from '@angular/router';
 import { slideInAnimation } from '../animation/route.animation';
+import { AuthGuard } from '../guard/auth.guard';
 
 @Component({
 	selector: 'app-root',
@@ -102,23 +103,27 @@ export class AppComponent implements OnInit {
 	open: boolean = true;
 	exp: boolean = true;
 	show: boolean = true;
-	constructor(public auth: AuthService, private route: ActivatedRoute) {}
+	constructor(
+		public auth: AuthService,
+		public route: ActivatedRoute,
+		public router: Router,
+		public authGuard: AuthGuard
+	) {}
 
 	ngOnInit(): void {}
 
-	whoami(): any {
-		console.log('whoami');
-		this.auth.queryCurrentUser().subscribe(observable => {
-			console.log(observable);
-		});
-	}
-
 	navSize() {
 		return this.auth.user === undefined
-			? this.route.firstChild && this.route.firstChild.outlet === 'register'
+			? this.router.url === '/(register:register)'
 				? 'wideopen'
 				: 'open'
 			: 'closed';
+	}
+
+	nav() {
+		this.router.navigate(['']).then(b => {
+			console.log('hejja hejj' + b);
+		});
 	}
 
 	animDebug(event) {

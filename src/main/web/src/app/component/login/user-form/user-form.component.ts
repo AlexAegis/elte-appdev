@@ -1,30 +1,22 @@
-import { Component, OnInit, Input, Output, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
-import { forbiddenNameValidator } from 'src/app/validator/name.validator';
 import { matchValidator } from 'src/app/validator/match.validator';
 import { requiredIf } from 'src/app/validator/required-if.validator';
 import { validateObservable } from 'src/app/validator/observable.validator';
-import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
 import { UserService } from 'src/app/service/user/user.service';
 import { UserAvailableResponse } from 'src/app/model/api/public/user/available.get.interface';
 import { ApiResponse } from 'src/app/model/api/api-response.interface';
 import { ParentErrorStateMatcher } from 'src/app/tool/material/error-state-matcher.class';
-import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
 	selector: 'app-user-form',
 	templateUrl: './user-form.component.html',
 	styleUrls: ['./user-form.component.scss']
 })
-export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
-	ngAfterViewInit(): void {
-		console.log('asda');
-	}
+export class UserFormComponent implements OnInit, OnInit {
+	parentMatcher: ParentErrorStateMatcher = new ParentErrorStateMatcher();
 
-	matcher: ParentErrorStateMatcher = new ParentErrorStateMatcher();
-
-	constructor(private formBuilder: FormBuilder, private userService: UserService) {}
+	constructor(private formBuilder: FormBuilder, public userService: UserService) {}
 
 	hide = true;
 
@@ -46,7 +38,7 @@ export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
 		this.user = this.formBuilder.group(
 			{
 				username: [
-					this.userService.username || '',
+					this.userService.username.getValue() || '',
 					[Validators.required],
 					[
 						validateObservable<ApiResponse<UserAvailableResponse>>(
@@ -70,9 +62,7 @@ export class UserFormComponent implements OnInit, OnInit, AfterViewInit {
 			}
 		);
 		this.parent.addControl('user', this.user);
-		//this.user.setParent(this.parent);
-
-		if (this.userService.username) {
+		if (this.userService.username.getValue()) {
 			this.user.get('username').markAsDirty();
 		}
 	}

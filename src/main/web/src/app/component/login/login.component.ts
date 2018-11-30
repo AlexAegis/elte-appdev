@@ -1,61 +1,62 @@
-import { Component, OnInit, HostListener, OnDestroy, Input, ViewChild } from '@angular/core';
-import { User } from '../../model/user.class';
-import * as moment from 'moment';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
-import {
-	FormBuilder,
-	FormGroup,
-	FormControl,
-	Validators,
-	FormGroupDirective,
-	NgForm,
-	ValidatorFn,
-	AbstractControl
-} from '@angular/forms';
-import { Subscription, of } from 'rxjs';
-import { ErrorStateMatcher } from '@angular/material';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { trigger } from '@angular/animations';
-import { forbiddenNameValidator } from 'src/app/validator/name.validator';
-import { UserFormComponent } from './user-form/user-form.component';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { UserService } from 'src/app/service/user/user.service';
-import { map, catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
-	constructor(private auth: AuthService, private formBuilder: FormBuilder, public userService: UserService) {}
-
-	loginForm: FormGroup = this.formBuilder.group({});
-
-	ngOnInit(): void {}
-
-	ngOnDestroy() {
-		// prevent memory leak when component destroyed
+export class LoginComponent implements OnInit, AfterViewInit {
+	constructor(
+		private auth: AuthService,
+		private formBuilder: FormBuilder,
+		public userService: UserService,
+		private cd: ChangeDetectorRef,
+		private router: Router
+	) {
+		console.log('construct');
 	}
+
+	loginForm: FormGroup;
+
+	ngOnInit(): void {
+		this.loginForm = this.formBuilder.group({});
+		console.log('init');
+	}
+
+	ngAfterViewInit(): void {
+		this.userService.username$.subscribe(username => {
+			console.log('new suername arrived to the logincomponent: ' + username);
+			this.loginForm.updateValueAndValidity();
+			this.loginForm
+				.get('user')
+				.get('username')
+				.updateValueAndValidity();
+
+			//this.cd.detectChanges();
+		});
+		this.loginForm.setErrors(this.userService.errors);
+		this.cd.detectChanges(); // Because we changed the structure after view init
+		this.userService.errors = undefined;
+	}
+
 	initRegistration() {
-		this.userService.username = this.loginForm.get('user').get('username').value;
+		this.userService.username.next(this.loginForm.get('user').get('username').value);
 	}
 
 	doLogin(form: NgForm) {
-		this.userService.username = undefined;
+		this.userService.username.next(undefined);
 		this.auth
 			.login(this.loginForm.get('user').get('username').value, this.loginForm.get('user').get('password').value)
 			.subscribe(
-				observer => console.log('DONE IN HOOO'),
+				observer => this.router.navigate(['']),
 				err => {
-					console.log('ERROR IN HOOO');
+					this.userService.errors = { login_failed: true };
 				}
-			); /*
-			.pipe(
-				catchError(err => {
-					console.log('hihi: ' + err);
-					return of(err);
-				})
-			);*/
+			);
 	}
 
 	log(e) {

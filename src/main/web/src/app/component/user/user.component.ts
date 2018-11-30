@@ -1,10 +1,4 @@
-import {
-	Component,
-	OnInit,
-	HostListener,
-	OnDestroy,
-	Input
-} from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../model/user.class';
 import { AuthService } from 'src/app/service/auth.service';
@@ -12,6 +6,8 @@ import { Subscription, interval, Observable, of, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Moment } from 'moment';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthGuard } from 'src/app/guard/auth.guard';
 
 @Component({
 	selector: 'app-user',
@@ -25,9 +21,21 @@ export class UserComponent implements OnInit {
 	expiration: Moment = this.auth.getAccessTokenExpiration();
 	time$: Observable<Moment> = timer(0, 1000).pipe(map(() => moment()));
 
-	constructor(private http: HttpClient, public auth: AuthService) {}
+	constructor(
+		private http: HttpClient,
+		public auth: AuthService,
+		private router: Router,
+		private route: ActivatedRoute,
+		private authGuard: AuthGuard
+	) {}
 
 	ngOnInit() {
 		console.log(this.user);
+	}
+
+	logout() {
+		this.auth.logout();
+
+		this.router.navigate(['']);
 	}
 }

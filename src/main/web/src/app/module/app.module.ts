@@ -28,11 +28,15 @@ import { PersonComponent } from '../component/people/person/person.component';
 import { UserFormComponent } from '../component/login/user-form/user-form.component';
 import { UserService } from '../service/user/user.service';
 import { FocusDirective } from '../directive/focus.directive';
+import { HomeComponent } from '../component/page/home/home.component';
+import { WelcomeComponent } from '../component/page/welcome/welcome.component';
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [
 		AppComponent,
 		HelloComponent,
+		WelcomeComponent,
+		HomeComponent,
 		LoginComponent,
 		UserComponent,
 		LoadingComponent,

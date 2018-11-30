@@ -31,7 +31,7 @@
 		[ngClass]="{
 			lit: !f.valid && !f.form.controls['user'].controls['username'].valid
 		}"
-		[routerLink]="[{ outlets: { register: ['register'] } }]"
+		[routerLink]="['register']"
 		(click)="initRegistration()"
 	>
 		Register

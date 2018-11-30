@@ -8,6 +8,7 @@ import { authConfig } from './auth.config';
 import { TypedJSON } from 'typedjson-fork';
 import { map, catchError } from 'rxjs/operators';
 import { log } from 'util';
+import { Router } from '@angular/router';
 @Injectable({
 	providedIn: 'root'
 })
@@ -17,9 +18,17 @@ export class AuthService {
 	);
 
 	login$: Observable<User> = this.subject.asObservable();
-	user: User = undefined;
-
-	constructor(private http: HttpClient, private oAuthService: OAuthService) {
+	//user: User = undefined;
+	private _user: User = undefined;
+	get user(): User {
+		//console.log('user accessed' + this._user);
+		return this._user;
+	}
+	set user(user: User) {
+		//console.log('user setted' + user);
+		this._user = user;
+	}
+	constructor(private http: HttpClient, private oAuthService: OAuthService, private router: Router) {
 		this.oAuthService.configure(authConfig);
 		this.oAuthService.tokenValidationHandler = new JwksValidationHandler();
 
@@ -53,8 +62,8 @@ export class AuthService {
 	}
 
 	logout() {
-		this.oAuthService.logOut();
 		this.subject.next(undefined);
+		this.oAuthService.logOut(true);
 	}
 
 	refresh() {

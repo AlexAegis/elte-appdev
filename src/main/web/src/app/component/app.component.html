@@ -16,48 +16,14 @@
 					[@expandMain]="navSize()"
 				></app-login>
 
-				<app-user
-					[user]="auth.user"
-					*ngIf="auth.user !== undefined"
-				></app-user>
+				<app-user [user]="auth.user" *ngIf="auth.user !== undefined"></app-user>
 			</ng-template>
 		</div>
 	</mat-toolbar-row>
 </mat-toolbar>
 <div id="content">
-	<div><router-outlet #outlet="outlet"></router-outlet></div>
-	<div id="devtools">
-		<button id="whoami" mat-flat-button (click)="whoami()">
-			Log current user
-		</button>
-	</div>
-	<div id="a"></div>
-	<div id="b"></div>
+	<router-outlet #outlet="outlet"></router-outlet>
 
-	<app-lorem></app-lorem>
-
-	<app-lorem></app-lorem>
-
-	<app-lorem></app-lorem>
-
-	<app-lorem></app-lorem>
-	<app-lorem></app-lorem>
-
-	<app-lorem></app-lorem>
-
-	<app-lorem></app-lorem>
-
-	<app-lorem></app-lorem><app-lorem></app-lorem>
-
-	<app-lorem></app-lorem>
-
-	<app-lorem></app-lorem><app-lorem></app-lorem>
-
-	<app-lorem></app-lorem>
-
-	<app-lorem></app-lorem><app-lorem></app-lorem>
-
-	<app-lorem></app-lorem>
-
-	<app-lorem></app-lorem>
+	<app-home *ngIf="router.url === '/' && auth.user !== undefined"></app-home>
+	<app-welcome *ngIf="router.url === '/' && auth.user === undefined"></app-welcome>
 </div>

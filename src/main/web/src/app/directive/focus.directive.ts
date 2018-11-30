@@ -1,5 +1,4 @@
 import { Directive, OnInit, Input, ElementRef, Renderer } from '@angular/core';
-
 @Directive({
 	selector: '[focus]'
 })
@@ -10,10 +9,7 @@ export class FocusDirective implements OnInit {
 
 	ngOnInit() {
 		if (this.isFocused) {
-			this.renderer.invokeElementMethod(
-				this.hostElement.nativeElement,
-				'focus'
-			);
+			this.renderer.invokeElementMethod(this.hostElement.nativeElement, 'focus');
 		}
 	}
 }

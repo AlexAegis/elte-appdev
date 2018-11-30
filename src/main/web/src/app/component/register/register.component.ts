@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { slideInAnimation } from 'src/app/animation/route.animation';
@@ -23,7 +23,12 @@ export class RegisterComponent implements OnInit {
 	hidePassword = true;
 	registrationForm: FormGroup = this.formBuilder.group({});
 
-	constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {}
+	constructor(
+		private formBuilder: FormBuilder,
+		private userService: UserService,
+		private router: Router,
+		private cd: ChangeDetectorRef
+	) {}
 
 	ngOnInit() {}
 
@@ -34,7 +39,7 @@ export class RegisterComponent implements OnInit {
 		Object.assign(user.person, this.registrationForm.get('person').value);
 		this.userService.register(user).subscribe(
 			res => {
-				this.userService.username = res.data.username;
+				this.userService.username.next(res.data.username);
 				this.router.navigateByUrl('/');
 			},
 			err => {
@@ -45,7 +50,8 @@ export class RegisterComponent implements OnInit {
 				});
 				console.log(errors);
 				this.registrationForm.setErrors(errors, { emitEvent: true });
-				this.registrationForm.controls['user'].setErrors(errors, { emitEvent: true });
+				//this.registrationForm.controls['user'].setErrors(errors, { emitEvent: true });
+				this.cd.detectChanges();
 				console.log('regerrorrs: ');
 				console.log(this.registrationForm.errors);
 				console.log((<ErrorResponse<RegisterResponse>>err).error.messages);
