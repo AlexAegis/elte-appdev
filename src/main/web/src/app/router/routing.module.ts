@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HelloComponent } from '../component/hello/hello.component';
-import { LoginComponent } from '../component/login/login.component';
 import { AuthGuard } from '../guard/auth.guard';
 import { LibreGuard } from '../guard/libre.guard';
 import { RegisterComponent } from '../component/register/register.component';
@@ -19,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [RouterModule.forRoot(routes)],
+	imports: [RouterModule.forRoot(routes, { enableTracing: true })],
 	exports: [RouterModule]
 })
 export class RoutingModule {}

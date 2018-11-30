@@ -52,7 +52,7 @@ final class PublicUserController {
 			return ResponseEntity.ok(Response.<User>builder().data(user).build());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body(Response.<User>builder().message(Message.builder().type(MessageType.ERROR).message(e.getMessage()).build()).build());
+					.body(Response.<User>builder().message(Message.builder().target("username").message(e.getMessage()).build()).build());
 		}//
 	}
 
@@ -67,7 +67,7 @@ final class PublicUserController {
 		boolean present = this.userRepository.findByUsername(username).isPresent();
 		Response.ResponseBuilder<AvailablePayload> res = Response.<AvailablePayload>builder().data(new AvailablePayload(!present));
 		if (present) {
-			res.message(Message.builder().type(MessageType.ERROR).message("username_not_available").build());
+			res.message(Message.builder().target("username").message("username_not_available").build());
 		}
 		return ResponseEntity.ok(res.build());
 	}

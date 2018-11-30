@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Message {
 	@Builder.Default
-	MessageType type = MessageType.INFO;
+	MessageType type = MessageType.ERROR;
 	String message;
+	String target;
 }
