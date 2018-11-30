@@ -1,11 +1,4 @@
-import {
-	Component,
-	OnInit,
-	HostListener,
-	OnDestroy,
-	Input,
-	ViewChild
-} from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy, Input, ViewChild } from '@angular/core';
 import { User } from '../../model/user.class';
 import * as moment from 'moment';
 import { AuthService } from '../../service/auth.service';
@@ -34,11 +27,7 @@ import { map, catchError } from 'rxjs/operators';
 	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-	constructor(
-		private auth: AuthService,
-		private formBuilder: FormBuilder,
-		public userService: UserService
-	) {}
+	constructor(private auth: AuthService, private formBuilder: FormBuilder, public userService: UserService) {}
 
 	loginForm: FormGroup = this.formBuilder.group({});
 
@@ -48,24 +37,25 @@ export class LoginComponent implements OnInit, OnDestroy {
 		// prevent memory leak when component destroyed
 	}
 	initRegistration() {
-		this.userService.username = this.loginForm
-			.get('user')
-			.get('username').value;
+		this.userService.username = this.loginForm.get('user').get('username').value;
 	}
 
 	doLogin(form: NgForm) {
 		this.userService.username = undefined;
 		this.auth
-			.login(
-				this.loginForm.get('user').get('username').value,
-				this.loginForm.get('user').get('password').value
-			)
+			.login(this.loginForm.get('user').get('username').value, this.loginForm.get('user').get('password').value)
+			.subscribe(
+				observer => console.log('DONE IN HOOO'),
+				err => {
+					console.log('ERROR IN HOOO');
+				}
+			); /*
 			.pipe(
 				catchError(err => {
 					console.log('hihi: ' + err);
 					return of(err);
 				})
-			);
+			);*/
 	}
 
 	log(e) {

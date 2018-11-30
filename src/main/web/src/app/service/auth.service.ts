@@ -2,18 +2,18 @@ import * as moment from 'moment';
 import { User } from '../model/user.class';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, from, of } from 'rxjs';
+import { BehaviorSubject, Observable, from, of, throwError } from 'rxjs';
 import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
 import { authConfig } from './auth.config';
 import { TypedJSON } from 'typedjson-fork';
+import { map, catchError } from 'rxjs/operators';
+import { log } from 'util';
 @Injectable({
 	providedIn: 'root'
 })
 export class AuthService {
 	private subject: BehaviorSubject<User> = new BehaviorSubject<User>(
-		this.oAuthService.getAccessToken()
-			? TypedJSON.parse(this.oAuthService.getIdentityClaims(), User)
-			: undefined
+		this.oAuthService.getAccessToken() ? TypedJSON.parse(this.oAuthService.getIdentityClaims(), User) : undefined
 	);
 
 	login$: Observable<User> = this.subject.asObservable();
@@ -29,28 +29,27 @@ export class AuthService {
 	}
 
 	login(username: string, password: string): Observable<User> {
-		const loginObs: Observable<User> = from<User>(<Promise<User>>
-			this.oAuthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(
-				username,
-				password
+		const loginObs: Observable<User> = from<User>(<Promise<User>>(
+			this.oAuthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(username, password)
+		))
+			.pipe(o => {
+				// tslint:disable-next-line:no-null-keyword
+				this.subject.next(null);
+				return o;
+			})
+			.pipe<User>(
+				map<User, User>(observer => {
+					this.subject.next(TypedJSON.parse(observer, User));
+					return observer;
+				})
 			)
-		); /*.pipe(o => {
-			// tslint:disable-next-line:no-null-keyword
-			console.log('FIRST IPPPIEP');
-			this.subject.next(null);
-			return o;
-		})*/
-		loginObs.subscribe(
-			observer => this.subject.next(TypedJSON.parse(observer, User)),
-			err => {
-				console.log('ERROR IN INNERMOST');
-				this.subject.next(undefined);
-				//this.subject.error(err);
-				return err;
-			}
-		);
+			.pipe(
+				catchError(err => {
+					this.subject.next(undefined);
+					return throwError(err);
+				})
+			);
 		return loginObs;
-		//return this.login$;
 	}
 
 	logout() {
