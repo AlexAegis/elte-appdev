@@ -1,29 +1,47 @@
-<ng-progress #progressBar></ng-progress>
+<div class="mainwin">
+	<ng-progress #progressBar></ng-progress>
+	<mat-toolbar color="primary" [@expand]="navSize()">
+		<mat-toolbar-row id="mainBar">
+			<button
+				[@expandTitle]="navSize()"
+				class="title"
+				mat-button
+				color="primary"
+				[routerLink]="['']"
+				matRipple
+				[matRippleRadius]="800"
+			>
+				{{ title }}
+			</button>
 
-<mat-toolbar color="primary" [@expand]="navSize()">
-	<mat-toolbar-row id="mainBar">
-		<h1 [@expandTitle]="navSize()">{{ title }}</h1>
+			<div id="user">
+				<ng-template [appLoading]="auth.login$ | async">
+					<app-login
+						class="fixed-bottom fixed-right"
+						*ngIf="auth.user === undefined"
+						[@translateLogin]="navSize()"
+					></app-login>
 
-		<div id="user">
-			<ng-template [appLoading]="auth.login$ | async">
-				<div [@expandReg]="navSize()" class="fixed-bottom fixed-right">
-					<router-outlet name="register"></router-outlet>
-				</div>
-
-				<app-login
-					class="fixed-bottom fixed-right"
-					*ngIf="auth.user === undefined"
-					[@expandMain]="navSize()"
-				></app-login>
-
-				<app-user [user]="auth.user" *ngIf="auth.user !== undefined"></app-user>
-			</ng-template>
-		</div>
-	</mat-toolbar-row>
-</mat-toolbar>
-<div id="content">
-	<router-outlet #outlet="outlet"></router-outlet>
-
-	<app-home *ngIf="router.url === '/' && auth.user !== undefined"></app-home>
-	<app-welcome *ngIf="router.url === '/' && auth.user === undefined"></app-welcome>
+					<app-user [user]="auth.user" *ngIf="auth.user !== undefined"></app-user>
+				</ng-template>
+			</div>
+		</mat-toolbar-row>
+	</mat-toolbar>
+	<ng-scrollbar id="content" #scrollable barClass="scroll-bar" thumbClass="scroll-thumbs">
+		<router-outlet #outlet="outlet"></router-outlet>
+		<app-home *ngIf="router.url === '/' && auth.user !== undefined"></app-home>
+		<app-welcome *ngIf="router.url === '/' && auth.user === undefined"></app-welcome>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+		<app-lorem></app-lorem>
+	</ng-scrollbar>
 </div>

@@ -42,6 +42,7 @@ export class AuthService {
 			this.oAuthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(username, password)
 		))
 			.pipe(o => {
+				console.log('FEED NULL');
 				// tslint:disable-next-line:no-null-keyword
 				this.subject.next(null);
 				return o;

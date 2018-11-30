@@ -30,13 +30,11 @@ $client-theme: mat-dark-theme($client-primary, $client-accent, $client-warn);
 /* You can add global styles to this file, and also import other style files */
 
 body {
+	height: 100vh;
 	margin: 0;
 	font-family: Roboto, 'Helvetica Neue', sans-serif;
-	background-image: linear-gradient(
-		-10deg,
-		rgba(155, 49, 63, 0.726),
-		rgba(73, 150, 22, 0.178)
-	);
+	color: #010203;
+	background-image: linear-gradient(-10deg, rgba(0, 255, 242, 0.116), rgba(193, 227, 255, 0.171));
 }
 
 @for $i from 1 through 100 {
@@ -67,8 +65,7 @@ body {
 .lit {
 	transition: box-shadow 1s ease-in-out;
 	//	background-color: mat-color($dark-background-palette, 50);
-	box-shadow: inset 0 0 4rem 0 rgba(255, 255, 255, 0.3),
-		0 0 0.5rem 0 rgba(255, 255, 255, 0.144) !important;
+	box-shadow: inset 0 0 4rem 0 rgba(255, 255, 255, 0.3), 0 0 0.5rem 0 rgba(255, 255, 255, 0.144) !important;
 }
 
 /* Pre-render the bigger shadow, but hide it 
@@ -81,3 +78,23 @@ body {
 	opacity: 1;
 }
 */
+
+.mainwin {
+	position: fixed;
+	top: 4rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: calc(100vh - 4rem);
+}
+.scroll-bar {
+	background-color: rgba(0, 0, 0, 0.4) !important;
+	border-radius: 4px;
+}
+.scroll-thumbs {
+	background-color: rgba(161, 27, 27, 0.4) !important;
+	&:hover,
+	&:active {
+		background-color: rgba(161, 27, 27, 0.7) !important;
+	}
+}

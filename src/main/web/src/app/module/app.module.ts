@@ -30,6 +30,9 @@ import { UserService } from '../service/user/user.service';
 import { FocusDirective } from '../directive/focus.directive';
 import { HomeComponent } from '../component/page/home/home.component';
 import { WelcomeComponent } from '../component/page/welcome/welcome.component';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { SmoothScrollModule } from 'ngx-scrollbar';
+
 @NgModule({
 	entryComponents: [LoadingComponent],
 	declarations: [
@@ -72,7 +75,9 @@ import { WelcomeComponent } from '../component/page/welcome/welcome.component';
 		AvatarModule,
 		NgProgressHttpModule.forRoot(),
 		BrowserAnimationsModule,
-		MaterialModule
+		MaterialModule,
+		NgScrollbarModule,
+		SmoothScrollModule
 	],
 	providers: [
 		AuthService,
