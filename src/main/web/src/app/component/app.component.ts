@@ -20,7 +20,12 @@ import { AuthGuard } from '../guard/auth.guard';
 					// backgroundColor: 'green'
 				})
 			),
-			state('closed', style({}))
+			state(
+				'closed',
+				style({
+					height: '4rem'
+				})
+			)
 		]),
 		trigger('translateLogin', [
 			transition('open <=> closed', [
@@ -35,7 +40,7 @@ import { AuthGuard } from '../guard/auth.guard';
 			state(
 				'closed',
 				style({
-					transform: 'translateY(20rem)'
+					transform: 'translateY(40rem)'
 				})
 			)
 		]),
@@ -44,10 +49,10 @@ import { AuthGuard } from '../guard/auth.guard';
 			state(
 				'closed',
 				style({
-					maxHeight: '2rem',
-					height: '2rem',
-					fontSize: '2em',
-					opacity: 1
+					maxHeight: '1rem',
+					height: '1rem',
+					fontSize: '7em',
+					opacity: 0.2
 				})
 			),
 			state(
@@ -55,7 +60,7 @@ import { AuthGuard } from '../guard/auth.guard';
 				style({
 					maxHeight: '4rem',
 					height: '4rem',
-					fontSize: '8em',
+					fontSize: '10em',
 					opacity: 0.8
 				})
 			)

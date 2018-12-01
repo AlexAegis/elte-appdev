@@ -1,33 +1,35 @@
-:host {
-	display: grid;
-	align-self: center;
-	align-items: center;
+@import '../../../style/responsive.scss';
 
-	grid-template-columns: 4fr 1fr 2fr;
-	grid-template-rows: 1fr;
+:host {
+	justify-content: flex-end;
+	display: flex;
+	flex-direction: column;
+	align-content: flex-end;
+	flex: auto;
+	flex-flow: row;
+	align-self: flex-end;
+	align-items: center;
 	height: 100%;
 
-	#person {
-		grid-column: 1;
-		display: grid;
-		grid-template-columns: 0.25fr 1fr;
-		#avatar {
-			grid-column: 1;
-		}
-		#name {
-			grid-column: 2;
-		}
-	}
-
 	#timer {
-		grid-column: 2;
-		grid-row: 1;
+		@include respond-to(small, medium) {
+			//display: none;
+		}
 		color: rgba($color: #000000, $alpha: 0.3);
 	}
 
+	#name {
+		@include respond-to(small, medium) {
+			//display: none;
+		}
+		margin-left: 1rem;
+	}
+
+	#avatar {
+		margin-right: 1rem;
+		margin-left: 1rem;
+	}
+
 	#logout {
-		grid-column: 3;
-		margin-left: auto;
-		margin-right: 0;
 	}
 }

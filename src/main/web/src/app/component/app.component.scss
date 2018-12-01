@@ -20,8 +20,8 @@
 			height: 100%;
 			width: 100%;
 			display: grid;
-			grid-row: 1;
-			grid-template-columns: 20rem auto;
+			grid-template-rows: minmax(100%, 4rem);
+			grid-template-columns: 10rem auto minmax(auto, 40rem);
 
 			.title {
 				//color: rgba($color: rgb(199, 244, 255), $alpha: 0.5);
@@ -31,21 +31,28 @@
 
 				height: 1em;
 				font-size: 2em;
-				width: 4em;
+				width: 100%;
 				text-align: left;
 				vertical-align: top;
+				margin-bottom: 2rem;
 			}
 
 			#user {
-				position: relative;
+				display: block;
 				height: 100%;
-
+				width: 100%;
 				@include respond-to(small, medium) {
-					grid-column: 1 / -1;
-					grid-row: 2;
+					grid-column: 3;
+
+					grid-row: 1;
+
+					app-login {
+						width: 100%;
+					}
 				}
 				@include respond-to(large) {
-					grid-column: 2;
+					position: relative;
+					grid-column: 3;
 					grid-row: 1;
 				}
 			}
@@ -55,13 +62,19 @@
 	#content {
 		position: relative;
 		display: grid;
-		grid-template-columns: 1fr 4fr 1fr;
+		margin-top: 1.5rem;
+		@include respond-to(small, medium) {
+			grid-template-columns: 1.5rem auto 1.5rem;
+		}
+		@include respond-to(large) {
+			grid-template-columns: auto minmax(40rem, 60vw) auto;
+		}
+
 		#content-main {
 			background-color: rgba(37, 37, 37, 0.644);
 			box-shadow: 0 0 100em 100em rgba(0, 0, 0, 0.24), inset 0 0 100rem 100rem rgba(0, 0, 0, 0.425);
 
 			grid-column: 2;
-			margin: 4rem;
 		}
 	}
 }
