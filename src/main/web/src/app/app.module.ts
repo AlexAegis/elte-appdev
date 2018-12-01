@@ -32,7 +32,7 @@ import { HomeComponent } from './component/page/home/home.component';
 import { WelcomeComponent } from './component/page/welcome/welcome.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SmoothScrollModule } from 'ngx-scrollbar';
-import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { SidebarComponent } from './component/element/sidebar/sidebar.component';
 import { HamburgerComponent } from './component/element/hamburger/hamburger.component';
 
 @NgModule({
