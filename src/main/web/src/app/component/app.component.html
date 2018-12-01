@@ -2,7 +2,7 @@
 	<ng-progress #progressBar></ng-progress>
 	<mat-toolbar color="primary" [@expand]="navSize()">
 		<mat-toolbar-row id="mainBar">
-			<app-hamburger></app-hamburger>
+			<app-hamburger [(open)]="sidebar.opened"></app-hamburger>
 			<button
 				[@expandTitle]="navSize()"
 				class="title"
@@ -28,7 +28,7 @@
 			</div>
 		</mat-toolbar-row>
 	</mat-toolbar>
-	<app-sidebar>
+	<app-sidebar #sidebar>
 		<ng-scrollbar #scrollable barClass="scroll-bar" thumbClass="scroll-thumbs">
 			<div id="content">
 				<div id="content-main">

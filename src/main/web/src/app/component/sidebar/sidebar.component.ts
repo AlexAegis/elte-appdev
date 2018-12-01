@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 
@@ -8,11 +8,10 @@ import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 	styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-	opened = true;
-	over = 'side';
-	expandHeight = '42px';
-	collapseHeight = '42px';
-	displayMode = 'flat';
+	over: string = 'side';
+	expandHeight: string = '42px';
+	collapseHeight: string = '42px';
+	displayMode: string = 'flat';
 	// overlap = false;
 
 	watcher: Subscription;
@@ -29,5 +28,7 @@ export class SidebarComponent implements OnInit {
 		});
 	}
 
-	ngOnInit() {}
+	opened: boolean = true;
+
+	ngOnInit(): void {}
 }
