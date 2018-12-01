@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
 	selector: 'app-hamburger',
@@ -8,11 +8,23 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HamburgerComponent implements OnInit {
 	constructor() {}
 
-	open: boolean;
+	private _open: boolean;
+	@Output() openChange = new EventEmitter<boolean>();
+
+	set open(open: boolean) {
+		this._open = open;
+		this.openChange.emit(this._open);
+	}
+
+	@Input()
+	get open() {
+		return this._open;
+	}
 
 	ngOnInit() {}
 
 	toggle(): void {
 		this.open = !this.open;
+		this.openChange.emit(this.open);
 	}
 }
