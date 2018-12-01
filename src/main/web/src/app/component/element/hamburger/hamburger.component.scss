@@ -1,8 +1,8 @@
 /* Icon 1 */
 
 div {
-	width: 60px;
-	height: 45px;
+	width: 40px;
+	height: 30px;
 	position: relative;
 	margin: 50px auto;
 	-webkit-transform: rotate(0deg);
@@ -19,7 +19,7 @@ div {
 div span {
 	display: block;
 	position: absolute;
-	height: 4px;
+	height: 6px;
 	width: 100%;
 	background: #000000;
 	border-radius: 0px;
@@ -39,15 +39,15 @@ div span:nth-child(1) {
 	top: 0px;
 }
 div span:nth-child(2) {
-	top: 18px;
+	top: 12px;
 }
 
 div span:nth-child(3) {
-	top: 36px;
+	top: 24px;
 }
 
 div.open span:nth-child(1) {
-	top: 18px;
+	top: 12px;
 	-webkit-transform: rotate(135deg);
 	-moz-transform: rotate(135deg);
 	-o-transform: rotate(135deg);
@@ -60,7 +60,7 @@ div.open span:nth-child(2) {
 }
 
 div.open span:nth-child(3) {
-	top: 18px;
+	top: 12px;
 	-webkit-transform: rotate(-135deg);
 	-moz-transform: rotate(-135deg);
 	-o-transform: rotate(-135deg);
