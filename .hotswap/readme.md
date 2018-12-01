@@ -1,0 +1,1 @@
+Download the newest [hotswap release](https://github.com/HotswapProjects/HotswapAgent/releases) and place it here.

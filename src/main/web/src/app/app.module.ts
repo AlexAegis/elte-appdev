@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { RoutingModule } from './module/router/routing.module';
+import { RoutingModule } from './module/routes/routing.module';
 import { AppComponent } from './component/app.component';
 import { HelloComponent } from './component/hello/hello.component';
 import { LoginComponent } from './component/login/login.component';

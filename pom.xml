@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>hu.elte</groupId>
-    <artifactId>assignment</artifactId>
-    <version>0.2.0</version>
+    <artifactId>cinema</artifactId>
+    <version>0.2.1</version>
     <packaging>jar</packaging>
 
     <name>assignment</name>
@@ -160,6 +160,7 @@
                     <nodeVersion>v10.13.0</nodeVersion>
                     <npmVersion>6.4.1</npmVersion>
                     <workingDirectory>src/main/web/</workingDirectory>
+                    <installDirectory>${project.build.directory}/node</installDirectory>
                 </configuration>
 
                 <executions>
@@ -187,7 +188,6 @@
                     </execution>
                 </executions>
             </plugin>
-
 
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
