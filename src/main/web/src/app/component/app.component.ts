@@ -76,7 +76,6 @@ export class AppComponent implements OnInit {
 	exp: boolean = true;
 	show: boolean = true;
 
-	sidebarOpen: boolean = false;
 	mediaLarge: boolean;
 
 	constructor(
@@ -90,10 +89,8 @@ export class AppComponent implements OnInit {
 	ngOnInit(): void {
 		this.media.subscribe((change: MediaChange) => {
 			if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
-				this.sidebarOpen = false;
 				this.mediaLarge = false;
 			} else {
-				this.sidebarOpen = true;
 				this.mediaLarge = true;
 			}
 		});

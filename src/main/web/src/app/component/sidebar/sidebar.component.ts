@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
 	selector: 'app-sidebar',
@@ -14,9 +15,18 @@ export class SidebarComponent implements OnInit {
 	displayMode: string = 'flat';
 	// overlap = false;
 
-	constructor(private media: ObservableMedia) {}
+	@Input()
+	disabled: boolean = false;
 
-	opened: boolean = true;
+	constructor(private media: ObservableMedia, public auth: AuthService) {
+		this.auth.login$.subscribe(user => {
+			if (!user) {
+				this.opened = false;
+			}
+		});
+	}
+
+	opened: boolean = false;
 
 	ngOnInit(): void {
 		this.media.subscribe((change: MediaChange) => {
