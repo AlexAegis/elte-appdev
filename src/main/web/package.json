@@ -6,8 +6,8 @@
 		"email": "alexaegis@gmail.com",
 		"url": "https://github.com/AlexAegis"
 	},
-  "bugs":"https://github.com/AlexAegis/elte-appdev/issues",
-  "repository": "https://github.com/AlexAegis/elte-appdev/",
+	"bugs": "https://github.com/AlexAegis/elte-appdev/issues",
+	"repository": "https://github.com/AlexAegis/elte-appdev/",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve --proxyConfig proxy.conf.json",
@@ -24,6 +24,7 @@
 		"@angular/common": "^7.1.1",
 		"@angular/compiler": "^7.1.1",
 		"@angular/core": "^7.1.1",
+		"@angular/flex-layout": "^7.0.0-beta.19",
 		"@angular/forms": "^7.1.1",
 		"@angular/http": "^7.1.1",
 		"@angular/material": "^7.1.0",
@@ -57,7 +58,7 @@
 		"@angular/language-service": "^7.1.1",
 		"@types/jasmine": "^3.3.0",
 		"@types/jasminewd2": "^2.0.6",
-		"@types/node": "~10.12.10",
+		"@types/node": "~10.12.11",
 		"codelyzer": "~4.5.0",
 		"jasmine-core": "~3.3.0",
 		"jasmine-spec-reporter": "~4.2.1",

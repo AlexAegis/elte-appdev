@@ -74,6 +74,8 @@ export class AppComponent implements OnInit {
 	open: boolean = true;
 	exp: boolean = true;
 	show: boolean = true;
+
+	hamburger: boolean = false;
 	constructor(
 		public auth: AuthService,
 		public route: ActivatedRoute,
@@ -95,5 +97,9 @@ export class AppComponent implements OnInit {
 
 	animDebug(event) {
 		console.log(event);
+	}
+
+	hambi() {
+		this.hamburger = !this.hamburger;
 	}
 }
