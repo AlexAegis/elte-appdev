@@ -2,7 +2,7 @@
 	<ng-progress #progressBar></ng-progress>
 	<mat-toolbar color="primary" [@expand]="navSize()">
 		<mat-toolbar-row id="mainBar">
-			<app-hamburger [(open)]="sidebar.opened"></app-hamburger>
+			<app-hamburger *ngIf="!mediaLarge" [(open)]="sidebar.opened"></app-hamburger>
 			<button
 				[@expandTitle]="navSize()"
 				class="title"
