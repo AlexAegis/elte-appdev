@@ -14,10 +14,12 @@ export class SidebarComponent implements OnInit {
 	displayMode: string = 'flat';
 	// overlap = false;
 
-	watcher: Subscription;
+	constructor(private media: ObservableMedia) {}
 
-	constructor(media: ObservableMedia) {
-		this.watcher = media.subscribe((change: MediaChange) => {
+	opened: boolean = true;
+
+	ngOnInit(): void {
+		this.media.subscribe((change: MediaChange) => {
 			if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
 				this.opened = false;
 				this.over = 'over';
@@ -27,8 +29,4 @@ export class SidebarComponent implements OnInit {
 			}
 		});
 	}
-
-	opened: boolean = true;
-
-	ngOnInit(): void {}
 }

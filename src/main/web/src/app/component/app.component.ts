@@ -4,6 +4,7 @@ import { transition, animate, state, style, trigger, group, animateChild, query 
 import { RouterOutlet, ActivatedRoute, Router } from '@angular/router';
 import { slideInAnimation } from '../animation/route.animation';
 import { AuthGuard } from '../guard/auth.guard';
+import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 
 @Component({
 	selector: 'app-root',
@@ -76,15 +77,27 @@ export class AppComponent implements OnInit {
 	show: boolean = true;
 
 	sidebarOpen: boolean = false;
+	mediaLarge: boolean;
 
 	constructor(
 		public auth: AuthService,
 		public route: ActivatedRoute,
 		public router: Router,
-		public authGuard: AuthGuard
+		public authGuard: AuthGuard,
+		private media: ObservableMedia
 	) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.media.subscribe((change: MediaChange) => {
+			if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+				this.sidebarOpen = false;
+				this.mediaLarge = false;
+			} else {
+				this.sidebarOpen = true;
+				this.mediaLarge = true;
+			}
+		});
+	}
 
 	navSize() {
 		return this.auth.user === undefined && this.router.url !== '/register' ? 'open' : 'closed';
