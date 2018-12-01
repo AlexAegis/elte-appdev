@@ -78,6 +78,7 @@ export class AppComponent implements OnInit {
 
 	mediaLarge: boolean;
 
+	color: string = '#00aaffff';
 	constructor(
 		public auth: AuthService,
 		public route: ActivatedRoute,
