@@ -8,17 +8,15 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class HamburgerComponent implements OnInit {
 	constructor() {}
 
-	private _open: boolean;
 	@Output() openChange = new EventEmitter<boolean>();
 
 	set open(open: boolean) {
-		this._open = open;
-		this.openChange.emit(this._open);
+		this.openChange.emit(this.open);
 	}
 
 	@Input()
 	get open() {
-		return this._open;
+		return this.open;
 	}
 
 	ngOnInit() {}
