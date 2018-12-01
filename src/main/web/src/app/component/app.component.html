@@ -2,6 +2,7 @@
 	<ng-progress #progressBar></ng-progress>
 	<mat-toolbar color="primary" [@expand]="navSize()">
 		<mat-toolbar-row id="mainBar">
+			<app-hamburger></app-hamburger>
 			<button
 				[@expandTitle]="navSize()"
 				class="title"
@@ -27,27 +28,31 @@
 			</div>
 		</mat-toolbar-row>
 	</mat-toolbar>
-	<ng-scrollbar #scrollable barClass="scroll-bar" thumbClass="scroll-thumbs">
-		<div id="content">
-			<div id="content-main">
-				<router-outlet #outlet="outlet"></router-outlet>
-				<app-home *ngIf="router.url === '/' && auth.user !== undefined"></app-home>
-				<app-welcome *ngIf="router.url === '/' && auth.user === undefined"></app-welcome>
+	<app-sidebar>
+		<ng-scrollbar #scrollable barClass="scroll-bar" thumbClass="scroll-thumbs">
+			<div id="content">
+				<div id="content-main">
+					<router-outlet #outlet="outlet"></router-outlet>
+
+					<app-home *ngIf="router.url === '/' && auth.user !== undefined"></app-home>
+					<app-welcome *ngIf="router.url === '/' && auth.user === undefined"></app-welcome>
+				</div>
 			</div>
-		</div>
-		<!--
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-			<app-lorem></app-lorem>
-		-->
-	</ng-scrollbar>
+
+			<!--
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+				<app-lorem></app-lorem>
+			-->
+		</ng-scrollbar>
+	</app-sidebar>
 </div>

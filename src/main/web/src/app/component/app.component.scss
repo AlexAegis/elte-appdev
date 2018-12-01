@@ -21,14 +21,15 @@
 			width: 100%;
 			display: grid;
 			grid-template-rows: minmax(100%, 4rem);
-			grid-template-columns: 10rem auto minmax(auto, 40rem);
+			grid-template-columns: 60px 10rem auto minmax(auto, 40rem);
 
+			app-hamburger {
+				grid-column: 1;
+			}
 			.title {
 				//color: rgba($color: rgb(199, 244, 255), $alpha: 0.5);
 
-				grid-column: 1;
-				grid-row: 1;
-
+				grid-column: 2;
 				height: 1em;
 				font-size: 2em;
 				width: 100%;
@@ -42,18 +43,14 @@
 				height: 100%;
 				width: 100%;
 				@include respond-to(small, medium) {
-					grid-column: 3;
-
-					grid-row: 1;
-
+					grid-column: 4;
 					app-login {
 						width: 100%;
 					}
 				}
 				@include respond-to(large) {
 					position: relative;
-					grid-column: 3;
-					grid-row: 1;
+					grid-column: 4;
 				}
 			}
 		}
