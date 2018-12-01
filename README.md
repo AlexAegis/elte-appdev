@@ -225,6 +225,10 @@ choco install ruby
 
 then follow the instructions on the link given
 
+### [BFG Repo Cleaner](https://rtyley.github.io/bfg-repo-cleaner/)
+
+> **Clean big files** from the git history 
+
 ## Services
 
 ### [GitHub](https://github.com/)
