@@ -10,7 +10,7 @@ import {
 	ChangeDetectorRef,
 	OnDestroy
 } from '@angular/core';
-import { Observable, of, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 /**
  * Two way bound focus directive
  *
@@ -19,6 +19,7 @@ import { Observable, of, Subscription } from 'rxjs';
  *
  * myBool can be changed to true if you want to set the elements focus.
  * If the element loses focus, myBool will be set to false.
+ *
  */
 @Directive({
 	selector: '[focus]'
@@ -45,7 +46,7 @@ export class FocusDirective implements OnInit, AfterViewInit, OnDestroy {
 		return this._focus;
 	}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.focusSubscription = (<Observable<boolean>>this.focusChange).subscribe(focus => {
 			if (focus) {
 				this.renderer.invokeElementMethod(this.hostElement.nativeElement, 'focus');
@@ -65,11 +66,11 @@ export class FocusDirective implements OnInit, AfterViewInit, OnDestroy {
 	/**
 	 * Initial state. If not emitted, the directive won't work until manual change of the input
 	 */
-	ngAfterViewInit() {
+	ngAfterViewInit(): void {
 		this.focusChange.emit(this.focus);
 	}
 
-	ngOnDestroy() {
+	ngOnDestroy(): void {
 		this.focusListener();
 		this.focusoutListener();
 		this.focusSubscription.unsubscribe();

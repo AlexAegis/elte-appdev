@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, HostListener } from '@angular/core';
 
 @Component({
 	selector: 'app-hamburger',
@@ -23,7 +23,8 @@ export class HamburgerComponent implements OnInit {
 
 	ngOnInit() {}
 
-	toggle(): void {
+	@HostListener('click', ['$event'])
+	toggle(event): void {
 		this.open = !this.open;
 	}
 }

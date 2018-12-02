@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -13,10 +12,11 @@ export class SidebarComponent implements OnInit {
 	expandHeight: string = '42px';
 	collapseHeight: string = '42px';
 	displayMode: string = 'flat';
-	// overlap = false;
 
 	@Input()
 	disabled: boolean = false;
+
+	opened: boolean = false;
 
 	constructor(private media: ObservableMedia, public auth: AuthService) {
 		this.auth.login$.subscribe(user => {
@@ -25,8 +25,6 @@ export class SidebarComponent implements OnInit {
 			}
 		});
 	}
-
-	opened: boolean = false;
 
 	ngOnInit(): void {
 		this.media.subscribe((change: MediaChange) => {
@@ -38,5 +36,9 @@ export class SidebarComponent implements OnInit {
 				this.over = 'side';
 			}
 		});
+	}
+
+	onCloseStart(): void {
+		this.opened = false;
 	}
 }
