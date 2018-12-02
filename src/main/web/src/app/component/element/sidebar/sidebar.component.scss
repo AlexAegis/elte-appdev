@@ -31,7 +31,7 @@
 	}
 
 	.no-shadow {
-		//box-shadow: none !important;
+		box-shadow: none !important;
 	}
 
 	::ng-deep .mat-expansion-panel-body {
@@ -46,5 +46,9 @@
 
 	.bottom-to-top {
 		border: 0px;
+	}
+
+	::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+		background-color: rgba(31, 31, 31, 0.7);
 	}
 }
