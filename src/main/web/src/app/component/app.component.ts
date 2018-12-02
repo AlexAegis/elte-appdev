@@ -12,6 +12,16 @@ import { LoginComponent } from './login/login.component';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss'],
 	animations: [
+		trigger('leave', [
+			transition(':enter', [
+				style({ transform: 'translateX(-100%)', opacity: 0 }),
+				animate('200ms', style({ transform: 'translateX(0)', opacity: 1 }))
+			]),
+			transition(':leave', [
+				style({ transform: 'translateX(0)', opacity: 1 }),
+				animate('200ms', style({ transform: 'translateX(-100%)', opacity: 0 }))
+			])
+		]),
 		trigger('expand', [
 			transition('open <=> closed', [group([query('@*', animateChild()), animate('500ms ease')])]),
 			state(
