@@ -30,13 +30,14 @@
 			</div>
 		</mat-toolbar-row>
 	</mat-toolbar>
-	<app-sidebar #sidebar [disabled]="(auth.login$ | async) === undefined">
+
+	<app-sidebar #sidebar [disabled]="auth.user === undefined || auth.user === null">
 		<ng-scrollbar #scrollable barClass="scroll-bar" thumbClass="scroll-thumbs">
 			<div id="content">
 				<div id="content-main">
 					<router-outlet #outlet="outlet"></router-outlet>
 
-					<app-home *ngIf="router.url === '/' && auth.user !== undefined"></app-home>
+					<app-home *ngIf="router.url === '/' && auth.user !== undefined && auth.user !== null"></app-home>
 					<app-welcome *ngIf="router.url === '/' && auth.user === undefined"></app-welcome>
 				</div>
 			</div>
@@ -58,3 +59,5 @@
 		</ng-scrollbar>
 	</app-sidebar>
 </div>
+
+{{ auth.login$ | async | json }}

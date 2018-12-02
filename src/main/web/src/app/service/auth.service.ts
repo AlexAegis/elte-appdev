@@ -18,7 +18,6 @@ export class AuthService {
 	);
 
 	login$: Observable<User> = this.subject.asObservable();
-	//user: User = undefined;
 	private _user: User = undefined;
 	get user(): User {
 		//console.log('user accessed' + this._user);

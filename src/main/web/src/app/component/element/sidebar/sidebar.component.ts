@@ -22,6 +22,8 @@ export class SidebarComponent implements OnInit {
 		this.auth.login$.subscribe(user => {
 			if (!user) {
 				this.opened = false;
+			} else if (!media.isActive('sm') && !media.isActive('xs')) {
+				this.opened = true;
 			}
 		});
 	}
