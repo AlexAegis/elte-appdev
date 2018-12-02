@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 	}
 
 	initRegistration() {
+		this.userForm.focusUsername(false);
 		this.userService.username.next(this.loginForm.get('user').get('username').value);
 	}
 

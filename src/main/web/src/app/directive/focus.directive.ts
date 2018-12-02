@@ -1,4 +1,14 @@
-import { Directive, OnInit, Input, ElementRef, Renderer, EventEmitter, Output, AfterViewInit } from '@angular/core';
+import {
+	Directive,
+	OnInit,
+	Input,
+	ElementRef,
+	Renderer,
+	EventEmitter,
+	Output,
+	AfterViewInit,
+	ChangeDetectorRef
+} from '@angular/core';
 /**
  * Two way bound focus directive
  *
@@ -12,7 +22,7 @@ import { Directive, OnInit, Input, ElementRef, Renderer, EventEmitter, Output, A
 	selector: '[focus]'
 })
 export class FocusDirective implements OnInit, AfterViewInit {
-	constructor(private hostElement: ElementRef, private renderer: Renderer) {}
+	constructor(private hostElement: ElementRef, private renderer: Renderer, private cd: ChangeDetectorRef) {}
 
 	ngOnInit() {
 		this.focusChange.subscribe(focus => {
@@ -22,9 +32,11 @@ export class FocusDirective implements OnInit, AfterViewInit {
 		});
 		this.renderer.listen(this.hostElement.nativeElement, 'focus', () => {
 			this.focus = true;
+			this.cd.detectChanges();
 		});
 		this.renderer.listen(this.hostElement.nativeElement, 'focusout', () => {
 			this.focus = false;
+			this.cd.detectChanges();
 		});
 	}
 

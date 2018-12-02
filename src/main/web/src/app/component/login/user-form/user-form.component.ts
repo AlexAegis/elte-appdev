@@ -40,12 +40,12 @@ export class UserFormComponent implements OnInit, OnInit {
 	usernameFocused: boolean;
 	passwordFocused: boolean;
 
-	focusUsername(): void {
-		this.usernameFocused = true;
+	focusUsername(focus: boolean = true): void {
+		this.usernameFocused = focus;
 	}
 
-	focusPassword(): void {
-		this.passwordFocused = true;
+	focusPassword(focus: boolean = true): void {
+		this.passwordFocused = focus;
 	}
 
 	ngOnInit() {
