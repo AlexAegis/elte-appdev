@@ -2,7 +2,7 @@ h2:
     tcp:
         enabled: true
 interceptor:
-    delay: 500
+    delay: 10
 logging:
     level:
         org:

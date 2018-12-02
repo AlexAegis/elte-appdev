@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, AbstractControl } from '@angular/forms';
 import { UserService } from 'src/app/service/user/user.service';
 import { Router } from '@angular/router';
 import { UserFormComponent } from './user-form/user-form.component';
@@ -32,13 +32,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit(): void {
 		this.userService.username$.subscribe(username => {
-			this.loginForm
-				.get('user')
-				.get('username')
-				.updateValueAndValidity();
+			const usernameControl: AbstractControl = this.loginForm.get('user').get('username');
+
 			if (username) {
+				usernameControl.setValue(username);
 				this.userForm.focusPassword();
 			}
+			usernameControl.updateValueAndValidity();
 		});
 		this.loginForm.setErrors(this.userService.errors);
 		this.cd.detectChanges(); // Because we changed the structure after view init
