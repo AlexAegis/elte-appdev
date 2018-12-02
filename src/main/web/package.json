@@ -11,7 +11,7 @@
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve --proxyConfig proxy.conf.json",
-		"build": "ng build --prod",
+		"build": "ng build --prod --source-map=false",
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e"
