@@ -73,7 +73,7 @@ import { HamburgerComponent } from './component/element/hamburger/hamburger.comp
 			trickleSpeed: 200,
 			min: 20,
 			debounceTime: 500,
-			color: '#84f8ff',
+			color: '#6dabff',
 			spinner: false
 		}),
 		AvatarModule,
