@@ -37,13 +37,15 @@ export class UserFormComponent implements OnInit, OnInit {
 	@ViewChild('password')
 	password: ElementRef;
 
-	usernameFocused: boolean = true;
-
+	usernameFocused: boolean;
 	passwordFocused: boolean;
 
-	forceFocus() {
-		console.log('focus forced');
+	focusUsername(): void {
 		this.usernameFocused = true;
+	}
+
+	focusPassword(): void {
+		this.passwordFocused = true;
 	}
 
 	ngOnInit() {
@@ -78,11 +80,5 @@ export class UserFormComponent implements OnInit, OnInit {
 		if (this.userService.username.getValue()) {
 			this.user.get('username').markAsDirty();
 		}
-
-		this.userService.username$.subscribe(username => {
-			if (this.password) {
-				this.passwordFocused = true;
-			}
-		});
 	}
 }

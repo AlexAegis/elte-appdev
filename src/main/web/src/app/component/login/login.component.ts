@@ -24,24 +24,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
 	loginForm: FormGroup;
 
 	@ViewChild('userForm')
-	userForm: ElementRef;
+	userForm: UserFormComponent;
 
 	ngOnInit(): void {
 		this.loginForm = this.formBuilder.group({});
-		console.log('init');
 	}
 
 	ngAfterViewInit(): void {
 		this.userService.username$.subscribe(username => {
-			console.log('new suername arrived to the logincomponent: ' + username);
-
 			this.loginForm
 				.get('user')
 				.get('username')
 				.updateValueAndValidity();
-			//this.userForm.nativeElement.focus();
-
-			//this.cd.detectChanges();
+			if (username) {
+				this.userForm.focusPassword();
+			}
 		});
 		this.loginForm.setErrors(this.userService.errors);
 		this.cd.detectChanges(); // Because we changed the structure after view init
@@ -62,9 +59,5 @@ export class LoginComponent implements OnInit, AfterViewInit {
 					this.userService.errors = { login_failed: true };
 				}
 			);
-	}
-
-	log(e) {
-		console.log(e);
 	}
 }

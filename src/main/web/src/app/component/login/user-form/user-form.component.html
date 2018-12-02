@@ -35,6 +35,7 @@
 				autocomplete="current-password"
 				formControlName="password"
 				placeholder="Password"
+				[(focus)]="passwordFocused"
 				[type]="hide ? 'password' : 'text'"
 				[errorStateMatcher]="parentMatcher"
 			/>
@@ -53,4 +54,3 @@
 		</mat-form-field>
 	</div>
 </div>
-<button type="button" (click)="forceFocus()">hello</button>
