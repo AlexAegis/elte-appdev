@@ -21,7 +21,7 @@
 			width: 100%;
 			display: grid;
 			grid-template-rows: minmax(100%, 4rem);
-			grid-template-columns: 60px 10rem auto minmax(auto, 40rem);
+			grid-template-columns: 60px 1rem auto minmax(auto, 40rem);
 
 			app-hamburger {
 				grid-column: 1;

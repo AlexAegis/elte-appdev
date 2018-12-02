@@ -63,9 +63,22 @@ body {
 //$dark-background-palette: map-get($client-theme, primary);
 
 .lit {
+	//outline: 0.4rem solid rgba(77, 142, 255, 0.9);
 	//transition: box-shadow 1s ease-in-out;
 	//	background-color: mat-color($dark-background-palette, 50);
 	//box-shadow: inset 0 0 1.5rem 1.5rem rgba(255, 255, 255, 0.055), 0 0 0.2rem 0rem rgba(255, 255, 255, 0.274) !important;
+}
+
+.lit:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border: 0.2rem solid #6dabff;
+	border-radius: 0.2rem;
 }
 
 /* Pre-render the bigger shadow, but hide it 
