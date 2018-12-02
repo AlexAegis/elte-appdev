@@ -7,8 +7,10 @@ import {
 	EventEmitter,
 	Output,
 	AfterViewInit,
-	ChangeDetectorRef
+	ChangeDetectorRef,
+	OnDestroy
 } from '@angular/core';
+import { Observable, of, Subscription } from 'rxjs';
 /**
  * Two way bound focus directive
  *
@@ -21,31 +23,12 @@ import {
 @Directive({
 	selector: '[focus]'
 })
-export class FocusDirective implements OnInit, AfterViewInit {
+export class FocusDirective implements OnInit, AfterViewInit, OnDestroy {
 	constructor(private hostElement: ElementRef, private renderer: Renderer, private cd: ChangeDetectorRef) {}
 
-	ngOnInit() {
-		this.focusChange.subscribe(focus => {
-			if (focus) {
-				this.renderer.invokeElementMethod(this.hostElement.nativeElement, 'focus');
-			}
-		});
-		this.renderer.listen(this.hostElement.nativeElement, 'focus', () => {
-			this.focus = true;
-			this.cd.detectChanges();
-		});
-		this.renderer.listen(this.hostElement.nativeElement, 'focusout', () => {
-			this.focus = false;
-			this.cd.detectChanges();
-		});
-	}
-
-	/**
-	 * Initial state. If not emitted, the directive won't work until manual change of the input
-	 */
-	ngAfterViewInit() {
-		this.focusChange.emit(this.focus);
-	}
+	private focusListener: Function;
+	private focusoutListener: Function;
+	private focusSubscription: Subscription;
 
 	@Output()
 	focusChange = new EventEmitter<boolean>();
@@ -60,5 +43,35 @@ export class FocusDirective implements OnInit, AfterViewInit {
 
 	get focus(): boolean {
 		return this._focus;
+	}
+
+	ngOnInit() {
+		this.focusSubscription = (<Observable<boolean>>this.focusChange).subscribe(focus => {
+			if (focus) {
+				this.renderer.invokeElementMethod(this.hostElement.nativeElement, 'focus');
+			}
+		});
+
+		this.focusListener = this.renderer.listen(this.hostElement.nativeElement, 'focus', () => {
+			this.focus = true;
+			this.cd.detectChanges();
+		});
+		this.focusoutListener = this.renderer.listen(this.hostElement.nativeElement, 'focusout', () => {
+			this.focus = false;
+			this.cd.detectChanges();
+		});
+	}
+
+	/**
+	 * Initial state. If not emitted, the directive won't work until manual change of the input
+	 */
+	ngAfterViewInit() {
+		this.focusChange.emit(this.focus);
+	}
+
+	ngOnDestroy() {
+		this.focusListener();
+		this.focusoutListener();
+		this.focusSubscription.unsubscribe();
 	}
 }
