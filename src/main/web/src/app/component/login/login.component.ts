@@ -1,8 +1,9 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../../service/auth.service';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { UserService } from 'src/app/service/user/user.service';
 import { Router } from '@angular/router';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @Component({
 	selector: 'app-login',
@@ -22,6 +23,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
 	loginForm: FormGroup;
 
+	@ViewChild('userForm')
+	userForm: ElementRef;
+
 	ngOnInit(): void {
 		this.loginForm = this.formBuilder.group({});
 		console.log('init');
@@ -30,11 +34,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
 	ngAfterViewInit(): void {
 		this.userService.username$.subscribe(username => {
 			console.log('new suername arrived to the logincomponent: ' + username);
-			this.loginForm.updateValueAndValidity();
+
 			this.loginForm
 				.get('user')
 				.get('username')
 				.updateValueAndValidity();
+			//this.userForm.nativeElement.focus();
 
 			//this.cd.detectChanges();
 		});

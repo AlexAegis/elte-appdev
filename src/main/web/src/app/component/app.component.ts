@@ -1,10 +1,11 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { transition, animate, state, style, trigger, group, animateChild, query } from '@angular/animations';
 import { RouterOutlet, ActivatedRoute, Router } from '@angular/router';
 import { slideInAnimation } from '../animation/route.animation';
 import { AuthGuard } from '../guard/auth.guard';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
+import { LoginComponent } from './login/login.component';
 
 @Component({
 	selector: 'app-root',
@@ -76,9 +77,13 @@ export class AppComponent implements OnInit {
 	exp: boolean = true;
 	show: boolean = true;
 
-	mediaLarge: boolean;
+	mediaLarge: boolean = true;
 
 	color: string = '#00aaffff';
+
+	@ViewChild('login')
+	login: ElementRef;
+
 	constructor(
 		public auth: AuthService,
 		public route: ActivatedRoute,
@@ -99,6 +104,10 @@ export class AppComponent implements OnInit {
 
 	navSize() {
 		return this.auth.user === undefined && this.router.url !== '/register' ? 'open' : 'closed';
+	}
+
+	expandDone($event): void {
+		//	(<LoginComponent>this.login).loginForm.get('password').nativeElement.focus();
 	}
 
 	nav() {

@@ -1,7 +1,13 @@
 <div [formGroup]="parent">
 	<div formGroupName="user" id="user-form">
 		<mat-form-field hideRequiredMarker>
-			<input matInput autocomplete="username" formControlName="username" placeholder="Username" [focus]="true" />
+			<input
+				matInput
+				autocomplete="username"
+				formControlName="username"
+				placeholder="Username"
+				[(focus)]="usernameFocused"
+			/>
 			<mat-error *ngIf="user.controls['username'].dirty && user.controls['username'].errors?.required">
 				Reqired
 			</mat-error>
@@ -47,3 +53,4 @@
 		</mat-form-field>
 	</div>
 </div>
+<button type="button" (click)="forceFocus()">hello</button>

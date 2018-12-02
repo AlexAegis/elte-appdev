@@ -1,6 +1,6 @@
 <div class="window">
 	<ng-progress #progressBar></ng-progress>
-	<mat-toolbar color="primary" [@expand]="navSize()">
+	<mat-toolbar color="primary" [@expand]="navSize()" (@expand.done)="expandDone($event)">
 		<mat-toolbar-row id="mainBar">
 			<app-hamburger *ngIf="!mediaLarge && auth.user !== undefined" [(open)]="sidebar.opened"></app-hamburger>
 			<button
@@ -19,6 +19,7 @@
 			<div id="user">
 				<ng-template [appLoading]="auth.login$ | async">
 					<app-login
+						#login
 						class="fixed-bottom fixed-right"
 						*ngIf="auth.user === undefined"
 						[@translateLogin]="navSize()"

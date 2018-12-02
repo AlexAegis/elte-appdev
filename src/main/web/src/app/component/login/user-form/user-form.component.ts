@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { matchValidator } from 'src/app/validator/match.validator';
 import { requiredIf } from 'src/app/validator/required-if.validator';
@@ -6,7 +6,7 @@ import { validateObservable } from 'src/app/validator/observable.validator';
 import { UserService } from 'src/app/service/user/user.service';
 import { UserAvailableResponse } from 'src/app/model/api/public/user/available.get.interface';
 import { ApiResponse } from 'src/app/model/api/api-response.interface';
-import { ParentErrorStateMatcher } from 'src/app/tool/material/error-state-matcher.class';
+import { ParentErrorStateMatcher } from 'src/app/function/material/error-state-matcher.class';
 
 @Component({
 	selector: 'app-user-form',
@@ -34,7 +34,20 @@ export class UserFormComponent implements OnInit, OnInit {
 	@ViewChild('username')
 	username: ElementRef;
 
+	@ViewChild('password')
+	password: ElementRef;
+
+	usernameFocused: boolean = true;
+
+	passwordFocused: boolean;
+
+	forceFocus() {
+		console.log('focus forced');
+		this.usernameFocused = true;
+	}
+
 	ngOnInit() {
+		this.usernameFocused = true;
 		this.user = this.formBuilder.group(
 			{
 				username: [
@@ -65,5 +78,11 @@ export class UserFormComponent implements OnInit, OnInit {
 		if (this.userService.username.getValue()) {
 			this.user.get('username').markAsDirty();
 		}
+
+		this.userService.username$.subscribe(username => {
+			if (this.password) {
+				this.passwordFocused = true;
+			}
+		});
 	}
 }
