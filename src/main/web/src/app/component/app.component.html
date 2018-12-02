@@ -3,7 +3,7 @@
 	<mat-toolbar color="primary" [@expand]="navSize()" (@expand.done)="expandDone($event)">
 		<mat-toolbar-row id="mainBar">
 			<app-hamburger
-				*ngIf="!mediaLarge && auth.user !== undefined"
+				*ngIf="!mediaLarge && auth.user !== undefined && auth.user !== null"
 				@leave
 				[(open)]="sidebar.opened"
 			></app-hamburger>
