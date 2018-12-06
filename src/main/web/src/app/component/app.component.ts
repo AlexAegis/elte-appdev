@@ -117,7 +117,7 @@ export class AppComponent implements OnInit {
 	}
 
 	expandDone($event): void {
-		//	(<LoginComponent>this.login).loginForm.get('password').nativeElement.focus();
+		// (<LoginComponent>this.login).loginForm.get('password').nativeElement.focus();
 	}
 
 	nav() {
