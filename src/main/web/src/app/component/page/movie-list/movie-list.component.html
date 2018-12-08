@@ -1,20 +1,18 @@
-<div>
-	<h1>Movies</h1>
-
-	<ag-grid-angular
-		#grid
-		[enableSorting]="true"
-		[animateRows]="true"
-		[enableFilter]="true"
-		class="ag-theme-material"
-		[suppressCellSelection]="true"
-		[columnDefs]="columnDefs"
-		[accentedSort]="true"
-		[rowData]="movies | async"
-		(rowSelected)="rowSelect($event)"
-		(selection)="onSelectionChanged($event)"
-		(gridSizeChanged)="onGridSizeChanged($event)"
-		(rowClicked)="clicked($event)"
-	>
-	</ag-grid-angular>
-</div>
+<h1>Movies</h1>
+<button mat-flat-button color="accent"><fa-icon icon="plus" size="lg" transform="down-0 left-2"></fa-icon>New</button>
+<ag-grid-angular
+	#grid
+	[enableSorting]="true"
+	[animateRows]="true"
+	[enableFilter]="true"
+	class="ag-theme-material"
+	[suppressCellSelection]="true"
+	[columnDefs]="columnDefs"
+	[accentedSort]="true"
+	[rowData]="movies | async"
+	(rowSelected)="rowSelect($event)"
+	(selection)="onSelectionChanged($event)"
+	(gridSizeChanged)="onGridSizeChanged($event)"
+	(rowClicked)="clicked($event)"
+>
+</ag-grid-angular>

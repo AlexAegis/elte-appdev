@@ -56,7 +56,6 @@ export class MovieListComponent implements OnInit {
 	}
 
 	clicked(event): void {
-		console.log(`click ${(<ApiResponse<MoviesResponse>>event.data).id}`);
 		this.router.navigate([`movies/${(<Movie>event.data).id}`]);
 	}
 }

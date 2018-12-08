@@ -36,6 +36,11 @@ import { HamburgerComponent } from './component/element/hamburger/hamburger.comp
 import { MovieListComponent } from './component/page/movie-list/movie-list.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { MovieComponent } from './component/page/movie/movie.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 
 @NgModule({
 	entryComponents: [LoadingComponent],
@@ -85,6 +90,7 @@ import { MovieComponent } from './component/page/movie/movie.component';
 		MaterialModule,
 		NgScrollbarModule,
 		SmoothScrollModule,
+		FontAwesomeModule,
 		AgGridModule.withComponents([])
 	],
 	providers: [
@@ -98,4 +104,8 @@ import { MovieComponent } from './component/page/movie/movie.component';
 	],
 	bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+	constructor() {
+		library.add(fas, far);
+	}
+}
