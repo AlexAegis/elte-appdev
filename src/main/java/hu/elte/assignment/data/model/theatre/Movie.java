@@ -25,7 +25,7 @@ public class Movie extends Base implements Serializable {
 	private static final long serialVersionUID = 5724157782072623484L;
 
 	@Column(nullable = false)
-	private String name;
+	private String title;
 
 	@Temporal(TemporalType.DATE)
 	private Date release;

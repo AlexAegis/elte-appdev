@@ -17,7 +17,7 @@ export class MovieListComponent implements OnInit {
 	private gridColumnApi;
 
 	columnDefs: Array<any> = [
-		{ headerName: 'Title', field: 'name', checkboxSelection: this.isFirstColumn },
+		{ headerName: 'Title', field: 'title', checkboxSelection: this.isFirstColumn },
 		{ headerName: 'Release', field: 'release', type: 'dateColumn' }
 	];
 

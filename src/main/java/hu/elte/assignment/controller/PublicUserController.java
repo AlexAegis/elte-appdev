@@ -3,10 +3,9 @@ package hu.elte.assignment.controller;
 import hu.elte.assignment.api.Message;
 import hu.elte.assignment.api.MessageType;
 import hu.elte.assignment.api.Response;
+import hu.elte.assignment.data.dto.validation.AvailablePayload;
 import hu.elte.assignment.data.model.user.User;
 import hu.elte.assignment.data.repository.user.UserRepository;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +61,7 @@ final class PublicUserController {
 		}
 	}
 
-	@GetMapping("/available/{username}")
+	@GetMapping("/validation/available/{username}")
 	ResponseEntity<Response<AvailablePayload>> available(@PathVariable("username") final String username) {
 		boolean present = this.userRepository.findByUsername(username).isPresent();
 		Response.ResponseBuilder<AvailablePayload> res = Response.<AvailablePayload>builder().data(new AvailablePayload(!present));
@@ -72,10 +71,5 @@ final class PublicUserController {
 		return ResponseEntity.ok(res.build());
 	}
 
-	@Data
-	@AllArgsConstructor
-	class AvailablePayload {
-		boolean available;
-	}
 
 }

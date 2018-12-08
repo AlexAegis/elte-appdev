@@ -1,7 +1,10 @@
 package hu.elte.assignment.controller;
 
+import hu.elte.assignment.api.Message;
+import hu.elte.assignment.api.Response;
 import hu.elte.assignment.config.DTO;
 import hu.elte.assignment.data.dto.theatre.MovieDTO;
+import hu.elte.assignment.data.dto.validation.AvailablePayload;
 import hu.elte.assignment.data.model.theatre.Movie;
 import hu.elte.assignment.data.repository.theatre.CinemaRepository;
 import hu.elte.assignment.data.repository.theatre.MovieRepository;
@@ -63,5 +66,9 @@ public class CinemaController {
 		return this.movieRepository.save(movie);
 	}
 
+	@GetMapping("/validation/available/{title}")
+	public ResponseEntity<Response<AvailablePayload>> available(@PathVariable("title") String title) {
+		return ResponseEntity.ok(Response.<AvailablePayload>builder().data(new AvailablePayload(this.movieRepository.findByTitle(title).isPresent())).build());
+	}
 
 }

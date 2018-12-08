@@ -1,0 +1,34 @@
+<div [formGroup]="parent">
+	<div formGroupName="movie" id="movie-form">
+		<mat-form-field hideRequiredMarker>
+			<input matInput formControlName="title" placeholder="Title" [(focus)]="titleFocused" />
+			<!--
+				<mat-error *ngIf="movie.controls['title']?.dirty && movie.controls['title']?.errors?.required">
+					Reqired
+				</mat-error>
+			-->
+			<!--
+				<mat-error
+					*ngIf="
+						(parent?.errors && (parent?.errors)['title_not_available']) ||
+						(movie.controls['title'].value && movie.controls['title'].invalid && movie.controls['title'].dirty)
+					"
+				>
+					Movie with title already exists
+				</mat-error>
+			-->
+
+			<!-- <mat-hint *ngIf="movie.controls['title']?.valid"> Hooray :) </mat-hint> -->
+
+			<!--
+				<mat-spinner *ngIf="movie.controls['title']?.pending" color="accent" diameter="20" matSuffix></mat-spinner>
+			-->
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput formControlName="release" placeholder="Release" [matDatepicker]="releaseDatePicker" />
+			<mat-datepicker-toggle matSuffix [for]="releaseDatePicker"></mat-datepicker-toggle>
+			<mat-datepicker #releaseDatePicker></mat-datepicker>
+		</mat-form-field>
+	</div>
+</div>
