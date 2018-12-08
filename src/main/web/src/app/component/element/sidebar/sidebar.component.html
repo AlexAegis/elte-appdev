@@ -16,13 +16,10 @@
 						[expandedHeight]="expandHeight"
 						[collapsedHeight]="collapseHeight"
 					>
-						<mat-panel-title> Buy Airtime </mat-panel-title>
+						<mat-panel-title> Movies </mat-panel-title>
 					</mat-expansion-panel-header>
 					<mat-nav-list class="ml-0" dense>
-						<mat-list-item> <a href="#">AirtelTigo Airtime</a> </mat-list-item>
-						<mat-list-item> <a href="#">Vodafone Airtime</a> </mat-list-item>
-						<mat-list-item> <a href="#">MTN Airtime</a> </mat-list-item>
-						<mat-list-item> <a href="#">GLO Airtime</a> </mat-list-item>
+						<mat-list-item> <a [routerLink]="['movies']">List Movies</a> </mat-list-item>
 					</mat-nav-list>
 				</mat-expansion-panel>
 				<mat-expansion-panel class="no-shadow my-0">

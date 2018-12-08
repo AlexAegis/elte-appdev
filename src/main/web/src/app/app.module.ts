@@ -35,6 +35,7 @@ import { SidebarComponent } from './component/element/sidebar/sidebar.component'
 import { HamburgerComponent } from './component/element/hamburger/hamburger.component';
 import { MovieListComponent } from './component/page/movie-list/movie-list.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { MovieComponent } from './component/page/movie/movie.component';
 
 @NgModule({
 	entryComponents: [LoadingComponent],
@@ -55,7 +56,8 @@ import { AgGridModule } from 'ag-grid-angular';
 		FocusDirective,
 		SidebarComponent,
 		HamburgerComponent,
-		MovieListComponent
+		MovieListComponent,
+		MovieComponent
 	],
 	imports: [
 		BrowserModule,

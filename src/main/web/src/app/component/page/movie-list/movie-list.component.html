@@ -1,2 +1,20 @@
-<p>movie-list works!</p>
-<ag-grid-angular class="ag-theme-material" [rowData]="rowData" [columnDefs]="columnDefs"> </ag-grid-angular>
+<div>
+	<h1>Movies</h1>
+
+	<ag-grid-angular
+		#grid
+		[enableSorting]="true"
+		[animateRows]="true"
+		[enableFilter]="true"
+		class="ag-theme-material"
+		[suppressCellSelection]="true"
+		[columnDefs]="columnDefs"
+		[accentedSort]="true"
+		[rowData]="movies | async"
+		(rowSelected)="rowSelect($event)"
+		(selection)="onSelectionChanged($event)"
+		(gridSizeChanged)="onGridSizeChanged($event)"
+		(rowClicked)="clicked($event)"
+	>
+	</ag-grid-angular>
+</div>

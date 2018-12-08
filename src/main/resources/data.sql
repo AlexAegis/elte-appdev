@@ -32,3 +32,12 @@ insert into authority (authority, group_id) values ('READ', select id from autho
 insert into authority (authority, group_id) values ('WRITE', select id from authority_group where name = 'user');
 
 insert into movie (name, release) values('Lord of the Rings', date'2002-01-01');
+insert into movie (name, release) values('Lord of the Rings1', date'2002-01-02');
+insert into movie (name, release) values('Lord of the Rings2', date'2002-01-03');
+insert into movie (name, release) values('Lord of the Rings3', date'2002-01-04');
+insert into movie (name, release) values('Lord of the Rings4', date'2002-01-05');
+insert into movie (name, release) values('Lord of the Rings5', date'2002-01-06');
+insert into movie (name, release) values('Lord of the Rings6', date'2002-01-07');
+insert into movie (name, release) values('Lord of the Rings7', date'2002-01-08');
+insert into movie (name, release) values('Lord of the Rings8', date'2002-01-09');
+insert into movie (name, release) values('Lord of the Rings9', date'2002-01-10');

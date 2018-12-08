@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import static lombok.AccessLevel.PRIVATE;
 
 @RestController
-@RequestMapping("/rest/cinema")
+@RequestMapping("/rest/movies")
 @FieldDefaults(level = PRIVATE, makeFinal = true)
 public class CinemaController {
 
@@ -32,31 +32,32 @@ public class CinemaController {
 		this.modelMapper = modelMapper;
 	}
 
-	@PreAuthorize("hasAuthority('READ')")
-	@GetMapping("/movie")
+
+	@GetMapping("/")
 	public ResponseEntity<Iterable<Movie>> readMovies() {
 		return ResponseEntity.ok(this.movieRepository.findAll());
 	}
 
-	@GetMapping("/movie/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Movie> readMovie(@PathVariable("id") Integer id) {
 		return this.movieRepository.findById(id)
 				.map(ResponseEntity::ok)
 				.orElseGet(() -> ResponseEntity.noContent().build());
 	}
 
-	@PostMapping("/movie")
+	@PreAuthorize("hasAuthority('WRITE')")
+	@PostMapping("/")
 	public ResponseEntity<Movie> createMovie(@Valid @RequestBody() MovieDTO movieDTO) {
 		Movie movie = modelMapper.map(movieDTO, Movie.class);
 		return ResponseEntity.ok(this.movieRepository.save(movie));
 	}
 
-	@DeleteMapping("/movie/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteMovie(@PathVariable("id") Integer id) {
 		this.movieRepository.deleteById(id);
 	}
 
-	@PutMapping("/movie")
+	@PutMapping("/")
 	public Movie updateMovie(@DTO(MovieDTO.class) @Valid @RequestBody() Movie movie) {
 		//Movie movie = modelMapper.map(movieDTO, Movie.class);
 		return this.movieRepository.save(movie);

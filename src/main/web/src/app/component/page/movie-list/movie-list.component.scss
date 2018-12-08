@@ -1,8 +1,18 @@
 :host {
-	ag-grid-angular {
+	//display: flex;
+	//flex-direction: row;
+	width: 100%;
+	div {
+		//overflow: hidden;
+		//flex-grow: 1;
 		width: 100%;
-		height: 80vh;
-
-		overflow: hidden;
+		h1 {
+			margin: 1em;
+		}
+		ag-grid-angular {
+			//margin: 1em;
+			width: 100%;
+			height: 80vh;
+		}
 	}
 }
