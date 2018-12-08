@@ -1,7 +1,7 @@
 import { AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
 import { Observable, timer } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { ApiResponse } from '../model/api/api-response.interface';
+import { ApiResponse } from '../api/api-response.interface';
 
 /**
  * Generic async validator creator for observables

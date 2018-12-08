@@ -3,9 +3,9 @@ import { Person } from '../../model/people/person.class';
 import { User } from '../../model/user.class';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import * as IUserAvailable from '../../model/api/public/user/available.get.interface';
-import * as IUserRegister from '../../model/api/public/user/register.post.interface';
-import { ApiResponse } from 'src/app/model/api/api-response.interface';
+import * as IUserAvailable from '../../api/public/user/available.get.interface';
+import * as IUserRegister from '../../api/public/user/register.post.interface';
+import { ApiResponse } from 'src/app/api/api-response.interface';
 import { ValidationErrors } from '@angular/forms';
 @Injectable({
 	providedIn: 'root'

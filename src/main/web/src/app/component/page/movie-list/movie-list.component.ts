@@ -3,8 +3,8 @@ import { MovieService } from './../../../service/movie/movie.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ColDef, Column } from 'ag-grid-community';
 import { Observable } from 'rxjs';
-import { ApiResponse } from 'src/app/model/api/api-response.interface';
-import { MoviesResponse } from 'src/app/model/api/movies/movies.get.interface';
+import { ApiResponse } from 'src/app/api/api-response.interface';
+import { MoviesResponse } from 'src/app/api/movies/movies.get.interface';
 import { Movie } from 'src/app/model/movie/movie.interface';
 
 @Component({

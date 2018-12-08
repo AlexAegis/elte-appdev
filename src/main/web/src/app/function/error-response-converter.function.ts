@@ -1,5 +1,5 @@
 import { ValidationErrors } from '@angular/forms';
-import { ErrorResponse } from '../model/api/error-response.interface';
+import { ErrorResponse } from '../api/error-response.interface';
 
 export function errorResponseConverter<T>(err: any): ValidationErrors {
 	const errors = [];

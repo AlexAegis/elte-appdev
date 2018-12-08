@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { ApiResponse } from 'src/app/model/api/api-response.interface';
+import { ApiResponse } from 'src/app/api/api-response.interface';
 import { validateObservable } from 'src/app/validator/observable.validator';
 import { MovieService } from 'src/app/service/movie/movie.service';
-import { TitleAvailableResponse } from 'src/app/model/api/movies/title-available.get.interface';
+import { TitleAvailableResponse } from 'src/app/api/movies/title-available.get.interface';
 
 @Component({
 	selector: 'app-movie-form',

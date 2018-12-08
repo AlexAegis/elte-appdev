@@ -4,8 +4,8 @@ import { matchValidator } from 'src/app/validator/match.validator';
 import { requiredIf } from 'src/app/validator/required-if.validator';
 import { validateObservable } from 'src/app/validator/observable.validator';
 import { UserService } from 'src/app/service/user/user.service';
-import { UserAvailableResponse } from 'src/app/model/api/public/user/available.get.interface';
-import { ApiResponse } from 'src/app/model/api/api-response.interface';
+import { UserAvailableResponse } from 'src/app/api/public/user/available.get.interface';
+import { ApiResponse } from 'src/app/api/api-response.interface';
 import { ParentErrorStateMatcher } from 'src/app/function/material/error-state-matcher.class';
 
 @Component({

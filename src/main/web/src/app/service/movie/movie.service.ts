@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResponse } from 'src/app/model/api/api-response.interface';
+import { ApiResponse } from 'src/app/api/api-response.interface';
 
-import * as IMovie from '../../model/api/movies/movies.get.interface';
-import * as ITitleAvailable from '../../model/api/movies/title-available.get.interface';
+import * as IMovie from '../../api/movies/movies.get.interface';
+import * as ITitleAvailable from '../../api/movies/title-available.get.interface';
 @Injectable({
 	providedIn: 'root'
 })

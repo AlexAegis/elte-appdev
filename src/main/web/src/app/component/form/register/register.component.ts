@@ -8,10 +8,10 @@ import { UserService } from 'src/app/service/user/user.service';
 import { User } from 'src/app/model/user.class';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ApiResponse } from 'src/app/model/api/api-response.interface';
+import { ApiResponse } from 'src/app/api/api-response.interface';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorResponse } from 'src/app/model/api/error-response.interface';
-import { RegisterResponse } from 'src/app/model/api/public/user/register.post.interface';
+import { ErrorResponse } from 'src/app/api/error-response.interface';
+import { RegisterResponse } from 'src/app/api/public/user/register.post.interface';
 import { Router } from '@angular/router';
 @Component({
 	selector: 'app-register',
