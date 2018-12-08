@@ -1,8 +1,8 @@
-import { Component, OnInit, HostListener, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../model/user.class';
+import { User } from '../../../model/user.class';
 import { AuthService } from 'src/app/service/auth.service';
-import { Subscription, interval, Observable, of, timer } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Moment } from 'moment';

@@ -2,6 +2,7 @@
 	"tslint.alwaysShowRuleFailuresAsWarnings": true,
 	"editor.formatOnSave": true,
 	"editor.autoIndent": true,
+	"editor.quickSuggestions": true,
 	"editor.tabSize": 4,
 	"prettier.useTabs": true,
 	"prettier.tabWidth": 4,

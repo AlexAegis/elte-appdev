@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
-import { AuthService } from '../../service/auth.service';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { AuthService } from '../../../service/auth.service';
 import { FormBuilder, FormGroup, NgForm, AbstractControl } from '@angular/forms';
 import { UserService } from 'src/app/service/user/user.service';
 import { Router } from '@angular/router';

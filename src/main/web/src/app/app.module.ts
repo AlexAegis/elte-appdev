@@ -3,14 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { RoutingModule } from './module/routes/routing.module';
 import { AppComponent } from './component/app.component';
-import { HelloComponent } from './component/hello/hello.component';
-import { LoginComponent } from './component/login/login.component';
+import { LoginComponent } from './component/form/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UserComponent } from './component/user/user.component';
-import { LoadingComponent } from './component/loading/loading.component';
+import { UserComponent } from './component/form/user/user.component';
+import { LoadingComponent } from './component/element/loading/loading.component';
 import { LoadingDirective } from './directive/loading.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './module/material.module';
@@ -22,10 +21,10 @@ import { RefreshTokenInterceptor } from './interceptor/refresh-token.interceptor
 import { HolaComponent } from './component/dummy/hola/hola.component';
 import { HaloComponent } from './component/dummy/halo/halo.component';
 import { AvatarModule } from 'ngx-avatar';
-import { RegisterComponent } from './component/register/register.component';
+import { RegisterComponent } from './component/form/register/register.component';
 import { LoremComponent } from './component/dummy/lorem/lorem.component';
-import { PersonComponent } from './component/people/person/person.component';
-import { UserFormComponent } from './component/login/user-form/user-form.component';
+import { PersonComponent } from './component/form/people/person/person.component';
+import { UserFormComponent } from './component/form/login/user-form/user-form.component';
 import { UserService } from './service/user/user.service';
 import { FocusDirective } from './directive/focus.directive';
 import { HomeComponent } from './component/page/home/home.component';
@@ -39,7 +38,6 @@ import { HamburgerComponent } from './component/element/hamburger/hamburger.comp
 	entryComponents: [LoadingComponent],
 	declarations: [
 		AppComponent,
-		HelloComponent,
 		WelcomeComponent,
 		HomeComponent,
 		LoginComponent,

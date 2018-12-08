@@ -24,6 +24,7 @@
 						"tsConfig": "src/tsconfig.app.json",
 						"assets": ["src/favicon.ico", "src/assets"],
 						"styles": ["src/style/styles.scss"],
+						"aot": true,
 						"scripts": []
 					},
 					"configurations": {
@@ -55,9 +56,7 @@
 				},
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
-					"options": {
-						"browserTarget": "client:build"
-					},
+					"options": { "browserTarget": "client:build" },
 					"configurations": {
 						"production": {
 							"browserTarget": "client:build:production"
@@ -85,10 +84,7 @@
 				"lint": {
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
-						"tsConfig": [
-							"src/tsconfig.app.json",
-							"src/tsconfig.spec.json"
-						],
+						"tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
 						"exclude": ["**/node_modules/**"]
 					}
 				}

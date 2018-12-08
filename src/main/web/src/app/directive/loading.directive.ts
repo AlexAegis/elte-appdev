@@ -7,7 +7,7 @@ import {
 	ComponentRef,
 	ComponentFactoryResolver
 } from '@angular/core';
-import { LoadingComponent } from '../component/loading/loading.component';
+import { LoadingComponent } from '../component/element/loading/loading.component';
 
 @Directive({
 	selector: '[appLoading]'
@@ -22,9 +22,7 @@ export class LoadingDirective {
 
 		if (loading === null) {
 			// create and embed an instance of the loading component
-			this.loadingComponent = this.vcRef.createComponent(
-				this.loadingFactory
-			);
+			this.loadingComponent = this.vcRef.createComponent(this.loadingFactory);
 
 			// this.vcRef.element.nativeElement.setAttribute('class', 'test');
 		} else {
@@ -39,8 +37,6 @@ export class LoadingDirective {
 		private componentFactoryResolver: ComponentFactoryResolver
 	) {
 		// Create resolver for loading component
-		this.loadingFactory = this.componentFactoryResolver.resolveComponentFactory(
-			LoadingComponent
-		);
+		this.loadingFactory = this.componentFactoryResolver.resolveComponentFactory(LoadingComponent);
 	}
 }
