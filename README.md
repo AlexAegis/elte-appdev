@@ -79,10 +79,10 @@ Keep every asset of the project fresh and updated.
 - **[/rest/users/current GET](http://localhost:8080/rest/users/current)** - Queries the current user. Testing purposes only as the user is described in the token and gets injected from that already
 - **[/rest/users/logout POST](http://localhost:8080/rest/users/logout)** - Not necessary on server side with token based authentication but I provide a way to blacklist your token with this endpoint
 - [/rest/cinema/](http://localhost:8080/rest/cinema/) - Secured cinema actions
-- **[/rest/cinema/movie POST](http://localhost:8080/rest/cinema/movie)** - Create a movie
-- **[/rest/cinema/movie PUT](http://localhost:8080/rest/cinema/movie)** - Update a movie (Has an ID)
-- **[/rest/cinema/movie/:id DELETE](http://localhost:8080/rest/cinema/movie/1)** - Deletes a movie
-- **[/rest/cinema/movie/:id GET](http://localhost:8080/rest/cinema/movie/1)** - Reads a movie
+- **[/rest/movies POST](http://localhost:8080/rest/movies)** - Create a movie
+- **[/rest/movies PUT](http://localhost:8080/rest/movies)** - Update a movie (Has an ID)
+- **[/rest/movies/:id DELETE](http://localhost:8080/rest/movies/1)** - Deletes a movie
+- **[/rest/movies/:id GET](http://localhost:8080/rest/movies/1)** - Reads a movie
 
 ## Security
 
@@ -139,7 +139,7 @@ necessary JVM arguments.
 
 ### [Maven](https://maven.apache.org/)
 
-> **Build tool** for the whole project. Can build and package the frontend too for static hosting.
+> **Build tool** for the whole project. Can build and package the frontend too for static hosting
 
 ### [Sass](https://sass-lang.com/)
 
@@ -151,7 +151,11 @@ necessary JVM arguments.
 
 ### [Ag-Grid](https://www.ag-grid.com)
 
-> **Datatables**, the best ones
+> **Datatable**, the best
+
+### [FontAwesome](https://fontawesome.com/)
+
+> **Icons**, awesome ones
 
 ## Recommendations
 
@@ -161,16 +165,16 @@ necessary JVM arguments.
 
 ### [Visual Studio Code](https://code.visualstudio.com/)
 
-> **IDE** for mainly the frontend but can be used for both. [Settings](./.vscode/).
+> **IDE** for mainly the frontend but can be used for both. [Settings](./.vscode/)
 
 ### [SonarLint](https://www.sonarlint.org/intellij/)
 
-> **Linting** in IDEA for java.
+> **Linting** in IDEA for java
 > Install [this plugin](https://plugins.jetbrains.com/plugin/7973-sonarlint) if you're using IntelliJ
 
 ### [DCENV](https://dcevm.github.io/)
 
-> **Hot Reload** capable alternative JVM.
+> **Hot Reload** capable alternative JVM
 
 Download the latest release of [DCENV](https://dcevm.github.io/) Light binary, run it with administrator
 privileges and install it as an alternative JVM
@@ -196,7 +200,7 @@ you can do this by opening up the 'Environment' panel and putting this in the VM
 
 ### [Fira Code](https://github.com/tonsky/FiraCode)
 
-> **Font** with ligatures.
+> **Font** with ligatures
 
 ### [LiveReload](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei)
 
@@ -204,12 +208,12 @@ you can do this by opening up the 'Environment' panel and putting this in the VM
 
 ### [JWT Debugger](https://chrome.google.com/webstore/detail/jwt-debugger/ppmmlchacdbknfphdeafcbmklcghghmd?hl=en)
 
-> **Inspect tokens** in chrome to check the payload of your token stored in the local storage.
+> **Inspect tokens** in chrome to check the payload of your token stored in the local storage
 
 ### [Lombok](https://projectlombok.org/)
 
-> **Compile time magic** before compile time.
-> Install [this plugin](https://plugins.jetbrains.com/plugin/6317-lombok-plugin) if you're using IntelliJ.
+> **Compile time magic** before compile time
+> Install [this plugin](https://plugins.jetbrains.com/plugin/6317-lombok-plugin) if you're using IntelliJ
 
 ### [Chocolately](https://chocolatey.org/)
 
