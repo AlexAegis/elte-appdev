@@ -33,6 +33,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { SmoothScrollModule } from 'ngx-scrollbar';
 import { SidebarComponent } from './component/element/sidebar/sidebar.component';
 import { HamburgerComponent } from './component/element/hamburger/hamburger.component';
+import { MovieListComponent } from './component/page/movie-list/movie-list.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
 	entryComponents: [LoadingComponent],
@@ -52,7 +54,8 @@ import { HamburgerComponent } from './component/element/hamburger/hamburger.comp
 		UserFormComponent,
 		FocusDirective,
 		SidebarComponent,
-		HamburgerComponent
+		HamburgerComponent,
+		MovieListComponent
 	],
 	imports: [
 		BrowserModule,
@@ -79,7 +82,8 @@ import { HamburgerComponent } from './component/element/hamburger/hamburger.comp
 		BrowserAnimationsModule,
 		MaterialModule,
 		NgScrollbarModule,
-		SmoothScrollModule
+		SmoothScrollModule,
+		AgGridModule.withComponents([])
 	],
 	providers: [
 		AuthService,

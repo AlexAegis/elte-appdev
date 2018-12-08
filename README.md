@@ -133,7 +133,7 @@ necessary JVM arguments.
 
 > **Package manager** for JS projects
 
-### [Node 11](https://nodejs.org/en/)
+### [Node 10](https://nodejs.org/en/)
 
 > **JS Runtime** featuring V8 from chromium
 
@@ -148,6 +148,10 @@ necessary JVM arguments.
 ### [Dragula](https://github.com/valor-software/ng2-dragula)
 
 > **Drag and drop** made really easy
+
+### [Ag-Grid](https://www.ag-grid.com)
+
+> **Datatables**, the best ones
 
 ## Recommendations
 

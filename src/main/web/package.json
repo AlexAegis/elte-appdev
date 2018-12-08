@@ -35,6 +35,8 @@
 		"@ngx-progressbar/http": "^5.2.1",
 		"@swimlane/ngx-charts": "^10.0.0",
 		"@types/animejs": "^2.0.1",
+		"ag-grid-angular": "^19.1.2",
+		"ag-grid-community": "^19.1.4",
 		"angular-oauth2-oidc": "^5.0.2",
 		"animejs": "^2.2.0",
 		"core-js": "^2.6.0",

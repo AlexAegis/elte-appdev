@@ -1,3 +1,4 @@
+import { MovieListComponent } from './../../component/page/movie-list/movie-list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../../guard/auth.guard';
@@ -15,9 +16,8 @@ const routes: Routes = [
 	{
 		path: '',
 		canActivateChild: [AuthGuard],
-
 		canLoad: ['register'],
-		children: [{ path: 'logout', redirectTo: '' }, { path: 'login', redirectTo: '', canActivate: [AuthGuard] }]
+		children: [{ path: 'logout', redirectTo: '' }, { path: 'movies', component: MovieListComponent }]
 	},
 	{ path: 'register', component: RegisterComponent }
 ];

@@ -24,8 +24,9 @@
 						"tsConfig": "src/tsconfig.app.json",
 						"assets": ["src/favicon.ico", "src/assets"],
 						"styles": ["src/style/styles.scss"],
-						"aot": true,
-						"scripts": []
+						"aot": false,
+						"scripts": [],
+						"outputHashing": "media"
 					},
 					"configurations": {
 						"production": {
