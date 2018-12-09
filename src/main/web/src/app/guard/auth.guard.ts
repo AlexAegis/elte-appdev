@@ -23,11 +23,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	}
 
 	isAuthenticated(): boolean {
-		if (!this.auth.user) {
-			console.log('auth false, routing denied');
-			return false;
-		}
-		console.log('auth, routing allowed');
-		return true;
+		return !!this.auth.user;
 	}
 }

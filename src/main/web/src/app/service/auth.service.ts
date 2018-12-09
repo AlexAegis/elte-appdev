@@ -68,7 +68,7 @@ export class AuthService {
 
 	refresh() {
 		this.oAuthService.refreshToken().then(() => {
-			console.debug('token refreshed');
+			// console.debug('token refreshed');
 		});
 	}
 

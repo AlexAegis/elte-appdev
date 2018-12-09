@@ -50,6 +50,8 @@ export class MovieComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		this.movieLoadSubscription.unsubscribe();
+		if (this.movieLoadSubscription) {
+			this.movieLoadSubscription.unsubscribe();
+		}
 	}
 }
