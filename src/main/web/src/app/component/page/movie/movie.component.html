@@ -1,12 +1,14 @@
-<h1 *ngIf="existing">Edit movie</h1>
-<h1 *ngIf="!existing">Create movie</h1>
-<form
-	#f="ngForm"
-	[formGroup]="movieForm"
-	(submit)="save(f)"
-	(keydown.enter)="!f.valid && !f.form.controls['user'].controls['username'].valid ? submit.focus() : $event"
->
-	<app-movie-form #movieFormComp [parent]="movieForm"></app-movie-form>
+<div [hidden]="!loaded">
+	<h1 *ngIf="existing">Edit movie</h1>
+	<h1 *ngIf="!existing">Create movie</h1>
+	<form
+		#f="ngForm"
+		[formGroup]="movieForm"
+		(submit)="save(f)"
+		(keydown.enter)="!f.valid && !f.form.controls['user'].controls['username'].valid ? submit.focus() : $event"
+	>
+		<app-movie-form #movieFormComp [parent]="movieForm"></app-movie-form>
 
-	<button #submit type="submit" mat-flat-button [disabled]="!movieForm.valid">Save</button>
-</form>
+		<button #submit type="submit" mat-flat-button [disabled]="!movieForm.valid">Save</button>
+	</form>
+</div>
