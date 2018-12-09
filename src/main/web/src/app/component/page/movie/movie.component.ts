@@ -28,21 +28,22 @@ export class MovieComponent implements OnInit, OnDestroy {
 	movieFormComponent: MovieFormComponent;
 	movieFromParam: Observable<Movie>;
 	unsub: Array<Subscription> = [];
-
+	existing: boolean = false;
 	ngOnInit(): void {
 		this.movieForm = this.formBuilder.group({});
 		this.movieFromParam = this.activatedRoute.params.pipe(
 			switchMap(params => {
-				if (params && params['id']) {
-					return this.movieService.movie(params['id']);
+				if (params && params.id) {
+					return this.movieService.movie(params.id);
 				} else of();
-			}),
-			defaultIfEmpty()
+			})
 		);
+
 		this.unsub.push(
 			this.movieFromParam.subscribe(result => {
 				if (result) {
 					this.movieForm.patchValue({ movie: result });
+					this.existing = true;
 				}
 			})
 		);
