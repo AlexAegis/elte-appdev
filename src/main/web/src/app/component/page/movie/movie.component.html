@@ -4,7 +4,7 @@
 	<form
 		#f="ngForm"
 		[formGroup]="movieForm"
-		(submit)="save(f)"
+		(submit)="save()"
 		(keydown.enter)="!f.valid && !f.form.controls['user'].controls['username'].valid ? submit.focus() : $event"
 	>
 		<app-movie-form #movieFormComp [parent]="movieForm"></app-movie-form>
