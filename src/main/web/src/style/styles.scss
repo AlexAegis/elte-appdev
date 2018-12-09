@@ -72,6 +72,30 @@ body {
 	border-radius: 0.2rem;
 }
 
+.flashlit:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	animation: selectFlash 2.5s;
+	transition-timing-function: ease-in-out;
+}
+
+@keyframes selectFlash {
+	from {
+		border: 0.2rem solid #6dabff; //  #6dabff
+		background-color: #6dabff33;
+	}
+	to {
+		border: 0.2rem solid #6dabff00; //  #6dabff
+		background-color: #6dabff00;
+	}
+}
+
 /* Pre-render the bigger shadow, but hide it 
 .lit::after {
 	box-shadow: inset 0 0 0rem 0 rgba(255, 255, 255, 0.3),

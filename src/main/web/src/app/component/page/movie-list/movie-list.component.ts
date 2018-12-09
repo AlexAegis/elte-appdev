@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MovieService } from './../../../service/movie/movie.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ColDef, Column } from 'ag-grid-community';
@@ -22,11 +22,22 @@ export class MovieListComponent implements OnInit {
 	];
 
 	movies: Observable<ApiResponse<MoviesResponse>>;
-	constructor(public movieService: MovieService, private router: Router) {
+	constructor(public movieService: MovieService, private router: Router, private activatedRoute: ActivatedRoute) {
 		this.movies = movieService.movies();
 	}
 
-	ngOnInit() {}
+	rowClassRules;
+	ngOnInit() {
+		this.activatedRoute.queryParams.subscribe(queryParams => {
+			console.log('LAST');
+			console.log(queryParams);
+			this.rowClassRules = {
+				flashlit: function(gridParams) {
+					return gridParams.data.id === Number(queryParams.last);
+				}
+			};
+		});
+	}
 
 	@ViewChild('grid')
 	grid: ElementRef;
