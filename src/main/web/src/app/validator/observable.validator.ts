@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
-import { Observable, timer } from 'rxjs';
+import { Observable, timer, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { ApiResponse } from '../api/api-response.interface';
 
@@ -17,5 +17,5 @@ export function validateObservable<T>(
 	condition: boolean = true
 ): AsyncValidatorFn {
 	return (ctrl: AbstractControl): Observable<ValidationErrors | undefined> =>
-		timer(debounce).pipe(switchMap(() => observable(ctrl).pipe(map(resolver))));
+		condition ? timer(debounce).pipe(switchMap(() => observable(ctrl).pipe(map(resolver)))) : of(undefined);
 }

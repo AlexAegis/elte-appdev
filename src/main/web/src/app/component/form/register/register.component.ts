@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { slideInAnimation } from 'src/app/animation/route.animation';
@@ -13,16 +13,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorResponse } from 'src/app/api/error-response.interface';
 import { RegisterResponse } from 'src/app/api/public/user/register.post.interface';
 import { Router } from '@angular/router';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+
+@AutoUnsubscribe()
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
 	styleUrls: ['./register.component.scss'],
 	animations: [slideInAnimation]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 	hidePassword = true;
 	registrationForm: FormGroup = this.formBuilder.group({});
-
 	constructor(
 		private formBuilder: FormBuilder,
 		private userService: UserService,
@@ -58,4 +60,6 @@ export class RegisterComponent implements OnInit {
 			}
 		);
 	}
+
+	ngOnDestroy() {}
 }

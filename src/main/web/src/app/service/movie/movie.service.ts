@@ -24,7 +24,8 @@ export class MovieService {
 		return this.http.get<Movie>(IMovie.url(id));
 	}
 
-	create(movie: Movie): Observable<Movie> {
-		return this.http.post<Movie>(IMovie.url(), movie);
+	save(movie: Movie): Observable<Movie> {
+		console.log(movie);
+		return this.http.post<Movie>('rest/movies/', movie);
 	}
 }

@@ -1,6 +1,6 @@
 import { Subscription, Observable, of } from 'rxjs';
 import { MovieService } from './../../../service/movie/movie.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MovieFormComponent } from '../../form/movie-form/movie-form.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -18,7 +18,8 @@ export class MovieComponent implements OnInit, OnDestroy {
 	constructor(
 		public activatedRoute: ActivatedRoute,
 		private formBuilder: FormBuilder,
-		private movieService: MovieService
+		private movieService: MovieService,
+		private router: Router
 	) {}
 
 	movieForm: FormGroup;
@@ -26,7 +27,7 @@ export class MovieComponent implements OnInit, OnDestroy {
 	@ViewChild('movieForm')
 	movieFormComponent: MovieFormComponent;
 	movieFromParam: Observable<Movie>;
-	movieLoadSubscription: Subscription;
+	unsub: Array<Subscription> = [];
 
 	ngOnInit(): void {
 		this.movieForm = this.formBuilder.group({});
@@ -38,20 +39,32 @@ export class MovieComponent implements OnInit, OnDestroy {
 			}),
 			defaultIfEmpty()
 		);
-		this.movieFromParam.subscribe(result => {
-			if (result) {
-				this.movieForm.patchValue({ movie: result });
-			}
-		});
+		this.unsub.push(
+			this.movieFromParam.subscribe(result => {
+				if (result) {
+					this.movieForm.patchValue({ movie: result });
+				}
+			})
+		);
 	}
 
 	save(): void {
+		let o = this.movieForm.value;
+		this.unsub.push(
+			this.movieService.save(this.movieForm.value.movie).subscribe(
+				movie => this.router.navigate(['movies'], { queryParams: { last: movie.id } }),
+				err => {
+					console.log(`errored: ${err}`);
+					console.log(err);
+				}
+			)
+		);
 		console.log('save called');
 	}
 
 	ngOnDestroy(): void {
-		if (this.movieLoadSubscription) {
-			this.movieLoadSubscription.unsubscribe();
-		}
+		this.unsub.forEach(sub => {
+			sub.unsubscribe();
+		});
 	}
 }

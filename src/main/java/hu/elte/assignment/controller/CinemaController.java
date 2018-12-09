@@ -50,8 +50,10 @@ public class CinemaController {
 
 	@PreAuthorize("hasAuthority('WRITE')")
 	@PostMapping("/")
-	public ResponseEntity<Movie> createMovie(@Valid @RequestBody() MovieDTO movieDTO) {
-		Movie movie = modelMapper.map(movieDTO, Movie.class);
+	public ResponseEntity<Movie> createMovie(@Valid @RequestBody() Movie movie) {
+		System.out.println("HEYJOOOO");
+		System.out.println(movie);
+		//Movie movie = modelMapper.map(movieDTO, Movie.class);
 		return ResponseEntity.ok(this.movieRepository.save(movie));
 	}
 

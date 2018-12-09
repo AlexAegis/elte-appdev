@@ -23,6 +23,7 @@ export class MovieFormComponent implements OnInit {
 	ngOnInit() {
 		this.titleFocused = true;
 		this.movie = this.formBuilder.group({
+			id: ['', []],
 			title: [
 				'',
 				[Validators.required],
@@ -31,7 +32,8 @@ export class MovieFormComponent implements OnInit {
 						(ctrl: AbstractControl) => this.movieService.titleAvailable(ctrl.value),
 						(result: ApiResponse<TitleAvailableResponse>) =>
 							result.data.available ? undefined : { taken: false },
-						200
+						200,
+						false
 					)
 				]
 			],
