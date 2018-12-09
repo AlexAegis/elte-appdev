@@ -23,4 +23,8 @@ export class MovieService {
 	movie(id: number = undefined): Observable<Movie> {
 		return this.http.get<Movie>(IMovie.url(id));
 	}
+
+	create(movie: Movie): Observable<Movie> {
+		return this.http.post<Movie>(IMovie.url(), movie);
+	}
 }

@@ -21,7 +21,8 @@ const routes: Routes = [
 		children: [
 			{ path: 'logout', redirectTo: '' },
 			{ path: 'movies', component: MovieListComponent },
-			{ path: 'movies/:id', component: MovieComponent }
+			{ path: 'movies/:id', component: MovieComponent },
+			{ path: 'movie', component: MovieComponent }
 		]
 	},
 	{ path: 'register', component: RegisterComponent }
