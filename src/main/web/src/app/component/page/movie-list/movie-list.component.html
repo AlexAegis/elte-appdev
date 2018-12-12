@@ -17,5 +17,9 @@
 	(gridSizeChanged)="onGridSizeChanged($event)"
 	(rowClicked)="clicked($event)"
 	[rowClassRules]="rowClassRules"
+	[pagination]="true"
+	[paginationPageSize]="4"
+	(gridReady)="gridReady($event)"
+	[getRowNodeId]="getRowNodeId"
 >
 </ag-grid-angular>
