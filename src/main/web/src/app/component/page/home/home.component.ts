@@ -9,16 +9,28 @@ import { AuthService } from 'src/app/service/auth.service';
 	styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-	constructor(private auth: AuthService, public movieService: MovieService) {}
+	constructor(public auth: AuthService, public movieService: MovieService) {}
 
 	count: number;
+	countOwn: number;
 
 	unsub: Array<Subscription> = [];
 
 	ngOnInit() {
 		this.unsub.push(
-			this.movieService.count().subscribe(res => {
-				this.count = res.data;
+			this.movieService.count().subscribe(
+				res => {
+					this.count = res.data;
+				},
+				err => {
+					this.count = undefined;
+				}
+			)
+		);
+
+		this.unsub.push(
+			this.movieService.countOwn().subscribe(res => {
+				this.countOwn = res.data;
 			})
 		);
 	}

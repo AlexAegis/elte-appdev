@@ -5,12 +5,14 @@ import hu.elte.assignment.config.DTO;
 import hu.elte.assignment.data.dto.theatre.MovieDTO;
 import hu.elte.assignment.data.dto.validation.AvailablePayload;
 import hu.elte.assignment.data.model.theatre.Movie;
+import hu.elte.assignment.data.model.user.User;
 import hu.elte.assignment.data.repository.theatre.MovieRepository;
 import lombok.experimental.FieldDefaults;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,8 +35,8 @@ public class CinemaController {
 
 
 	@GetMapping("/")
-	public ResponseEntity<Iterable<Movie>> readMovies() {
-		return ResponseEntity.ok(this.movieRepository.findAll());
+	public ResponseEntity<Iterable<Movie>> readMovies(@AuthenticationPrincipal User user) {
+		return ResponseEntity.ok(this.movieRepository.findAllByOwner(user));
 	}
 
 	@GetMapping("/{id}")
@@ -44,10 +46,11 @@ public class CinemaController {
 				.orElseGet(() -> ResponseEntity.noContent().build());
 	}
 
-	@PreAuthorize("hasAuthority('WRITE')")
+	@PreAuthorize("hasAuthority('USER')")
 	@PostMapping("/")
-	public ResponseEntity<Movie> createMovie(@Valid @RequestBody() Movie movie) {
+	public ResponseEntity<Movie> createMovie(@Valid @RequestBody() Movie movie, @AuthenticationPrincipal User user) {
 		System.out.println("HEYJOOOO");
+		movie.setOwner(user);
 		System.out.println(movie);
 		//Movie movie = modelMapper.map(movieDTO, Movie.class);
 		return ResponseEntity.ok(this.movieRepository.save(movie));
@@ -69,10 +72,15 @@ public class CinemaController {
 		return ResponseEntity.ok(Response.<AvailablePayload>builder().data(new AvailablePayload(this.movieRepository.findByTitle(title).isPresent())).build());
 	}
 
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/count")
 	public ResponseEntity<Response<Long>> count() {
 		return ResponseEntity.ok(Response.<Long>builder().data(this.movieRepository.count()).build());
+	}
 
+	@GetMapping("/count-own")
+	public ResponseEntity<Response<Long>> countOwn(@AuthenticationPrincipal User user) {
+		return ResponseEntity.ok(Response.<Long>builder().data(this.movieRepository.countAllByOwner(user)).build());
 	}
 
 }

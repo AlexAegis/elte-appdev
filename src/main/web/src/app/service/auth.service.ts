@@ -36,6 +36,14 @@ export class AuthService {
 		});
 	}
 
+	hasAuth(authority: string): boolean {
+		return (
+			this.user &&
+			this.user.authorities &&
+			this.user.authorities.filter(auth => auth.authority === authority).length > 0
+		);
+	}
+
 	login(username: string, password: string): Observable<User> {
 		const loginObs: Observable<User> = from<User>(<Promise<User>>(
 			this.oAuthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(username, password)

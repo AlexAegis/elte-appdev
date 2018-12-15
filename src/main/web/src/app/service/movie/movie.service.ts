@@ -32,4 +32,8 @@ export class MovieService {
 	count(): Observable<ApiResponse<number>> {
 		return this.http.get<ApiResponse<number>>(IMovie.url() + 'count');
 	}
+
+	countOwn(): Observable<ApiResponse<number>> {
+		return this.http.get<ApiResponse<number>>(IMovie.url() + 'count-own');
+	}
 }

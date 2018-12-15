@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import hu.elte.assignment.data.model.Base;
 import hu.elte.assignment.data.model.people.Person;
+import hu.elte.assignment.data.model.theatre.Movie;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,6 +44,10 @@ public class User extends Base implements UserDetails, Serializable {
 	@JsonIgnore
 	@ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
 	private List<AuthorityGroup> groups = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+	private List<Movie> movies = new ArrayList<>();
 
 	@Builder
 	@JsonCreator

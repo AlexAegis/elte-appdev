@@ -27,7 +27,6 @@ public class UserServiceBean implements UserDetailsService {
 	@Override
 	public User loadUserByUsername(String username) {
 		User user = userRepository.findByUsername(username).orElse(null);
-		UserDTO userDTO = modelMapper.map(user, UserDTO.class);
 		if (user == null) {
 			throw new UsernameNotFoundException(String.format("The username %s doesn't exist", username));
 		}
