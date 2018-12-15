@@ -19,6 +19,10 @@ export class MovieFormComponent implements OnInit {
 
 	movie: FormGroup;
 
+	get formActors() {
+		return <FormArray>this.movie.controls['actors'];
+	}
+
 	titleFocused: boolean;
 
 	ngOnInit() {

@@ -26,7 +26,7 @@
 		</mat-form-field>
 
 		<h2>Actors:</h2>
-		<app-person [parent]="actor" *ngFor="let actor of movie.controls['actors'].controls"></app-person>
+		<app-person [parent]="actor" *ngFor="let actor of formActors.controls"></app-person>
 
 		<button #addActorButton type="button" mat-flat-button (click)="addActor()">
 			<fa-icon icon="plus" size="lg" transform="down-0 left-2"></fa-icon> Add Actor
