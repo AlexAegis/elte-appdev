@@ -2,7 +2,7 @@ import { PersonComponent } from './../../form/people/person/person.component';
 import { Subscription, Observable, of } from 'rxjs';
 import { MovieService } from './../../../service/movie/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, AfterViewInit } from '@angular/core';
 import { MovieFormComponent } from '../../form/movie-form/movie-form.component';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { mergeMap, switchMap, defaultIfEmpty } from 'rxjs/operators';
@@ -15,7 +15,7 @@ import { Movie } from 'src/app/model/movie/movie.interface';
 	templateUrl: './movie.component.html',
 	styleUrls: ['./movie.component.scss']
 })
-export class MovieComponent implements OnInit, OnDestroy {
+export class MovieComponent implements OnInit, OnDestroy, AfterViewInit {
 	constructor(
 		public activatedRoute: ActivatedRoute,
 		private formBuilder: FormBuilder,
@@ -31,6 +31,7 @@ export class MovieComponent implements OnInit, OnDestroy {
 	unsub: Array<Subscription> = [];
 	existing: boolean = false;
 	loaded: boolean = true;
+
 	ngOnInit(): void {
 		this.movieForm = this.formBuilder.group({});
 		this.movieFromParam$ = this.activatedRoute.params.pipe(
@@ -42,19 +43,38 @@ export class MovieComponent implements OnInit, OnDestroy {
 				} else return of();
 			})
 		);
-
 		this.unsub.push(
 			this.movieFromParam$.subscribe(result => {
-				this.loaded = true;
 				if (result) {
 					console.log('yay existing!!');
-					this.movieForm.patchValue({ movie: result });
+
+					const actorsArray: FormArray = this.movieForm.get('movie').get('actors') as FormArray;
+
+					for (let i = 0; i < result.actors.length; i++) {
+						const actorGroup: FormGroup = this.formBuilder.group({
+							person: PersonComponent.create(this.formBuilder)
+						});
+						actorsArray.push(actorGroup);
+					}
+
+					//this.movieForm.patchValue({ movie: result });
+
 					this.existing = true;
 				}
 			})
 		);
 	}
 
+	ngAfterViewInit(): void {
+		this.unsub.push(
+			this.movieFromParam$.subscribe(result => {
+				this.loaded = true;
+				if (result) {
+					this.movieForm.patchValue({ movie: result });
+				}
+			})
+		);
+	}
 	save(): void {
 		let o = this.movieForm.value;
 		this.unsub.push(
