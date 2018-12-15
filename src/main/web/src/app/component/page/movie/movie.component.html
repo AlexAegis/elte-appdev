@@ -1,9 +1,10 @@
 <div [hidden]="!loaded">
 	<h1 *ngIf="existing">Edit movie</h1>
 	<h1 *ngIf="!existing">Create movie</h1>
-	<form #f="ngForm" [formGroup]="movieForm" (submit)="save()">
+	<button #submit type="submit" form="movieForm" mat-flat-button [disabled]="!movieForm.valid">Save</button>
+
+	<form id="movieForm" [formGroup]="movieForm" (submit)="save()">
 		<app-movie-form #movieFormComp [parent]="movieForm"></app-movie-form>
-		<button #submit type="submit" mat-flat-button [disabled]="!movieForm.valid">Save</button>
 	</form>
 </div>
 

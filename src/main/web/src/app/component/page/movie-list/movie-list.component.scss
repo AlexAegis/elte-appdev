@@ -3,7 +3,8 @@
 	//flex-direction: row;
 	//overflow: hidden;
 	//flex-grow: 1;
-	width: 100%;
+	margin: 1em;
+	width: calc(100% - 1rem);
 	h1 {
 		grid-row: 1;
 		grid-column: 1;
