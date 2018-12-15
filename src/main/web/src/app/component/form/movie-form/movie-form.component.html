@@ -1,28 +1,22 @@
 <div [formGroup]="parent">
-	<div formGroupName="movie" id="movie-form">
-		<mat-form-field hideRequiredMarker>
+	<div formGroupName="movie">
+		<mat-form-field hideRequiredMarker id="movie-form">
 			<input matInput formControlName="title" placeholder="Title" [(focus)]="titleFocused" />
-			<!--
-				<mat-error *ngIf="movie.controls['title']?.dirty && movie.controls['title']?.errors?.required">
-					Reqired
-				</mat-error>
-			-->
-			<!--
-				<mat-error
-					*ngIf="
-						(parent?.errors && (parent?.errors)['title_not_available']) ||
-						(movie.controls['title'].value && movie.controls['title'].invalid && movie.controls['title'].dirty)
-					"
-				>
-					Movie with title already exists
-				</mat-error>
-			-->
 
-			<!-- <mat-hint *ngIf="movie.controls['title']?.valid"> Hooray :) </mat-hint> -->
+			<mat-error *ngIf="movie.controls['title']?.dirty && movie.controls['title']?.errors?.required">
+				Reqired
+			</mat-error>
 
-			<!--
-				<mat-spinner *ngIf="movie.controls['title']?.pending" color="accent" diameter="20" matSuffix></mat-spinner>
-			-->
+			<mat-error
+				*ngIf="
+					(parent?.errors && (parent?.errors)['title_not_available']) ||
+					(movie.controls['title'].value && movie.controls['title'].invalid && movie.controls['title'].dirty)
+				"
+			>
+				Movie with title already exists
+			</mat-error>
+
+			<mat-spinner *ngIf="movie.controls['title']?.pending" color="accent" diameter="20" matSuffix></mat-spinner>
 		</mat-form-field>
 
 		<mat-form-field>
@@ -30,5 +24,12 @@
 			<mat-datepicker-toggle matSuffix [for]="releaseDatePicker"></mat-datepicker-toggle>
 			<mat-datepicker #releaseDatePicker></mat-datepicker>
 		</mat-form-field>
+
+		<h2>Actors:</h2>
+		<app-person [parent]="actor" *ngFor="let actor of movie.controls['actors'].controls"></app-person>
+
+		<button #addActorButton type="button" mat-flat-button (click)="addActor()">
+			<fa-icon icon="plus" size="lg" transform="down-0 left-2"></fa-icon> Add Actor
+		</button>
 	</div>
 </div>

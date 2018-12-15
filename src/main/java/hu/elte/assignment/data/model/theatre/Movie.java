@@ -1,6 +1,7 @@
 package hu.elte.assignment.data.model.theatre;
 
 import hu.elte.assignment.data.model.Base;
+import hu.elte.assignment.data.model.people.Actor;
 import hu.elte.assignment.data.model.people.Person;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,8 +34,8 @@ public class Movie extends Base implements Serializable {
 	@OneToMany(mappedBy = "movie")
 	private List<Screening> screenings = new ArrayList<>();
 
-	@ManyToMany
-	private List<Person> actors = new ArrayList<>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Actor> actors = new ArrayList<>();
 
 
 }

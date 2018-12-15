@@ -1,9 +1,10 @@
+import { PersonComponent } from './../../form/people/person/person.component';
 import { Subscription, Observable, of } from 'rxjs';
 import { MovieService } from './../../../service/movie/movie.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MovieFormComponent } from '../../form/movie-form/movie-form.component';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { mergeMap, switchMap, defaultIfEmpty } from 'rxjs/operators';
 import { ApiResponse } from 'src/app/api/api-response.interface';
 import { MovieResponse } from 'src/app/api/movies/movies.get.interface';

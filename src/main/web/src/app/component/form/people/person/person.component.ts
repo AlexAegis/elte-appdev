@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 
 @Component({
 	selector: 'app-person',
@@ -10,14 +10,22 @@ export class PersonComponent implements OnInit {
 	@Input()
 	parent: FormGroup;
 
-	person: FormGroup = this.formBuilder.group({
-		firstName: [''],
-		lastName: ['']
-	});
+	person: FormGroup = PersonComponent.create(this.formBuilder);
+
+	static create(fb: FormBuilder): FormGroup {
+		return fb.group({
+			firstName: [''],
+			lastName: ['']
+		});
+	}
 
 	ngOnInit() {
 		this.parent.setControl('person', this.person);
 	}
 
-	constructor(private formBuilder: FormBuilder) {}
+	constructor(private formBuilder: FormBuilder, private cd: ChangeDetectorRef) {}
+	/*
+	ngAfterViewInit(): void {
+		this.cd.detectChanges();
+	}*/
 }

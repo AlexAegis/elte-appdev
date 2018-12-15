@@ -37,10 +37,11 @@ public class Person extends Base implements Serializable {
 	private User user;
 
 	@JsonIgnore
-	@ManyToMany(mappedBy = "actors")
-	private List<Movie> participates = new ArrayList<>();
-
-	@JsonIgnore
 	@OneToMany(mappedBy = "owner")
 	private List<Ticket> tickets = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToOne(mappedBy = "person")
+	private Actor actor;
+
 }
