@@ -1,7 +1,6 @@
 package hu.elte.assignment.data.dto.theatre;
 
 import hu.elte.assignment.data.model.people.Person;
-import hu.elte.assignment.data.model.theatre.Screening;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,8 +24,6 @@ public class MovieDTO implements Serializable {
 	private String name;
 
 	private Date release;
-
-	private List<Screening> screenings = new ArrayList<>();
 
 	private List<Person> actors = new ArrayList<>();
 

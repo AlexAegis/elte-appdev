@@ -2,8 +2,6 @@ package hu.elte.assignment.data.model.people;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import hu.elte.assignment.data.model.Base;
-import hu.elte.assignment.data.model.theatre.Movie;
-import hu.elte.assignment.data.model.theatre.Ticket;
 import hu.elte.assignment.data.model.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,8 +11,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Entity
@@ -35,10 +31,6 @@ public class Person extends Base implements Serializable {
 	@JsonIgnore
 	@OneToOne(mappedBy = "person")
 	private User user;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "owner")
-	private List<Ticket> tickets = new ArrayList<>();
 
 	@JsonIgnore
 	@OneToOne(mappedBy = "person")

@@ -1,12 +1,10 @@
 package hu.elte.assignment.controller;
 
-import hu.elte.assignment.api.Message;
 import hu.elte.assignment.api.Response;
 import hu.elte.assignment.config.DTO;
 import hu.elte.assignment.data.dto.theatre.MovieDTO;
 import hu.elte.assignment.data.dto.validation.AvailablePayload;
 import hu.elte.assignment.data.model.theatre.Movie;
-import hu.elte.assignment.data.repository.theatre.CinemaRepository;
 import hu.elte.assignment.data.repository.theatre.MovieRepository;
 import lombok.experimental.FieldDefaults;
 import org.modelmapper.ModelMapper;
@@ -25,13 +23,11 @@ import static lombok.AccessLevel.PRIVATE;
 public class CinemaController {
 
 	MovieRepository movieRepository;
-	CinemaRepository cinemaRepository;
 	ModelMapper modelMapper;
 
 	@Autowired
-	public CinemaController(MovieRepository movieRepository, CinemaRepository cinemaRepository, ModelMapper modelMapper) {
+	public CinemaController(MovieRepository movieRepository, ModelMapper modelMapper) {
 		this.movieRepository = movieRepository;
-		this.cinemaRepository = cinemaRepository;
 		this.modelMapper = modelMapper;
 	}
 
