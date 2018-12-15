@@ -69,4 +69,10 @@ public class CinemaController {
 		return ResponseEntity.ok(Response.<AvailablePayload>builder().data(new AvailablePayload(this.movieRepository.findByTitle(title).isPresent())).build());
 	}
 
+	@GetMapping("/count")
+	public ResponseEntity<Response<Long>> count() {
+		return ResponseEntity.ok(Response.<Long>builder().data(this.movieRepository.count()).build());
+
+	}
+
 }

@@ -28,4 +28,8 @@ export class MovieService {
 		console.log(movie);
 		return this.http.post<Movie>('rest/movies/', movie);
 	}
+
+	count(): Observable<ApiResponse<number>> {
+		return this.http.get<ApiResponse<number>>(IMovie.url() + 'count');
+	}
 }
