@@ -79,7 +79,7 @@ import { MovieFormComponent } from './component/form/movie-form/movie-form.compo
 			}
 		}),
 		MomentModule,
-		NgProgressModule.forRoot({
+		NgProgressModule.withConfig({
 			trickleSpeed: 200,
 			min: 20,
 			debounceTime: 500,
@@ -87,7 +87,7 @@ import { MovieFormComponent } from './component/form/movie-form/movie-form.compo
 			spinner: false
 		}),
 		AvatarModule,
-		NgProgressHttpModule.forRoot(),
+		NgProgressHttpModule,
 		BrowserAnimationsModule,
 		MaterialModule,
 		NgScrollbarModule,
