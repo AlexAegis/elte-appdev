@@ -4,7 +4,7 @@ import { transition, animate, state, style, trigger, group, animateChild, query 
 import { ActivatedRoute, Router } from '@angular/router';
 import { slideInAnimation } from '../animation/route.animation';
 import { AuthGuard } from '../guard/auth.guard';
-import { ObservableMedia, MediaChange } from '@angular/flex-layout';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 
 @Component({
 	selector: 'app-root',
@@ -97,11 +97,11 @@ export class AppComponent implements OnInit {
 		public route: ActivatedRoute,
 		public router: Router,
 		public authGuard: AuthGuard,
-		private media: ObservableMedia
+		private media: MediaObserver
 	) {}
 
 	ngOnInit(): void {
-		this.media.subscribe((change: MediaChange) => {
+		this.media.media$.subscribe((change: MediaChange) => {
 			if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
 				this.mediaLarge = false;
 			} else {

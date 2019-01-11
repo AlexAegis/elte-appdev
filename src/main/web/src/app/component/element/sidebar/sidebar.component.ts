@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ObservableMedia, MediaChange } from '@angular/flex-layout';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
 
 	opened: boolean = false;
 
-	constructor(private media: ObservableMedia, public auth: AuthService) {
+	constructor(private media: MediaObserver, public auth: AuthService) {
 		this.auth.login$.subscribe(user => {
 			if (!user) {
 				this.opened = false;
@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.media.subscribe((change: MediaChange) => {
+		this.media.media$.subscribe((change: MediaChange) => {
 			if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
 				this.opened = false;
 				this.over = 'over';

@@ -2,8 +2,7 @@
 
 @import './palette.scss';
 
-$ag-icons-path: '~ag-grid-community/src/styles/icons/';
-$ag-mat-icons-path: '~ag-grid-community/src/styles/material-icons/';
+$ag-icons-path: '~ag-grid-community/src/styles/ag-theme-material/icons/';
 
 $primary-color: mat-color($client-primary, 50) !important;
 
@@ -16,7 +15,7 @@ $selected-color: mat-color($client-primary, 300);
 $ag-range-selected-color-1: rgba(32, 182, 27, 0.4) !important;
 // The selection background color.
 
-$background-color: rgba(49, 49, 49, 0.4) !important;
+$background-color: mat-color($client-primary, 50);
 // The default background color.
 
 $border-color: darkgrey !important;
@@ -67,7 +66,7 @@ $foreground-color: rgba(240, 248, 250, $foreground-opacity) !important;
 // $grid-size: 4px
 // The basic unit used for the grid spacing and dimensions. Changing this makes the grid UI more / less compact.
 
-$header-background-color: rgb(187, 58, 155) !important;
+// $header-background-color: $primary-color !important;
 // The header background color.
 
 $header-background-image: linear-gradient(white, rgb(22, 31, 170)) !important;
@@ -146,4 +145,4 @@ $value-change-value-highlight-background-color: rgb(168, 168, 168);
 // The indent used for the tool panel hierarchy.
 
 @import '~ag-grid-community/src/styles/ag-grid.scss';
-@import '~ag-grid-community/src/styles/ag-theme-material.scss';
+@import '~ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material.scss';
