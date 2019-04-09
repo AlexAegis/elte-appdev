@@ -45,7 +45,7 @@ export class AuthService {
 	}
 
 	login(username: string, password: string): Observable<User> {
-		const loginObs: Observable<User> = from<User>(<Promise<User>>(
+		const loginObs: Observable<User> = from(<Promise<User>>(
 			this.oAuthService.fetchTokenUsingPasswordFlowAndLoadUserProfile(username, password)
 		))
 			.pipe(o => {
