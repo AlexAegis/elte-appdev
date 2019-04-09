@@ -40,7 +40,7 @@ export class MovieComponent implements OnInit, OnDestroy, AfterViewInit {
 				if (params && params.id) {
 					this.loaded = false;
 					return this.movieService.movie(params.id);
-				} else return of();
+				} else return of<Movie>();
 			})
 		);
 		this.unsub.push(
